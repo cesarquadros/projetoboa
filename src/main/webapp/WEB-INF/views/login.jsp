@@ -55,7 +55,7 @@
 				<div class="row">
 					<div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
 						<div class="card card-signup">
-							<form class="form" method="" action="">
+							<form class="form" method="post" action="/boasalasdeatendimento/autenticar">
 								<div class="header header-primary text-center">
 									<h4>Faça seu Login</h4>
 								</div>
@@ -86,8 +86,8 @@
 									</div> -->
 								</div>
 								<div class="footer text-center">
-									<a href="#pablo" class="btn btn-simple btn-primary btn-lg">Entrar</a>
-									<a href="#pablo" class="btn btn-simple btn-primary btn-lg">Cancelar</a>
+									<button type="submit" class="btn btn-simple btn-primary btn-lg">Entrar</button>
+									<a href="#" class="btn btn-simple btn-primary btn-lg">Cancelar</a>
 								</div>
 							</form>
 						</div>
