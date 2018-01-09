@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="UTF-8"%>
+pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 
@@ -16,40 +16,40 @@
 
 	<!--     Fonts and icons     -->
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" />
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
 
 	<!-- CSS Files -->
-    <link href="resources/css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link href="resources/css/material-kit.css" rel="stylesheet" media="screen">
+	<link href="resources/css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<link href="resources/css/material-kit.css" rel="stylesheet" media="screen">
 </head>
 <body class="signup-page">
 	<nav class="navbar navbar-transparent navbar-absolute">
-    	<div class="container">
-        	<!-- Brand and toggle get grouped for better mobile display -->
-        	<div class="navbar-header">
-        		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example">
-            		<span class="sr-only">Toggle navigation</span>
-		            <span class="icon-bar"></span>
-		            <span class="icon-bar"></span>
-		            <span class="icon-bar"></span>
-        		</button>
-        		<a class="navbar-brand" href="http://www.creative-tim.com">BOA Salas de atendimento</a>
-        	</div>
+		<div class="container">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="http://www.creative-tim.com">BOA Salas de atendimento</a>
+			</div>
 
-        	<div class="collapse navbar-collapse" id="navigation-example">
-        		<ul class="nav navbar-nav navbar-right">
+			<div class="collapse navbar-collapse" id="navigation-example">
+				<ul class="nav navbar-nav navbar-right">
 					<li>
-    					<a href="#">
-    						Cadastrar
-    					</a>
-    				</li>
-        		</ul>
-        	</div>
-    	</div>
-    </nav>
+						<a href="#">
+							Cadastrar
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
 
-    <div class="wrapper">
+	<div class="wrapper">
 		<div class="header header-filter" style="background-image: url('resources/img/city.jpg'); background-size: cover; background-position: top center;">
 			<div class="container">
 				<div class="row">
@@ -96,8 +96,8 @@
 			</div>
 
 			<footer class="footer">
-		        <div class="container">
-		            <nav class="pull-left">
+				<div class="container">
+					<nav class="pull-left">
 						<ul>
 							<li>
 								<a href="http://www.creative-tim.com">
@@ -106,7 +106,7 @@
 							</li>
 							<li>
 								<a href="http://presentation.creative-tim.com">
-								   Sobre
+									Sobre
 								</a>
 							</li>
 							<li>
@@ -114,43 +114,43 @@
 									Licenses
 								</a>
 							</li>
-									            <li>
-		                <a href="https://twitter.com/CreativeTim" target="_blank" class="btn btn-simple btn-white btn-just-icon">
-							<i class="fa fa-twitter"></i>
-						</a>
-		            </li>
-		            <li>
-		                <a href="https://www.facebook.com/CreativeTim" target="_blank" class="btn btn-simple btn-white btn-just-icon">
-							<i class="fa fa-facebook-square"></i>
-						</a>
-		            </li>
-					<li>
-		                <a href="https://www.instagram.com/CreativeTimOfficial" target="_blank" class="btn btn-simple btn-white btn-just-icon">
-							<i class="fa fa-instagram"></i>
-						</a>
-		            </li>
+							<li>
+								<a href="https://twitter.com/CreativeTim" target="_blank" class="btn btn-simple btn-white btn-just-icon">
+									<i class="fa fa-twitter"></i>
+								</a>
+							</li>
+							<li>
+								<a href="https://www.facebook.com/CreativeTim" target="_blank" class="btn btn-simple btn-white btn-just-icon">
+									<i class="fa fa-facebook-square"></i>
+								</a>
+							</li>
+							<li>
+								<a href="https://www.instagram.com/CreativeTimOfficial" target="_blank" class="btn btn-simple btn-white btn-just-icon">
+									<i class="fa fa-instagram"></i>
+								</a>
+							</li>
 						</ul>
-		            </nav>
-		            <div class="copyright pull-right">
-		                &copy; 2017, made with <i class="fa fa-heart heart"></i> by <a href="http://www.creative-tim.com" target="_blank">Boa</a>
-		            </div>
-		        </div>
-		    </footer>
+					</nav>
+					<div class="copyright pull-right">
+						&copy; 2017, made with <i class="fa fa-heart heart"></i> by <a href="http://www.creative-tim.com" target="_blank">Boa</a>
+					</div>
+				</div>
+			</footer>
 		</div>
-    </div>
+	</div>
 
 </body>
 <!--   Core JS Files   -->
-	<script src="resources/js/jquery.min.js" type="text/javascript"></script>
-	<script src="resources/js/bootstrap.min.js" type="text/javascript"></script>
-	<script src="resources/js/material.min.js"></script>
+<script src="resources/js/jquery.min.js" type="text/javascript"></script>
+<script src="resources/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="resources/js/material.min.js"></script>
 
-	<!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-	<script src="resources/js/nouislider.min.js" type="text/javascript"></script>
+<!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+<script src="resources/js/nouislider.min.js" type="text/javascript"></script>
 
-	<!--  Plugin for the Datepicker, full documentation here: http://www.eyecon.ro/bootstrap-datepicker/ -->
-	<script src="resources/js/bootstrap-datepicker.js" type="text/javascript"></script>
+<!--  Plugin for the Datepicker, full documentation here: http://www.eyecon.ro/bootstrap-datepicker/ -->
+<script src="resources/js/bootstrap-datepicker.js" type="text/javascript"></script>
 
-	<!-- Control Center for Material Kit: activating the ripples, parallax effects, scripts from the example pages etc -->
-	<script src="resources/js/material-kit.js" type="text/javascript"></script>
+<!-- Control Center for Material Kit: activating the ripples, parallax effects, scripts from the example pages etc -->
+<script src="resources/js/material-kit.js" type="text/javascript"></script>
 </html>

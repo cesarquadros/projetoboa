@@ -26,6 +26,15 @@ public class HomeController {
 		
 		return modelAndView;
 	}
+	
+	@RequestMapping("/indes")
+	public static ModelAndView index2() {
+		
+		ModelAndView modelAndView = new ModelAndView("index");
+		modelAndView.addObject("dataAtual", getDateTime());
+		
+		return modelAndView;
+	}
 
 	@RequestMapping(value = "/listahorarios", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
