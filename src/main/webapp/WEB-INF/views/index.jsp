@@ -75,7 +75,8 @@ pageEncoding="UTF-8"%>
 						<div class="row">
 							<div class="col-xs-12 col-sm-12 col-md-12">
 								<div class="form-group label-floating" id="divNome">
-									<label class="control-label">Nome Completo</label> <input type="text" class="form-control" ng-model="nome" ng-blur="insereIcone = teste(nome)"> <span	class="form-control-feedback" ng-if="insereIcone"> <i
+									<label class="control-label">Nome Completo</label> 
+									<input type="text" class="form-control" ng-model="nome" ng-blur="insereIcone = teste(nome)"> <span	class="form-control-feedback" ng-if="insereIcone"> <i
 										class="material-icons">done</i>
 									</span> <span class="material-icons form-control-feedback"	ng-if="insereIcone == false">clear</span>
 								</div>

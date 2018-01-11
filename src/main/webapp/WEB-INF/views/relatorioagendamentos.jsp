@@ -36,6 +36,7 @@ pageEncoding="UTF-8"%>
 					<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand" href="/">BOA Salas de Atendimento</a>
+				<img src="./resources/img/boa/logoboa.png" alt="Circle Image" class="img-raised img-responsive" style="height: 100px">
 			</div>
 
 			<div class="collapse navbar-collapse" id="navigation-example">
@@ -68,18 +69,57 @@ pageEncoding="UTF-8"%>
 			<div class="container" style="padding-bottom: 10%;">
 				<h1></h1>
 				<ul class="nav nav-tabs">
-					<li class="active"><a data-toggle="tab" href="#menu1">Meus Agendamentos</a></li>
+					<li class="active"><a data-toggle="tab" href="#menu1">Relatório de Agendamentos</a></li>
 				</ul>
 
-				<div>
-					<h5 style="margin-top: 30px">Você já realizou 12 agendamentos</h5>
+				<div class="container">
+					
+					<div class="row" style="margin: auto; display:flex;">
+					
+						<div class="col-xs-12 col-sm-12 col-md-9" style="margin: auto;">
+							
+						<form>
+							<div class="col-xs-12 col-sm-12 col-md-3" >
+								<div class="form-group">
+									<label>Data inicio</label>
+									<input id="data" class="datepicker form-control" type="text" /> 
+								</div>
+							</div>
+							
+							<div class="col-xs-12 col-sm-12 col-md-3" >
+								<div class="form-group">
+									<label>Data fim</label>
+									<input id="data" class="datepicker form-control" type="text" /> 
+								</div>
+							</div>
+							
+							<div class="col-xs-12 col-sm-12 col-md-3" >
+								<div class="form-group">
+								<label>Status</label>
+								    <select class="form-control" id="exampleFormControlSelect1">
+								    	<option>Reservado</option>
+								      	<option>Cancelado</option>
+								      	<option>Finalizado</option>
+								    </select>
+								 </div>						
+							</div>
+							
+							<div class="col-xs-12 col-sm-12 col-md-3" >
+								<div class="form-group">
+									<label>Cliente</label>
+									<input type="text" class="form-control"> 
+								</div>
+							</div>
+						</form>
+						</div>
+					</div>
 					
 					<div class="row" style="margin-top: 35px">
-						<div class="col-xs-12 col-sm-12 col-md-10" >
+						<div class="col-xs-12 col-sm-12 col-md-12" >
 							<table class="table" style="margin-left: auto; margin-right: auto;">
 								<thead>
 									<tr>
-										<th></th>
+										<th>Cliente</th>
 										<th>Data</th>
 										<th>Horário</th>
 										<th>Sala</th>
@@ -88,33 +128,26 @@ pageEncoding="UTF-8"%>
 								</thead>
 								<tbody>
 									<tr>
-										<td></td>
+										<td>João</td>
 										<td>01/01/2018</td>
 										<td>13:00</td>
 										<td>SALA 10</td>
 										<td>Finalizado</td>
 									</tr>
 									<tr>
-										<td></td>
+										<td>José</td>
 										<td>01/01/2018</td>
 										<td>13:00</td>
 										<td>SALA 10</td>
-										<td>Finalizado</td>
+										<td>Cancelado</td>
 									</tr>	
 									<tr>
-										<td></td>
+										<td>Malaquias</td>
 										<td>01/01/2018</td>
 										<td>13:00</td>
 										<td>SALA 10</td>
-										<td><a href="#"type="button" style="border: 1px solid purple; padding: 5px">Cancelar</a></td>
+										<td>Reservado</td>
 									</tr>
-									<tr>
-										<td></td>	
-										<td>01/01/2018</td>
-										<td>13:00</td>
-										<td>SALA 10</td>
-										<td><a style="border: 1px solid purple; padding: 5px">Cancelar</a></td>
-									</tr>																		
 								</tbody>
 							</table>
 						</div>
