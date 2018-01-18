@@ -27,7 +27,7 @@ public class HomeController {
 		return modelAndView;
 	}
 	
-	@RequestMapping("/indes")
+	@RequestMapping("/index")
 	public static ModelAndView index2() {
 		
 		ModelAndView modelAndView = new ModelAndView("index");
@@ -41,7 +41,7 @@ public class HomeController {
 	public static ArrayList<Horario> listaHorarios(@RequestBody DataSala dataSala) {
 
 		SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
-		String data = f.format(dataSala.getData());
+		//String data = f.format(dataSala.getData());
 
 		Horario horario = new Horario();
 
