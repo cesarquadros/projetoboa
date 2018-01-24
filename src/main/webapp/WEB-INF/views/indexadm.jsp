@@ -14,7 +14,7 @@ pageEncoding="UTF-8"%>
 	<meta	content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'	name='viewport' />
 
 	<!--     Fonts and icons     -->
-	<link rel="stylesheet"	href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+		<link href="resources/css/material-icons.css" rel="stylesheet"	media="screen">
 	<link rel="stylesheet" type="text/css"	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" />
 	<link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
 
@@ -23,8 +23,8 @@ pageEncoding="UTF-8"%>
 	<link href="resources/css/material-kit.css" rel="stylesheet"	media="screen">
 
 	<!-- ANGUALR JS -->
-	<script src=./resources/js/angular.min.js></script>
-	<script src="./resources/controller/controller.js"></script>
+	<script src ="./resources/js/angular.min.js"></script>
+	<script src ="./resources/controller/controller.js"></script>
 
 </head>
 <body ng-app="app" ng-controller="appCtrl">
@@ -36,50 +36,32 @@ pageEncoding="UTF-8"%>
 					<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand" href="/">BOA Salas de Atendimento</a>
-				<img src="./resources/img/boa/logoboa.png" alt="Circle Image" class="img-raised img-responsive" style="height: 100px">
+				<!-- <img src="./resources/img/boa/logoboa.png" alt="Circle Image" class="img-raised img-responsive" style="height: 100px"> -->
 			</div>
 
 			<div class="collapse navbar-collapse" id="navigation-example">
 				<ul class="nav navbar-nav navbar-right">
-					<li ng-if="!usuarioLogado"><a href="#" data-toggle="modal" data-target="#myModal"> Cadastrar </a></li>
-					<li ng-if="!usuarioLogado"><a href="login">Efetuar login</a></li>
-					<li ng-if="usuarioLogado">
-						<div class="col-md-3 dropdown">
-							<a href="#" class="btn btn-simple dropdown-toggle" data-toggle="dropdown" style="color: white"> Usuário logado <b class="caret"></b>
-							</a>
-							<ul class="dropdown-menu">
-								<li><a href=#>Meus agendamentos</a></li>
-								<li><a href="#">Alterar senha</a></li>
-								<li><a href="#"  data-toggle="modal" data-target="#myModal">Alterar dados</a></li>
-								<li class="divider"></li>
-								<li><a href="#">Sair</a></li>
-							</ul>
-						</div>
-					</li>
+					<li ng-if="!usuarioLogado"><a href="#" data-toggle="modal" data-target="#myModal"> LOGIN ADM </a></li>
 				</ul>
 			</div>
 		</div>
 	</nav>
 
 <div class="wrapper">
-
 	<div class="header header-filter" style="background-image: url('resources/img/examples/city.jpg'); min-height: 200px"></div>
 	<div class="main main-raised">
 		<div class="profile-content">
 			<div class="container" style="padding-bottom: 10%;">
 				<h1></h1>
-				<div class="container">
-					
 					<div class="row" style="margin: auto; display:flex;">
-					
 						<div class="col-xs-12 col-sm-12 col-md-9" style="margin: auto; display:flex;">
 							<h1 style="margin: auto;">ADMINISTRATIVO</h1>
 						</div>
 					</div>
 					<br /><br /><br />
 					<div class="row" style="margin: auto; display:flex;">
-						<div class="col-xs-12 col-sm-12 col-md-12" style="margin: auto; display:flex; ">
-							<ul class="nav nav-pills nav-pills-primary" role="tablist" style="margin: auto;" >
+						<div class="col-xs-12 col-sm-12 col-md-12" >
+							<ul class="nav nav-pills nav-pills-primary" role="tablist" >
 								<li>
 									<a href="#clientes" role="tab" data-toggle="tab">
 										<i class="material-icons">people</i>
@@ -93,41 +75,35 @@ pageEncoding="UTF-8"%>
 									</a>
 								</li>
 								<li>
-									<a href="#tasks" role="tab" data-toggle="tab">
-										<i class="material-icons">list</i>
-										Tasks
+									<a href="#filiais" role="tab" data-toggle="tab">
+										<i class="material-icons">domain</i>
+										Filiais & Salas
 									</a>
 								</li>
 							</ul>
 						</div>
 					</div>
 					
-					
 					<div class="row" style="margin: auto; display:flex;">
 						<div class="tab-content">
 
 							<div id="clientes" class="tab-pane fade">
-								<h1>Clientes</h1>
+								<jsp:include page="relatorioclientes.jsp"></jsp:include>
 							</div>
 						
 							<div id="relatorio" class="tab-pane fade">
 								<jsp:include page="relatorioagendamentos.jsp"></jsp:include>
 							</div>
 							
-							<div id="relatorio" class="tab-pane fade">
-								<jsp:include page="relatorioagendamentos.jsp"></jsp:include>
+							<div id="filiais" class="tab-pane fade">
+								<jsp:include page="filiais.jsp"></jsp:include>
 							</div>
-							
 						</div>
 					</div>
-					
-					
 				</div>
 			</div>
 		</div>
 	</div>
-	
-</div>
 
 <footer class="footer">
 	<div class="container">
@@ -140,8 +116,8 @@ pageEncoding="UTF-8"%>
 			</ul>
 		</nav>
 		<div class="copyright pull-right">
-			&copy; 2016, made with <i class="fa fa-heart heart"></i> by Creative
-			Tim
+			&copy; 2016
+			<i class="fa fa-heart heart"></i> by WhileTrue
 		</div>
 	</div>
 </footer>

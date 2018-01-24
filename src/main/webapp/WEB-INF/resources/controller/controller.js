@@ -1,6 +1,6 @@
 var app = angular.module('app', []);
 app.controller('appCtrl', [ '$scope', '$http', function($scope, $http) {
-	$scope.usuarioLogado = true;
+	$scope.usuarioLogado = false;
 	$scope.numeroSala = 1;
 	$scope.listaHorario = [];
 

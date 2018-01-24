@@ -61,83 +61,18 @@ pageEncoding="UTF-8"%>
 	</nav>
 
 	<!-- Modal Core -->
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h4 class="modal-title" id="myModalLabel">Novo Cadastro</h4>
-				</div>
-				<div class="modal-body">
-
-					<form action="/cadastrar" method="POST">
-
-						<div class="row">
-							<div class="col-xs-12 col-sm-12 col-md-12">
-								<div class="form-group label-floating" id="divNome">
-									<label class="control-label">Nome Completo</label> 
-									<input type="text" class="form-control" ng-model="nome" ng-blur="insereIcone = teste(nome)"> <span	class="form-control-feedback" ng-if="insereIcone"> <i
-										class="material-icons">done</i>
-									</span> <span class="material-icons form-control-feedback"	ng-if="insereIcone == false">clear</span>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-xs-12 col-sm-12 col-md-6">
-								<div class="form-group label-floating has-success">
-									<label class="control-label">Email</label> <input type="text" class="form-control" /> <span class="form-control-feedback">
-										<i class="material-icons">done</i>
-									</span>
-								</div>
-							</div>
-							<div class="col-xs-12 col-sm-12 col-md-6">
-								<div class="form-group label-floating has-success">
-									<label class="control-label">Confirmar Email</label> <input	type="text" class="form-control" /> <span class="form-control-feedback"> <i	class="material-icons">done</i>
-								</span>
-							</div>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-xs-12 col-sm-12 col-md-6">
-							<div class="form-group label-floating has-error">
-								<label class="control-label">Senha</label> <input type="text" class="form-control" /> 
-								<span class="form-control-feedback">
-									<i class="material-icons">done</i>
-								</span>
-							</div>
-						</div>
-						<div class="col-xs-12 col-sm-12 col-md-6">
-							<div class="form-group label-floating has-error">
-								<label class="control-label">Confirmar Senha</label> 
-								<input type="text" class="form-control" /> 
-									<span class="form-control-feedback"> 
-										<i class="material-icons">done</i>
-								</span>
-							</div>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-xs-12 col-sm-12 col-md-6">
-							<div class="form-group label-floating has-error">
-								<label class="control-label">Telefone Celular</label> <input type="text" class="form-control" />
-							</div>
-						</div>
-						<div class="col-xs-12 col-sm-12 col-md-6">
-							<div class="form-group label-floating has-error">
-								<label class="control-label">CPF</label> <input	type="text" class="form-control" /> 
-							</div>
-						</div>
-					</div>
-					<div class="modal-footer">
-						<!-- <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">CANCELAR</button> -->
-						<button type="button" class="btn btn-info btn-simple">SALVAR</button>
-					</div>
-			</form>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">Novo Cadastro</h4>
+			</div>
+			<div class="modal-body">
+				<jsp:include page="formcadastro.jsp"></jsp:include>
+			</div>
 		</div>
 	</div>
-</div>
 </div>
 
 <div class="wrapper">
@@ -153,24 +88,36 @@ pageEncoding="UTF-8"%>
 				</ul>
 
 				<div class="tab-content">
-
 					<div id="menu1" class="tab-pane fade" ng-if="usuarioLogado">
-
-						<h3>Agendamento</h3>
+						<br /><br />
 						<div class="row">
 							<div class="col-xs-12 col-sm-12 col-md-3">
-
-								<h4>
-									<a href="#" class="btn btn-primary" ng-click="setSala('1')"	ng-model="data" value="1">Sala 1</a> 
-									<a href="#" class="btn btn-primary" ng-click="setSala('2')">Sala 2</a>
-								</h4>
-								<h4>
-									<a href="#" class="btn btn-primary">Sala 3</a> <a href="#" class="btn btn-primary">Sala 4</a>
-								</h4>
-								<h4>
-									<a href="#" class="btn btn-primary">Sala 5</a> <a href="#" class="btn btn-primary">Sala 6</a>
-								</h4>
-
+								<p>
+								  <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+								    Filial Yervant
+								  </a>
+								</p>
+								<div class="collapse" id="collapseExample">
+									<h4>
+										<a href="#" class="btn btn-default btn-xs" ng-click="setSala('1')"	ng-model="data" value="1">Sala 1</a> 
+										<a href="#" class="btn btn-default btn-xs" ng-click="setSala('2')">Sala 2</a>
+									</h4>
+								</div>
+								
+								
+								<p>
+								  <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
+								    Filial Interlagos
+								  </a>
+								</p>
+								<div class="collapse" id="collapseExample2">
+									<h4>
+										<a href="#" class="btn btn-default btn-xs" ng-click="setSala('1')"	ng-model="data" value="1">Sala 1</a> 
+										<a href="#" class="btn btn-default btn-xs" ng-click="setSala('2')">Sala 2</a>
+									</h4>
+								</div>								
+								
+								
 							</div>
 							<div class="col-xs-12 col-sm-12 col-md-4">
 								<!-- markup -->
@@ -203,7 +150,6 @@ pageEncoding="UTF-8"%>
 			</div>
 		</div>
 	</div>
-	
 </div>
 
 <footer class="footer">
@@ -217,8 +163,8 @@ pageEncoding="UTF-8"%>
 			</ul>
 		</nav>
 		<div class="copyright pull-right">
-			&copy; 2016, made with <i class="fa fa-heart heart"></i> by Creative
-			Tim
+			&copy; 2016
+			<i class="fa fa-heart heart"></i> by WhileTrue
 		</div>
 	</div>
 </footer>

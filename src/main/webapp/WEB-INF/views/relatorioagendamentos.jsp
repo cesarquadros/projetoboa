@@ -1,10 +1,9 @@
-<div class="container" style="padding-bottom: 10%;">
+	<div class="container">
 	<h1></h1>
 	<ul class="nav nav-tabs">
 		<li class="active"><a data-toggle="tab" href="#menu1">Relatório de Agendamentos</a></li>
 	</ul>
 	<br /><br />
-	<div class="container">
 		
 		<div class="row" style="margin: auto; display:flex;">
 		
@@ -86,4 +85,3 @@
 			</div>
 		</div>
 	</div>
-</div>
