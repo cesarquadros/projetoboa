@@ -1,15 +1,22 @@
 package br.com.boasalasdeatendimento.model;
 
+import java.util.Date;
 
 public class Horario {
 	
-	private String hora;
-
-	public String getHorario() {
-		return hora;
+	private Integer id;
+	private Date horario;
+	
+	public Integer getId() {
+		return id;
 	}
-
-	public void setHorario(String horario) {
-		this.hora = horario;
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public Date getHorario() {
+		return horario;
+	}
+	public void setHorario(Date horario) {
+		this.horario = horario;
 	}
 }

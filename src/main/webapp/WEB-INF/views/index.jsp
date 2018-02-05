@@ -28,146 +28,104 @@ pageEncoding="UTF-8"%>
 
 </head>
 <body ng-app="app" ng-controller="appCtrl">
-	<nav class="navbar navbar-transparent navbar-fixed-top navbar-color-on-scroll">
-		<div class="container">
-			<!-- Brand and toggle get grouped for better mobile display -->
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example">
-					<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="/">BOA Salas de Atendimento</a>
-			</div>
-
-			<div class="collapse navbar-collapse" id="navigation-example">
-				<ul class="nav navbar-nav navbar-right">
-					<li ng-if="!usuarioLogado"><a href="#" data-toggle="modal" data-target="#myModal"> Cadastrar </a></li>
-					<li ng-if="!usuarioLogado"><a href="login">Efetuar login</a></li>
-					<li ng-if="usuarioLogado">
-						<div class="col-md-3 dropdown">
-							<a href="#" class="btn btn-simple dropdown-toggle" data-toggle="dropdown" style="color: white"> Usuário logado <b class="caret"></b>
-							</a>
-							<ul class="dropdown-menu">
-								<li><a href=meusagendamentos>Meus agendamentos</a></li>
-								<li><a href="#">Alterar senha</a></li>
-								<li><a href="#"  data-toggle="modal" data-target="#myModal">Alterar dados</a></li>
-								<li class="divider"></li>
-								<li><a href="#">Sair</a></li>
-							</ul>
-						</div>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</nav>
-
+	
+	
+	<!--   Menu   -->
+	<jsp:include page="cabecalho.jsp"></jsp:include>
+	
 	<!-- Modal Core -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title" id="myModalLabel">Novo Cadastro</h4>
-			</div>
-			<div class="modal-body">
-				<jsp:include page="formcadastro.jsp"></jsp:include>
-			</div>
-		</div>
-	</div>
-</div>
-
-<div class="wrapper">
-
-	<div class="header header-filter" style="background-image: url('resources/img/examples/city.jpg'); min-height: 200px"></div>
-	<div class="main main-raised">
-		<div class="profile-content">
-			<div class="container" style="padding-bottom: 10%;">
-				<h1></h1>
-				<ul class="nav nav-tabs">
-					<li><a data-toggle="tab" href="#menu1" ng-if="usuarioLogado">Agendamento</a></li>
-					<li class="active"><a data-toggle="tab" href="#menu2">Informações</a></li>
-				</ul>
-
-				<div class="tab-content">
-					<div id="menu1" class="tab-pane fade" ng-if="usuarioLogado">
-						<br /><br />
-						<div class="row">
-							<div class="col-xs-12 col-sm-12 col-md-3">
-								<p>
-								  <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-								    Filial Yervant
-								  </a>
-								</p>
-								<div class="collapse" id="collapseExample">
-									<h4>
-										<a href="#" class="btn btn-default btn-xs" ng-click="setSala('1')"	ng-model="data" value="1">Sala 1</a> 
-										<a href="#" class="btn btn-default btn-xs" ng-click="setSala('2')">Sala 2</a>
-									</h4>
-								</div>
-								
-								
-								<p>
-								  <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
-								    Filial Interlagos
-								  </a>
-								</p>
-								<div class="collapse" id="collapseExample2">
-									<h4>
-										<a href="#" class="btn btn-default btn-xs" ng-click="setSala('1')"	ng-model="data" value="1">Sala 1</a> 
-										<a href="#" class="btn btn-default btn-xs" ng-click="setSala('2')">Sala 2</a>
-									</h4>
-								</div>								
-								
-								
-							</div>
-							<div class="col-xs-12 col-sm-12 col-md-4">
-								<!-- markup -->
-								<input id="data" class="datepicker form-control" type="text" value="${dataAtual}" /> 
-								<a href="#" class="btn btn-primary btn-sm" style="float: right;" ng-click="testeBusca()"> Buscar</a>
-							</div>
-
-							<div class="col-xs-12 col-sm-12 col-md-4" ng-init="testeBusca()">
-								<table class="table">
-									<h3>Sala {{numeroSala}}</h3>
-									<tbody ng-repeat="horario in listaHorario">
-										<tr>
-											<td class="text-center">{{horario.horario}}</td>
-											<td>Horário disponível</td>
-											<td><button class="btn btn-success btn-xs">Agendar</button></td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-
-					<div id="menu2" class="tab-pane fade in active">
-						<h3>Informações</h3>
-						<p>Sed ut perspiciatis unde omnis iste natus error sit
-						voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-					</div>
-
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">Novo Cadastro</h4>
+				</div>
+				<div class="modal-body">
+					<jsp:include page="formcadastro.jsp"></jsp:include>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
 
-<footer class="footer">
-	<div class="container">
-		<nav class="pull-left">
-			<ul>
-				<li><a href="http://www.creative-tim.com"> Creative Tim </a></li>
-				<li><a href="http://presentation.creative-tim.com"> About Us </a></li>
-				<li><a href="http://blog.creative-tim.com"> Blog </a></li>
-				<li><a href="http://www.creative-tim.com/license"> Licenses	</a></li>
-			</ul>
-		</nav>
-		<div class="copyright pull-right">
-			&copy; 2016
-			<i class="fa fa-heart heart"></i> by WhileTrue
+	<div class="wrapper">
+		<div class="header header-filter" style="background-image: url('resources/img/examples/city.jpg'); min-height: 200px"></div>
+		<div class="main main-raised">
+			<div class="profile-content">
+				<div class="container" style="padding-bottom: 10%;">
+					<h1></h1>
+					<ul class="nav nav-tabs">
+						<li><a data-toggle="tab" href="#menu1" ng-if="usuarioLogado">Agendamento</a></li>
+						<li class="active"><a data-toggle="tab" href="#menu2">Informações</a></li>
+					</ul>
+	
+					<div class="tab-content">
+						<div id="menu1" class="tab-pane fade" ng-if="usuarioLogado">
+							<br /><br />
+							<div class="row">
+								<div class="col-xs-12 col-sm-12 col-md-3">
+									<p>
+									  <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+									    Filial Yervant
+									  </a>
+									</p>
+									<div class="collapse" id="collapseExample">
+										<h4>
+											<a href="#" class="btn btn-default btn-xs" ng-click="setSala('1')"	ng-model="data" value="1">Sala 1</a> 
+											<a href="#" class="btn btn-default btn-xs" ng-click="setSala('2')">Sala 2</a>
+										</h4>
+									</div>
+									
+									
+									<p>
+									  <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
+									    Filial Interlagos
+									  </a>
+									</p>
+									<div class="collapse" id="collapseExample2">
+										<h4>
+											<a href="#" class="btn btn-default btn-xs" ng-click="setSala('1')"	ng-model="data" value="1">Sala 1</a> 
+											<a href="#" class="btn btn-default btn-xs" ng-click="setSala('2')">Sala 2</a>
+										</h4>
+									</div>								
+									
+									
+								</div>
+								<div class="col-xs-12 col-sm-12 col-md-4">
+									<!-- markup -->
+									<input id="data" class="datepicker form-control" type="text" value="${dataAtual}" /> 
+									<a href="#" class="btn btn-primary btn-sm" style="float: right;" ng-click="testeBusca()"> Buscar</a>
+								</div>
+	
+								<div class="col-xs-12 col-sm-12 col-md-4" ng-init="testeBusca()">
+									<table class="table">
+										<h3>Sala {{numeroSala}}</h3>
+										<tbody ng-repeat="horario in listaHorario">
+											<tr>
+												<td class="text-center">{{horario.horario}}</td>
+												<td>Horário disponível</td>
+												<td><button class="btn btn-success btn-xs">Agendar</button></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+	
+						<div id="menu2" class="tab-pane fade in active">
+							<h3>Informações</h3>
+							<p>Sed ut perspiciatis unde omnis iste natus error sit
+							voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+						</div>
+	
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
-</footer>
+
+	<!--   Rodapé   -->
+	<jsp:include page="rodape.jsp"></jsp:include>
 
 </body>
 

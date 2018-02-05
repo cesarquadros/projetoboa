@@ -20,7 +20,7 @@
 				<div class="col-xs-12 col-sm-12 col-md-3" >
 					<div class="form-group">
 						<label>Data fim</label>
-						<input id="data" class="datepicker form-control" type="text" /> 
+						<input id="datafim" class="datepicker form-control" type="text" /> 
 					</div>
 				</div>
 				

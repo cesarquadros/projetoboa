@@ -1,6 +1,6 @@
 var app = angular.module('app', []);
 app.controller('appCtrl', [ '$scope', '$http', function($scope, $http) {
-	$scope.usuarioLogado = false;
+	$scope.usuarioLogado = true;
 	$scope.numeroSala = 1;
 	$scope.listaHorario = [];
 
@@ -18,7 +18,7 @@ app.controller('appCtrl', [ '$scope', '$http', function($scope, $http) {
 		
 		$http({
 			method : 'post',
-			url : '/boasalasdeatendimento/listahorarios',
+			url : '/listahorarios',
 			data : JSON.stringify(DataSala),
 			beforeSend : function(xhr) {
 				xhr.setRequestHeader("Accept", "application/json");
