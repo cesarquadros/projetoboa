@@ -1,5 +1,6 @@
 package br.com.boasalasdeatendimento.controllers;
 
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,7 +19,6 @@ import br.com.boasalasdeatendimento.model.Horario;
 @Controller
 public class HomeController {
 
-	
 	
 	@RequestMapping("/")
 	public static ModelAndView index() {
