@@ -64,32 +64,13 @@ pageEncoding="UTF-8"%>
 							<br /><br />
 							<div class="row">
 								<div class="col-xs-12 col-sm-12 col-md-3">
-									<p>
-									  <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-									    Filial Yervant
-									  </a>
-									</p>
-									<div class="collapse" id="collapseExample">
-										<h4>
-											<a href="#" class="btn btn-default btn-xs" ng-click="setSala('1')"	ng-model="data" value="1">Sala 1</a> 
-											<a href="#" class="btn btn-default btn-xs" ng-click="setSala('2')">Sala 2</a>
-										</h4>
+									<div ng-repeat="unidade in unidades">
+										{{unidade.nomeUnidade}}
+
+										<div ng-repeat="sala in unidade.listaSala">
+											<a href="#" ng-click="setSala(sala.numero)">SALA {{sala.numero}}</a>
+										</div>										
 									</div>
-									
-									
-									<p>
-									  <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
-									    Filial Interlagos
-									  </a>
-									</p>
-									<div class="collapse" id="collapseExample2">
-										<h4>
-											<a href="#" class="btn btn-default btn-xs" ng-click="setSala('1')"	ng-model="data" value="1">Sala 1</a> 
-											<a href="#" class="btn btn-default btn-xs" ng-click="setSala('2')">Sala 2</a>
-										</h4>
-									</div>								
-									
-									
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-4">
 									<!-- markup -->
@@ -97,7 +78,7 @@ pageEncoding="UTF-8"%>
 									<a href="#" class="btn btn-primary btn-sm" style="float: right;" ng-click="testeBusca()"> Buscar</a>
 								</div>
 	
-								<div class="col-xs-12 col-sm-12 col-md-4" ng-init="testeBusca()">
+								<div class="col-xs-12 col-sm-12 col-md-4" ng-init="carregarSalas()">
 									<table class="table">
 										<h3>Sala {{numeroSala}}</h3>
 										<tbody ng-repeat="horario in listaHorario">

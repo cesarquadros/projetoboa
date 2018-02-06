@@ -3,7 +3,7 @@ package br.com.boasalasdeatendimento.model;
 public class Sala {
 
 	private Integer id;
-	private Unidade unidade;
+	private Integer idUnidade;
 	private Integer numero;
 	private String detalhes;
 	
@@ -13,11 +13,11 @@ public class Sala {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public Unidade getUnidade() {
-		return unidade;
+	public Integer getIdUnidade() {
+		return idUnidade;
 	}
-	public void setUnidade(Unidade unidade) {
-		this.unidade = unidade;
+	public void setIdUnidade(Integer idUnidade) {
+		this.idUnidade = idUnidade;
 	}
 	public Integer getNumero() {
 		return numero;

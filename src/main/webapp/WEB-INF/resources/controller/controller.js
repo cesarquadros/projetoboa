@@ -3,30 +3,30 @@ app.controller('appCtrl', [ '$scope', '$http', function($scope, $http) {
 	$scope.usuarioLogado = true;
 	$scope.numeroSala = 1;
 	$scope.listaHorario = [];
-
-
+	$scope.unidades = [];
+	
 	$scope.setSala = function(sala) {
 		$scope.numeroSala = sala;
 	}
 
-	$scope.testeBusca = function() {
+	$scope.carregarSalas = function() {
 		
 		data = document.getElementById('data').value;
 		sala = $scope.numeroSala;
-		newDate =new Date(data);
-		DataSala = { "numero" : + sala, "data" : + newDate};
+		newDate = new Date(data);
+		consultaSala = { "sala" : + sala, "data" : + newDate};
 		
 		$http({
 			method : 'post',
-			url : '/listahorarios',
-			data : JSON.stringify(DataSala),
+			url : '/boasalasdeatendimento/rest',
+			data : JSON.stringify(consultaSala),
 			beforeSend : function(xhr) {
 				xhr.setRequestHeader("Accept", "application/json");
 				xhr.setRequestHeader("Content-Type", "application/json");
 			},
 		}).then(function(retorno) {
-			$scope.listaHorario = retorno.data;
-
+			$scope.unidades = retorno.data;
+			$scope.pessoa = null;
 		});
 	}
 	
