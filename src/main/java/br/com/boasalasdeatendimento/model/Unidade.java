@@ -1,5 +1,8 @@
 package br.com.boasalasdeatendimento.model;
 
+import org.springframework.stereotype.Repository;
+
+@Repository
 public class Unidade {
 
 	private Integer id;

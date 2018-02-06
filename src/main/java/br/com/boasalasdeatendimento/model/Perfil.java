@@ -1,5 +1,8 @@
 package br.com.boasalasdeatendimento.model;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Perfil {
 
 	private Integer id;
