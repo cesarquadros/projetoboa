@@ -68,11 +68,15 @@ pageEncoding="UTF-8"%>
 										<div class="col-xs-12 col-sm-12 col-md-12">
 											<div class="card card-nav-tabs">
 												<div class="card-body ">
-													<div ng-repeat="unidade in unidades">
-														<h4>{{unidade.nomeUnidade}}</h4>
+													<div ng-repeat="unidade in unidades" style="text-align: center;">
+														<h4 >Unidade: {{unidade.nomeUnidade}}</h4>
 				
 														<div ng-repeat="sala in unidade.listaSala" >
-															<h4><a href="#" ng-click="setSala(sala.numero)">SALA {{sala.numero}}</a></h4>
+															
+														<ul class="nav nav-pills nav-pills-info nav-stacked">
+															<li><a href="#/tab{{sala.numero}}" ng-click="setSala(sala.numero)" data-toggle="tab">SALA {{sala.numero}}</a></li>
+														</ul>	
+															
 														</div>										
 													</div>
 												</div>
@@ -83,7 +87,10 @@ pageEncoding="UTF-8"%>
 											<div class="card card-nav-tabs">
 												<div class="card-body ">
 													<!-- markup -->
-													<input id="data" class="datepicker form-control" type="text" value="${dataAtual}" /> 
+													<div class="form-group label-floating">
+														<label class="control-label">Escolha uma data</label> 
+														<input id="data" class="datepicker form-control" type="text" value="${dataAtual}" /> 
+													</div>
 													<a href="#" class="btn btn-primary btn-sm" style="float: right;" ng-click="carregarHorarios()"> Buscar</a>
 												</div>
 											</div>
@@ -94,10 +101,10 @@ pageEncoding="UTF-8"%>
 								<div class="col-xs-12 col-sm-12 col-md-8" ng-init="carregarHorarios()">
 									<div class="card card-nav-tabs">
 										<div class="card-body">
-										
+										<h3 style="text-align: center;">Sala {{numeroSala}} - Grade de horários 10/10/2018</h3>
 										<div style="overflow: auto; height: 345px;">
 											<table class="table">
-												<h3>Sala {{numeroSala}}</h3>
+												
 												<tbody ng-repeat="horario in listaHorario" style="overflow: scroll;">
 													<tr>
 														<td class="text-center">{{horario.horarioString}}</td>

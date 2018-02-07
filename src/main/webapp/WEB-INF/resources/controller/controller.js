@@ -4,6 +4,7 @@ app.controller('appCtrl', [ '$scope', '$http', function($scope, $http) {
 	$scope.numeroSala = 1;
 	$scope.listaHorario = [];
 	$scope.unidades = [];
+	$scope.dataA;
 	
 	$scope.setSala = function(sala) {
 		$scope.numeroSala = sala;
