@@ -1,6 +1,4 @@
-package br.com.boasalasdeatendimento.controllers;
-
-import javax.xml.crypto.Data;
+package br.com.boasalasdeatendimento.model;
 
 public class ConsultaSala {
 

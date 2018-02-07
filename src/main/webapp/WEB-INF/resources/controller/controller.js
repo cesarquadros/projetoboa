@@ -11,15 +11,12 @@ app.controller('appCtrl', [ '$scope', '$http', function($scope, $http) {
 
 	$scope.carregarSalas = function() {
 		
-		data = document.getElementById('data').value;
-		sala = $scope.numeroSala;
-		newDate = new Date(data);
-		consultaSala = { "sala" : + sala, "data" : + newDate};
+		json = { "id" : "id"};
 		
 		$http({
 			method : 'post',
-			url : '/boasalasdeatendimento/rest',
-			data : JSON.stringify(consultaSala),
+			url : '/boasalasdeatendimento/carregarsalas',
+			data : JSON.stringify(json),
 			beforeSend : function(xhr) {
 				xhr.setRequestHeader("Accept", "application/json");
 				xhr.setRequestHeader("Content-Type", "application/json");
@@ -27,6 +24,26 @@ app.controller('appCtrl', [ '$scope', '$http', function($scope, $http) {
 		}).then(function(retorno) {
 			$scope.unidades = retorno.data;
 			$scope.pessoa = null;
+		});
+	}
+	
+	$scope.carregarHorarios = function() {
+		
+		data = document.getElementById('data').value;
+		sala = $scope.numeroSala;
+		//newDate = new Date(data);
+		consultaSala = { "sala" : sala, "data" : data};
+		
+		$http({
+			method : 'post',
+			url : '/boasalasdeatendimento/carregarhorariodisponivel',
+			data : JSON.stringify(consultaSala),
+			beforeSend : function(xhr) {
+				xhr.setRequestHeader("Accept", "application/json");
+				xhr.setRequestHeader("Content-Type", "application/json");
+			},
+		}).then(function(retorno) {
+			$scope.listaHorario = retorno.data;
 		});
 	}
 	

@@ -29,7 +29,6 @@ pageEncoding="UTF-8"%>
 </head>
 <body ng-app="app" ng-controller="appCtrl">
 	
-	
 	<!--   Menu   -->
 	<jsp:include page="cabecalho.jsp"></jsp:include>
 	
@@ -62,28 +61,28 @@ pageEncoding="UTF-8"%>
 					<div class="tab-content">
 						<div id="menu1" class="tab-pane fade" ng-if="usuarioLogado">
 							<br /><br />
-							<div class="row">
+							<div class="row" ng-init="carregarSalas()">
 								<div class="col-xs-12 col-sm-12 col-md-3">
 									<div ng-repeat="unidade in unidades">
-										{{unidade.nomeUnidade}}
+										<h2>{{unidade.nomeUnidade}}</h2>
 
 										<div ng-repeat="sala in unidade.listaSala">
-											<a href="#" ng-click="setSala(sala.numero)">SALA {{sala.numero}}</a>
+											<h4><a href="#" ng-click="setSala(sala.numero)">SALA {{sala.numero}}</a></h4>
 										</div>										
 									</div>
 								</div>
-								<div class="col-xs-12 col-sm-12 col-md-4">
+								<div class="col-xs-12 col-sm-12 col-md-3">
 									<!-- markup -->
 									<input id="data" class="datepicker form-control" type="text" value="${dataAtual}" /> 
-									<a href="#" class="btn btn-primary btn-sm" style="float: right;" ng-click="testeBusca()"> Buscar</a>
+									<a href="#" class="btn btn-primary btn-sm" style="float: right;" ng-click="carregarHorarios()"> Buscar</a>
 								</div>
 	
-								<div class="col-xs-12 col-sm-12 col-md-4" ng-init="carregarSalas()">
+								<div class="col-xs-12 col-sm-12 col-md-4" ng-init="carregarHorarios()">
 									<table class="table">
 										<h3>Sala {{numeroSala}}</h3>
 										<tbody ng-repeat="horario in listaHorario">
 											<tr>
-												<td class="text-center">{{horario.horario}}</td>
+												<td class="text-center">{{horario.horarioString}}</td>
 												<td>Horário disponível</td>
 												<td><button class="btn btn-success btn-xs">Agendar</button></td>
 											</tr>

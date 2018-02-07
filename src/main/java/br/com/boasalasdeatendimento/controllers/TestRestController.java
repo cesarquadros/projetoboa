@@ -11,12 +11,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.boasalasdeatendimento.dao.UnidadeDao;
+import br.com.boasalasdeatendimento.model.ConsultaSala;
 import br.com.boasalasdeatendimento.model.Unidade;
 
 @RestController
 public class TestRestController {
 
-	@PostMapping(value = "/rest")
+	@PostMapping(value = "/carregarsalas")
 	public ResponseEntity<List<Unidade>> testeGet(@RequestBody ConsultaSala consultaSala) {
 
 		List<Unidade> listaUnidade = new ArrayList<Unidade>();

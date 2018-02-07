@@ -6,6 +6,7 @@ public class Horario {
 	
 	private Integer id;
 	private Date horario;
+	private String horarioString;
 	
 	public Integer getId() {
 		return id;
@@ -18,5 +19,11 @@ public class Horario {
 	}
 	public void setHorario(Date horario) {
 		this.horario = horario;
+	}
+	public String getHorarioString() {
+		return horarioString;
+	}
+	public void setHorarioString(String horarioString) {
+		this.horarioString = horarioString;
 	}
 }
