@@ -36,6 +36,7 @@ public class UnidadeDao extends ConexaoDao {
 				unindade.setListaSala(salaDao.listaSalaById(unindade.getId()));
 				listaUnidade.add(unindade);
 			}
+			
 			return listaUnidade;
 		} catch (SQLException e) {
 			e.printStackTrace();

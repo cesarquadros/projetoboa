@@ -48,10 +48,10 @@ pageEncoding="UTF-8"%>
 	</div>
 
 	<div class="wrapper">
-		<div class="header header-filter" style="background-image: url('resources/img/examples/city.jpg'); min-height: 200px"></div>
+		<div class="header header-filter" style="background-image: url('resources/img/examples/city.jpg'); min-height: 170px"></div>
 		<div class="main main-raised">
 			<div class="profile-content">
-				<div class="container" style="padding-bottom: 10%;">
+				<div class="container" style="padding-bottom: 5%;">
 					<h1></h1>
 					<ul class="nav nav-tabs">
 						<li><a data-toggle="tab" href="#menu1" ng-if="usuarioLogado">Agendamento</a></li>
@@ -60,35 +60,57 @@ pageEncoding="UTF-8"%>
 	
 					<div class="tab-content">
 						<div id="menu1" class="tab-pane fade" ng-if="usuarioLogado">
-							<br /><br />
+							
 							<div class="row" ng-init="carregarSalas()">
-								<div class="col-xs-12 col-sm-12 col-md-3">
-									<div ng-repeat="unidade in unidades">
-										<h2>{{unidade.nomeUnidade}}</h2>
-
-										<div ng-repeat="sala in unidade.listaSala">
-											<h4><a href="#" ng-click="setSala(sala.numero)">SALA {{sala.numero}}</a></h4>
-										</div>										
+								<div class="col-xs-12 col-sm-12 col-md-4">
+									<div class="row">
+										
+										<div class="col-xs-12 col-sm-12 col-md-12">
+											<div class="card card-nav-tabs">
+												<div class="card-body ">
+													<div ng-repeat="unidade in unidades">
+														<h4>{{unidade.nomeUnidade}}</h4>
+				
+														<div ng-repeat="sala in unidade.listaSala" >
+															<h4><a href="#" ng-click="setSala(sala.numero)">SALA {{sala.numero}}</a></h4>
+														</div>										
+													</div>
+												</div>
+											</div>
+										</div>
+										
+										<div class="col-xs-12 col-sm-12 col-md-12">
+											<div class="card card-nav-tabs">
+												<div class="card-body ">
+													<!-- markup -->
+													<input id="data" class="datepicker form-control" type="text" value="${dataAtual}" /> 
+													<a href="#" class="btn btn-primary btn-sm" style="float: right;" ng-click="carregarHorarios()"> Buscar</a>
+												</div>
+											</div>
+										</div>
 									</div>
 								</div>
-								<div class="col-xs-12 col-sm-12 col-md-3">
-									<!-- markup -->
-									<input id="data" class="datepicker form-control" type="text" value="${dataAtual}" /> 
-									<a href="#" class="btn btn-primary btn-sm" style="float: right;" ng-click="carregarHorarios()"> Buscar</a>
-								</div>
-	
-								<div class="col-xs-12 col-sm-12 col-md-4" ng-init="carregarHorarios()">
-									<table class="table">
-										<h3>Sala {{numeroSala}}</h3>
-										<tbody ng-repeat="horario in listaHorario">
-											<tr>
-												<td class="text-center">{{horario.horarioString}}</td>
-												<td>Horário disponível</td>
-												<td><button class="btn btn-success btn-xs">Agendar</button></td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
+								
+								<div class="col-xs-12 col-sm-12 col-md-8" ng-init="carregarHorarios()">
+									<div class="card card-nav-tabs">
+										<div class="card-body">
+										
+										<div style="overflow: auto; height: 345px;">
+											<table class="table">
+												<h3>Sala {{numeroSala}}</h3>
+												<tbody ng-repeat="horario in listaHorario" style="overflow: scroll;">
+													<tr>
+														<td class="text-center">{{horario.horarioString}}</td>
+														<td>Horário disponível</td>
+														<td><button class="btn btn-success btn-xs">Agendar</button></td>
+													</tr>
+												</tbody>
+											</table>
+											
+											</div>
+										</div>
+									</div>
+								</div>		
 							</div>
 						</div>
 	
