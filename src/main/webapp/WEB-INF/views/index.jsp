@@ -9,7 +9,7 @@ pageEncoding="UTF-8"%>
 	<link rel="icon" type="image/png" href="source/img/favicon.png"	media="screen">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>BOA Salas de Atendimentos</title>
+	<title>BOA Salas de Atendimento</title>
 
 	<meta	content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'	name='viewport' />
 
@@ -22,7 +22,7 @@ pageEncoding="UTF-8"%>
 	<link href="resources/css/bootstrap.min.css" rel="stylesheet"	media="screen">
 	<link href="resources/css/material-kit.css" rel="stylesheet"	media="screen">
 
-	<!-- ANGUALR JS -->
+	<!-- ANGULAR JS -->
 	<script src=./resources/js/angular.min.js></script>
 	<script src="./resources/controller/controller.js"></script>
 

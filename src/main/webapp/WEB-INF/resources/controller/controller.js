@@ -4,6 +4,7 @@ app.controller('appCtrl', [ '$scope', '$http', function($scope, $http) {
 	$scope.listaHorario = [];
 	$scope.unidades = [];
 	$scope.dataA;
+	$scope.usuarioLogado = true;
 	
 	$scope.verificarLogin = function(usuario) {
 		if (usuario) {
@@ -29,7 +30,6 @@ app.controller('appCtrl', [ '$scope', '$http', function($scope, $http) {
 			},
 		}).then(function(retorno) {
 			$scope.unidades = retorno.data;
-			$scope.pessoa = null;
 		});
 	}
 	
@@ -53,7 +53,7 @@ app.controller('appCtrl', [ '$scope', '$http', function($scope, $http) {
 		});
 	}
 	
-	$scope.teste = function(nome) {
+	$scope.verificaCampoVazio = function(nome) {
 		campo = angular.element( document.querySelector('#divNome'));
 		
 		if(nome != undefined){
