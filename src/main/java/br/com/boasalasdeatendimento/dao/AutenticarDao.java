@@ -8,19 +8,6 @@ import br.com.boasalasdeatendimento.model.Autenticacao;
 
 public class AutenticarDao extends ConexaoDao {
 
-	public static void main(String[] args) {
-		Autenticacao a = new Autenticacao();
-		
-		a.setUsuario("nino");
-		a.setSenha("1907");
-		
-		AutenticarDao aDao = new AutenticarDao();
-		
-		Autenticacao aut = aDao.autenticar(a);
-		
-		System.out.println("");
-	}
-	
 	public Autenticacao autenticar(Autenticacao autenticacao) {
 
 		final StringBuilder sql = new StringBuilder();
