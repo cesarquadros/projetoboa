@@ -10,7 +10,7 @@
 					class="icon-bar"></span>
 			</button>
 
-			<a href="/">
+			<a href="./">
 				<div class="logo-container">
 					<div class="logo">
 						<img style="width: 5%;" src="./resources/img/boa/logo_boa_branco.png" alt="Creative Tim Logo">
