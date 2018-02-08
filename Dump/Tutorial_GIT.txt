@@ -1,0 +1,57 @@
+
+URL Repositório:
+
+https://github.com/cesarquadros/projetoboa.git
+
+--------------------------------------------------------------------------------------
+
+Fazer download do repositório:
+
+-> git clone https://github.com/cesarquadros/projetoboa.git
+
+--------------------------------------------------------------------------------------
+
+Verificar as alterações realizadas localmente:
+
+-> git status
+
+    Vermelho: Ainda não adicionado
+    Verde: Adicionado, porém ainda não comitado
+
+--------------------------------------------------------------------------------------
+
+Adicionar as alterações realizadas localmente:
+
+-> git add *
+
+    Adicionar todas as alterações em vermelho
+
+-> git add nomeArquivo
+
+    Adiciona apenas os arquivos solicitados
+
+--------------------------------------------------------------------------------------
+
+Comitar as alterações realizadas localmente:
+
+-> git commit -m "Mensagem indicando as alterações"
+
+    Comita as alterações e inclui um comentário
+	
+--------------------------------------------------------------------------------------
+
+Enviar as alterações realizadas localmente:
+
+-> git push
+
+--------------------------------------------------------------------------------------
+
+Coletar as informações novas presentes no repositório:
+
+-> git pull
+
+--------------------------------------------------------------------------------------
+
+Descartar as alterações realizadas localmente:
+
+-> git checkout
