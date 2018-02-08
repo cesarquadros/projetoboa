@@ -13,13 +13,13 @@
 			<a href="/">
 				<div class="logo-container">
 					<div class="logo">
-						<img style="width: 7%;" src="./resources/img/boa/logo_boa_branco.png" alt="Creative Tim Logo">
+						<img style="width: 5%;" src="./resources/img/boa/logo_boa_branco.png" alt="Creative Tim Logo">
 					</div>
 				</div>
 			</a>
 		</div>
 
-		<div class="collapse navbar-collapse" id="navigation-example">
+		<div class="collapse navbar-collapse" id="navigation-example" ng-init="verificarLogin('${cliente.nome}')">
 			<ul class="nav navbar-nav navbar-right">
 				<li ng-if="!usuarioLogado"><a href="#" data-toggle="modal"
 					data-target="#myModal"> Cadastrar </a></li>
@@ -27,7 +27,7 @@
 				<li ng-if="usuarioLogado">
 					<div class="col-md-3 dropdown">
 						<a href="#" class="btn btn-simple dropdown-toggle"
-							data-toggle="dropdown" style="color: white"> Usuário logado <b
+							data-toggle="dropdown" style="color: white">Seja bem vindo ${cliente.nome} <b
 							class="caret"></b>
 						</a>
 						<ul class="dropdown-menu">
@@ -36,7 +36,7 @@
 							<li><a href="#" data-toggle="modal" data-target="#myModal">Alterar
 									dados</a></li>
 							<li class="divider"></li>
-							<li><a href="#">Sair</a></li>
+							<li><a href="/boasalasdeatendimento/logout">Sair</a></li>
 						</ul>
 					</div>
 				</li>

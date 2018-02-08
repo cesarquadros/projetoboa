@@ -1,10 +1,15 @@
 var app = angular.module('app', []);
 app.controller('appCtrl', [ '$scope', '$http', function($scope, $http) {
-	$scope.usuarioLogado = true;
 	$scope.numeroSala = 1;
 	$scope.listaHorario = [];
 	$scope.unidades = [];
 	$scope.dataA;
+	
+	$scope.verificarLogin = function(usuario) {
+		if (usuario) {
+			$scope.usuarioLogado = true;
+		}
+	}
 	
 	$scope.setSala = function(sala) {
 		$scope.numeroSala = sala;

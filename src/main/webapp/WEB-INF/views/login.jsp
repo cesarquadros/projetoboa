@@ -66,14 +66,14 @@ pageEncoding="UTF-8"%>
 										<span class="input-group-addon">
 											<i class="material-icons">email</i>
 										</span>
-										<input type="text" class="form-control" placeholder="Email...">
+										<input name="usuario" type="text" class="form-control" placeholder="Usuário">
 									</div>
 
 									<div class="input-group">
 										<span class="input-group-addon">
 											<i class="material-icons">lock_outline</i>
 										</span>
-										<input type="password" placeholder="Senha..." class="form-control" />
+										<input name="senha" type="password" placeholder="Senha" class="form-control" />
 									</div>
 
 									<!-- If you want to add a checkbox to this form, uncomment this code
@@ -88,6 +88,7 @@ pageEncoding="UTF-8"%>
 								<div class="footer text-center">
 									<button type="submit" class="btn btn-simple btn-primary btn-lg">Entrar</button>
 									<a href="#" class="btn btn-simple btn-primary btn-lg">Cancelar</a>
+									<p>${erro}</p>
 								</div>
 							</form>
 						</div>

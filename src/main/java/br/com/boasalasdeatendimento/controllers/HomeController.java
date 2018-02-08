@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.com.boasalasdeatendimento.model.Autenticacao;
 import br.com.boasalasdeatendimento.model.Horario;
+import br.com.boasalasdeatendimento.util.DataUtil;
 
 @Controller
 public class HomeController {
@@ -21,16 +23,17 @@ public class HomeController {
 	public static ModelAndView index() {
 		
 		ModelAndView modelAndView = new ModelAndView("index");
-		modelAndView.addObject("dataAtual", getDateTime());
+		modelAndView.addObject("dataAtual", DataUtil.getDateTime());
 		
 		return modelAndView;
 	}
 	
 	@RequestMapping("/index")
-	public static ModelAndView index2() {
+	public static ModelAndView index2(Autenticacao value) {
 		
+		System.out.println(value);
 		ModelAndView modelAndView = new ModelAndView("index");
-		modelAndView.addObject("dataAtual", getDateTime());
+		modelAndView.addObject("dataAtual", DataUtil.getDateTime());
 		
 		return modelAndView;
 	}
@@ -60,9 +63,4 @@ public class HomeController {
 			return listaHorarios;
 	}
 	
-	private static String getDateTime() { 
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy"); 
-		Date date = new Date(); 
-		return dateFormat.format(date); 
-	}
 }
