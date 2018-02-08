@@ -10,17 +10,11 @@
 					class="icon-bar"></span>
 			</button>
 
-<<<<<<< HEAD
-			<a href="./">
-=======
+			<!-- Logotipo -->
 			<a href="./index">
->>>>>>> a33c08e716dece97d21dc393ba9f4412695477e2
-				<div class="logo-container">
-					<div class="logo">
-						<img style="width: 5%;" src="./resources/img/boa/logo_boa_branco.png" alt="Creative Tim Logo">
-					</div>
-				</div>
+				<img style="width: 5%;" src="./resources/img/boa/logo_boa_branco.png" alt="Creative Tim Logo">
 			</a>
+			
 		</div>
 
 		<div class="collapse navbar-collapse" id="navigation-example" ng-init="verificarLogin('${cliente.nome}')">

@@ -4,7 +4,7 @@ app.controller('appCtrl', [ '$scope', '$http', function($scope, $http) {
 	$scope.listaHorario = [];
 	$scope.unidades = [];
 	$scope.dataA;
-	$scope.usuarioLogado = true;
+//	$scope.usuarioLogado = true;
 	
 	$scope.verificarLogin = function(usuario) {
 		if (usuario) {
