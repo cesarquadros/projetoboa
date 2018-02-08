@@ -14,7 +14,7 @@ pageEncoding="UTF-8"%>
 	<meta	content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'	name='viewport' />
 
 	<!--     Fonts and icons     -->
-		<link href="resources/css/material-icons.css" rel="stylesheet"	media="screen">
+	<link href="resources/css/material-icons.css" rel="stylesheet"	media="screen">
 	<link rel="stylesheet" type="text/css"	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" />
 	<link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
 
@@ -105,22 +105,8 @@ pageEncoding="UTF-8"%>
 		</div>
 	</div>
 
-<footer class="footer">
-	<div class="container">
-		<nav class="pull-left">
-			<ul>
-				<li><a href="http://www.creative-tim.com"> Creative Tim </a></li>
-				<li><a href="http://presentation.creative-tim.com"> About Us </a></li>
-				<li><a href="http://blog.creative-tim.com"> Blog </a></li>
-				<li><a href="http://www.creative-tim.com/license"> Licenses	</a></li>
-			</ul>
-		</nav>
-		<div class="copyright pull-right">
-			&copy; 2016
-			<i class="fa fa-heart heart"></i> by WhileTrue
-		</div>
-	</div>
-</footer>
+	<!--   Rodapé   -->
+	<jsp:include page="rodape.jsp"></jsp:include>
 
 </body>
 

@@ -22,7 +22,7 @@ pageEncoding="UTF-8"%>
 	<link href="resources/css/bootstrap.min.css" rel="stylesheet"	media="screen">
 	<link href="resources/css/material-kit.css" rel="stylesheet"	media="screen">
 
-	<!-- ANGUALR JS -->
+	<!-- ANGULAR JS -->
 	<script src=./resources/js/angular.min.js></script>
 	<script src="./resources/controller/controller.js"></script>
 
