@@ -28,62 +28,49 @@ pageEncoding="UTF-8"%>
 
 </head>
 <body ng-app="app" ng-controller="appCtrl">
-	<nav class="navbar navbar-transparent navbar-fixed-top navbar-color-on-scroll">
-		<div class="container">
-			<!-- Brand and toggle get grouped for better mobile display -->
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example">
-					<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="/">BOA Salas de Atendimento</a>
-				<!-- <img src="./resources/img/boa/logoboa.png" alt="Circle Image" class="img-raised img-responsive" style="height: 100px"> -->
-			</div>
-
-			<div class="collapse navbar-collapse" id="navigation-example">
-				<ul class="nav navbar-nav navbar-right">
-					<li ng-if="!usuarioLogado"><a href="#" data-toggle="modal" data-target="#myModal"> LOGIN ADM </a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
+	
+	<!--   Menu   -->
+	<jsp:include page="cabecalhoadm.jsp"></jsp:include>
 
 <div class="wrapper">
-	<div class="header header-filter" style="background-image: url('resources/img/examples/city.jpg'); min-height: 200px"></div>
+<div class="header header-filter" style="background-image: url('resources/img/examples/city.jpg'); min-height: 170px"></div>
 	<div class="main main-raised">
 		<div class="profile-content">
-			<div class="container" style="padding-bottom: 10%;">
-				<h1></h1>
-					<div class="row" style="margin: auto; display:flex;">
-						<div class="col-xs-12 col-sm-12 col-md-9" style="margin: auto; display:flex;">
-							<h1 style="margin: auto;">ADMINISTRATIVO</h1>
-						</div>
+			<div class="container" style="padding-bottom: 5%;">
+				<br /><br />
+
+				<div class="row" style="margin: auto; display:flex;">
+					<div class="col-xs-12 col-sm-12 col-md-9" style="margin: auto; display:flex;">
+						<h1 style="margin: auto;">ADMINISTRATIVO</h1>
 					</div>
-					<br /><br /><br />
-					<div class="row" style="margin: auto; display:flex;">
-						<div class="col-xs-12 col-sm-12 col-md-12" >
-							<ul class="nav nav-pills nav-pills-primary" role="tablist" >
-								<li>
-									<a href="#clientes" role="tab" data-toggle="tab">
-										<i class="material-icons">people</i>
-										Clientes
-									</a>
-								</li>
-								<li>
-									<a href="#relatorio" role="tab" data-toggle="tab">
-										<i class="material-icons">schedule</i>
-										Relatório de agendamentos
-									</a>
-								</li>
-								<li>
-									<a href="#filiais" role="tab" data-toggle="tab">
-										<i class="material-icons">domain</i>
-										Filiais & Salas
-									</a>
-								</li>
-							</ul>
-						</div>
+				</div>			
+				<br /><br /><br />
+				<div class="row" style="margin: auto; display:flex;">
+					<div class="col-xs-12 col-sm-12 col-md-12" >
+						<ul class="nav nav-pills nav-pills-primary" role="tablist" >
+							<li>
+								<a href="#clientes" role="tab" data-toggle="tab">
+									<i class="material-icons">people</i>
+									Clientes
+								</a>
+							</li>
+							<li>
+								<a href="#relatorio" role="tab" data-toggle="tab">
+									<i class="material-icons">schedule</i>
+									Relatório de agendamentos
+								</a>
+							</li>
+							<li>
+								<a href="#filiais" role="tab" data-toggle="tab">
+									<i class="material-icons">domain</i>
+									Filiais & Salas
+								</a>
+							</li>
+						</ul>
 					</div>
-					
+				</div>
+				
+				
 					<div class="row" style="margin: auto; display:flex;">
 						<div class="tab-content">
 
@@ -99,11 +86,13 @@ pageEncoding="UTF-8"%>
 								<jsp:include page="filiais.jsp"></jsp:include>
 							</div>
 						</div>
-					</div>
-				</div>
+					</div>				
+				
+				
 			</div>
 		</div>
 	</div>
+</div>
 
 	<!--   Rodapé   -->
 	<jsp:include page="rodape.jsp"></jsp:include>
