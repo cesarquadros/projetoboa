@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 import br.com.boasalasdeatendimento.dao.AutenticarDao;
 import br.com.boasalasdeatendimento.model.Autenticacao;
 import br.com.boasalasdeatendimento.model.Cliente;
+import br.com.boasalasdeatendimento.security.GenerateHashPasswordUtil;
 import br.com.boasalasdeatendimento.util.DataUtil;
 
 @Controller
@@ -28,6 +29,7 @@ public class AutenticacaoController {
 		AutenticarDao autenticarDao = new AutenticarDao();
 		Autenticacao verificaAutenticacao = new Autenticacao();
 		
+		autenticacao.setSenha(GenerateHashPasswordUtil.generateHash(autenticacao.getSenha()));
 		verificaAutenticacao = autenticarDao.autenticar(autenticacao);
 		
 		if( null != verificaAutenticacao.getId()){

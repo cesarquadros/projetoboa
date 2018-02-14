@@ -1,11 +1,9 @@
 package br.com.boasalasdeatendimento.controllers;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,13 +17,14 @@ import br.com.boasalasdeatendimento.util.DataUtil;
 
 @RestController
 public class HorarioRestController {
+	
+	@Autowired
+	private HorarioDao horarioDao;
 
 	@PostMapping(value = "/carregarhorariodisponivel")
 	public ResponseEntity<List<Horario>> testeGet(@RequestBody ConsultaSala consultaSala) {
 
 		List<Horario> listaHorario = new ArrayList<Horario>();
-
-		HorarioDao horarioDao = new HorarioDao();
 
 		consultaSala.setData(DataUtil.getDateFormat(consultaSala.getData(), "yyyyMMdd"));
 		

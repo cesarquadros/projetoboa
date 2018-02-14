@@ -4,11 +4,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.mysql.jdbc.PreparedStatement;
 
 import br.com.boasalasdeatendimento.model.ConsultaSala;
 import br.com.boasalasdeatendimento.model.Horario;
 
+@Repository
 public class HorarioDao extends ConexaoDao {
 
 	public List<Horario> horariosDisponiveis(ConsultaSala consultaSala) {

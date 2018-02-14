@@ -2,8 +2,9 @@
 <div class="container">
 	<h1></h1>
 	<ul class="nav nav-tabs">
-		<li class="active"><a data-toggle="tab" href="#menu1">Filiais
-				& Salas</a></li>
+		<li class="active">
+		<a data-toggle="tab" href="#menu1">Filiais & Salas</a>
+		</li>
 	</ul>
 
 	<div class="row" style="text-align: right;">

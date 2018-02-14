@@ -17,7 +17,7 @@ public class ConexaoDao {
 	
 	private static String URL = "jdbc:mysql://localhost:3306/boa";
 	private static String user = "root";
-	private static String password = "root";
+	private static String password = "Ces@r190788";
 	private static final String DRIVER = "com.mysql.jdbc.Driver";
 	
 	protected static Connection conexao;

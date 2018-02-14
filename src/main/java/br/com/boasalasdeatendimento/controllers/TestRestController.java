@@ -26,6 +26,6 @@ public class TestRestController {
 
 		listaUnidade = unidadeDao.listaUnidades();
 
-		return new ResponseEntity<List<Unidade>>(listaUnidade, HttpStatus.OK);
+		return ResponseEntity.ok(listaUnidade);
 	}
 }
