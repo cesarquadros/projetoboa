@@ -22,7 +22,7 @@ public class AutenticarDao extends ConexaoDao {
 			sql.append(" AND ");
 			sql.append("	senha = ?");
 
-			stmt = (PreparedStatement) conexao.prepareStatement(sql.toString());
+			stmt = conexao.prepareStatement(sql.toString());
 			
 			int aux = 1;
 			

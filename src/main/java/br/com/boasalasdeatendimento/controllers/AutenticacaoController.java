@@ -39,6 +39,7 @@ public class AutenticacaoController {
 			
 			Cliente cliente = new Cliente();
 			
+			cliente.setId(1);
 			cliente.setNome("Cesar");
 			session.setAttribute("cliente", cliente);
 			modelAndView.addObject("cliente", cliente);

@@ -6,6 +6,10 @@ public abstract class GenerateHashPasswordUtil {
 
 	private static Object salt;
 	
+	public static void main(String[] args) {
+		System.out.println(generateHash("1907"));
+	}
+	
 	public static String generateHash(String password) {
 		
 		MessageDigestPasswordEncoder digestPasswordEncoder = getInstanceMessageDisterPassword();

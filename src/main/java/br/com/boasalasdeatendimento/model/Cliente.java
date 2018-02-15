@@ -10,10 +10,11 @@ public class Cliente {
 	private String sobrenome;
 	private String telFixo;
 	private String telCelular;
-	private Integer cpf;
+	private String cpf;
 	private String email;
-	private char sexo;
+	private String sexo;
 	private Date dataNascimento;
+	private String dataNascimentoString;
 	
 	public Integer getId() {
 		return id;
@@ -51,10 +52,10 @@ public class Cliente {
 	public void setTelCelular(String telCelular) {
 		this.telCelular = telCelular;
 	}
-	public Integer getCpf() {
+	public String getCpf() {
 		return cpf;
 	}
-	public void setCpf(Integer cpf) {
+	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 	public String getEmail() {
@@ -63,10 +64,10 @@ public class Cliente {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public char getSexo() {
+	public String getSexo() {
 		return sexo;
 	}
-	public void setSexo(char sexo) {
+	public void setSexo(String sexo) {
 		this.sexo = sexo;
 	}
 	public Date getDataNascimento() {
@@ -74,5 +75,11 @@ public class Cliente {
 	}
 	public void setDataNascimento(Date dataNascimento) {
 		this.dataNascimento = dataNascimento;
+	}
+	public String getDataNascimentoString() {
+		return dataNascimentoString;
+	}
+	public void setDataNascimentoString(String dataNascimentoString) {
+		this.dataNascimentoString = dataNascimentoString;
 	}
 }

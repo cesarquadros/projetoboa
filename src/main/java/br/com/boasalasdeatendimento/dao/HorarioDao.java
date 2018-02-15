@@ -35,7 +35,7 @@ public class HorarioDao extends ConexaoDao {
 			sql.append(" AND  ");
 			sql.append(" 	a.id_sala = ? ) ");
 
-			stmt = (PreparedStatement) conexao.prepareStatement(sql.toString());
+			stmt = conexao.prepareStatement(sql.toString());
 
 			int aux = 1;
 

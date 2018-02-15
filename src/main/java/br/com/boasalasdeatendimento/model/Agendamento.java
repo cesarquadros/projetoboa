@@ -9,6 +9,7 @@ public class Agendamento {
 	private Cliente cliente;
 	private Sala sala;
 	private Date dataAgendamento;
+	private String dataAgendamentoString;
 	private Boolean status;
 	
 	public Integer getId() {
@@ -40,6 +41,12 @@ public class Agendamento {
 	}
 	public void setDataAgendamento(Date dataAgendamento) {
 		this.dataAgendamento = dataAgendamento;
+	}
+	public String getDataAgendamentoString() {
+		return dataAgendamentoString;
+	}
+	public void setDataAgendamentoString(String dataAgendamentoString) {
+		this.dataAgendamentoString = dataAgendamentoString;
 	}
 	public Boolean getStatus() {
 		return status;

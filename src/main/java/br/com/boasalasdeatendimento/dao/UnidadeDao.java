@@ -21,7 +21,7 @@ public class UnidadeDao extends ConexaoDao {
 			sql.append(" FROM ");
 			sql.append(" 	Unidade ");
 
-			stmt = (PreparedStatement) conexao.prepareStatement(sql.toString());
+			stmt = conexao.prepareStatement(sql.toString());
 
 			rs = stmt.executeQuery();
 
@@ -58,7 +58,7 @@ public class UnidadeDao extends ConexaoDao {
 
 		int aux = 1;
 
-		stmt = (PreparedStatement) conexao.prepareStatement(sql.toString());
+		stmt = conexao.prepareStatement(sql.toString());
 
 		stmt.setInt(aux++, idUnidade);
 

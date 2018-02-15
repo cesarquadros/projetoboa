@@ -17,7 +17,7 @@
 			
 		</div>
 
-		<div class="collapse navbar-collapse" id="navigation-example" ng-init="verificarLogin('${cliente.nome}')">
+		<div class="collapse navbar-collapse" id="navigation-example" ng-init="verificarLogin('${cliente.id}')">
 			<ul class="nav navbar-nav navbar-right">
 				<li ng-if="!usuarioLogado"><a href="#" data-toggle="modal"
 					data-target="#myModal"> Cadastrar </a></li>

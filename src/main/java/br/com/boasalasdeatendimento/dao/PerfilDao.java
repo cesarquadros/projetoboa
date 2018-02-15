@@ -20,7 +20,7 @@ public class PerfilDao extends ConexaoDao {
 			sql.append(" WHERE ");
 			sql.append("	idPerfil = ?");
 
-			stmt = (PreparedStatement) conexao.prepareStatement(sql.toString());
+			stmt = conexao.prepareStatement(sql.toString());
 
 			stmt.setInt(1, idPerfil);
 

@@ -1,9 +1,11 @@
 var app = angular.module('app', []);
 app.controller('appCtrl', [ '$scope', '$http', function($scope, $http) {
 	$scope.numeroSala = 1;
+	$scope.idSala = 1;
 	$scope.listaHorario = [];
 	$scope.unidades = [];
-	$scope.dataA;
+	$scope.dataSelecionada;
+	$scope.agendamento;
 //	$scope.usuarioLogado = true;
 	
 	$scope.verificarLogin = function(usuario) {
@@ -12,8 +14,27 @@ app.controller('appCtrl', [ '$scope', '$http', function($scope, $http) {
 		}
 	}
 	
-	$scope.setSala = function(sala) {
-		$scope.numeroSala = sala;
+	$scope.ativo = function(numero) {
+		if (numero == 0 ) {
+			return true;
+		} else {
+			return false
+		}
+	}
+	
+	$scope.setSala = function(numeroSala, idSala) {
+		$scope.numeroSala = numeroSala;
+		$scope.idSala = idSala;
+	}
+	
+	$scope.realizarAgendamento = function(idHora, idCliente) {
+		console.log(idHora);
+		data = $scope.dataSelecionada;
+		agendamento = {"horario" : {"id" : idHora }, 
+						"dataAgendamentoString" : data, 
+						"cliente" : {"id" : idCliente},
+						"sala" : {"id" : $scope.idSala}}
+		
 	}
 
 	$scope.carregarSalas = function() {
@@ -35,10 +56,10 @@ app.controller('appCtrl', [ '$scope', '$http', function($scope, $http) {
 	
 	$scope.carregarHorarios = function() {
 		
-		data = document.getElementById('data').value;
+		$scope.dataSelecionada = document.getElementById('data').value;
 		sala = $scope.numeroSala;
 		//newDate = new Date(data);
-		consultaSala = { "sala" : sala, "data" : data};
+		consultaSala = { "sala" : sala, "data" : $scope.dataSelecionada};
 		
 		$http({
 			method : 'post',

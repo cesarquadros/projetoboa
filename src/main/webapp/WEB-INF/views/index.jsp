@@ -71,12 +71,11 @@ pageEncoding="UTF-8"%>
 													<div ng-repeat="unidade in unidades" style="text-align: center;">
 														<h4 >Unidade: {{unidade.nomeUnidade}}</h4>
 				
-														<div ng-repeat="sala in unidade.listaSala" >
-															
-														<ul class="nav nav-pills nav-pills-info nav-stacked">
-															<li><a href="#/tab{{sala.numero}}" ng-click="setSala(sala.numero)" data-toggle="tab">SALA {{sala.numero}}</a></li>
-														</ul>	
-															
+														<div>
+															<!-- simple and vertical -->
+															<ul class="nav nav-pills nav-pills-rose nav-stacked">
+															  <li ng-repeat="sala in unidade.listaSala"><a href="#tab{{sala.numero}}" ng-click="setSala(sala.numero, sala.id)" data-toggle="tab">SALA {{sala.numero}}</a></li>
+															</ul>
 														</div>										
 													</div>
 												</div>
@@ -101,7 +100,7 @@ pageEncoding="UTF-8"%>
 								<div class="col-xs-12 col-sm-12 col-md-8" ng-init="carregarHorarios()">
 									<div class="card card-nav-tabs">
 										<div class="card-body">
-										<h3 style="text-align: center;">Sala {{numeroSala}} - Grade de horários 10/10/2018</h3>
+										<h3 style="text-align: center;">Sala {{numeroSala}} - Grade de horários {{dataSelecionada}}</h3>
 										<div style="overflow: auto; height: 345px;">
 											<table class="table">
 												
@@ -109,7 +108,7 @@ pageEncoding="UTF-8"%>
 													<tr>
 														<td class="text-center">{{horario.horarioString}}</td>
 														<td>Horário disponível</td>
-														<td><button class="btn btn-success btn-xs">Agendar</button></td>
+														<td><a class="btn btn-success btn-xs" ng-click="realizarAgendamento(horario.id, '${cliente.id}')">Agendar</a></td>
 													</tr>
 												</tbody>
 											</table>

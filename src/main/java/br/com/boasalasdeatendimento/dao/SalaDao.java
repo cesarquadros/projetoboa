@@ -26,7 +26,7 @@ public class SalaDao extends ConexaoDao {
 			sql.append(" WHERE ");
 			sql.append(" 	id_unidade = ? ");
 
-			stmt = (PreparedStatement) conexao.prepareStatement(sql.toString());
+			stmt = conexao.prepareStatement(sql.toString());
 
 			stmt.setInt(1, idUnidade);
 
