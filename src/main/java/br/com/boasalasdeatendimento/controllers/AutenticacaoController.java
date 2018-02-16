@@ -19,7 +19,10 @@ import br.com.boasalasdeatendimento.util.DataUtil;
 public class AutenticacaoController {
 
 	@Autowired
-	private ClienteDao ClienteDao;
+	private ClienteDao clienteDao;
+	
+	@Autowired
+	private AutenticarDao autenticarDao;
 	
 	@RequestMapping("/login")
 	public String login() {
@@ -29,7 +32,6 @@ public class AutenticacaoController {
 	@RequestMapping("/autenticar")
 	public ModelAndView autenticar(Autenticacao autenticacao, HttpSession session, RedirectAttributes redirectAttributes) {
 
-		AutenticarDao autenticarDao = new AutenticarDao();
 		Autenticacao verificaAutenticacao = new Autenticacao();
 
 		autenticacao.setSenha(GenerateHashPasswordUtil.generateHash(autenticacao.getSenha()));
@@ -37,7 +39,7 @@ public class AutenticacaoController {
 
 		if (null != verificaAutenticacao.getId()) {
 
-			Cliente cliente = ClienteDao.findByIdAutenticacao(verificaAutenticacao);
+			Cliente cliente = clienteDao.findByIdAutenticacao(verificaAutenticacao);
 			
 			redirectAttributes.addFlashAttribute("cliente", cliente);
 			redirectAttributes.addFlashAttribute("dataAtual", DataUtil.getDateTime());

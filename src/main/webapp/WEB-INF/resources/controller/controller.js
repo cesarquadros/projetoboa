@@ -7,18 +7,32 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 	$scope.dataSelecionada;
 	$scope.agendamento;
 	$scope.statusAgendamento;
+	$scope.cliente;
 //	$scope.usuarioLogado = true;
 	
-	$scope.verificarLogin = function(usuario) {
-		if (usuario) {
-			$scope.usuarioLogado = true;
-		}
+	
+	$scope.cadastrarCliente = function(cliente) {
+		
+		$http({
+			method : 'post',
+			url : '/boasalasdeatendimento/cadastrarcliente',
+			data : JSON.stringify(cliente),
+			beforeSend : function(xhr) {
+				xhr.setRequestHeader("Accept", "application/json");
+				xhr.setRequestHeader("Content-Type", "application/json");
+			},
+		}).then(function(retorno) {
+			$scope.unidades = retorno.data;
+		});
+		
+		
+		
+		
 	}
 	
-	$scope.setSala = function(numeroSala, idSala) {
-		$scope.numeroSala = numeroSala;
-		$scope.idSala = idSala;
-	}
+	
+	
+	
 	
 	
 	$scope.realizarAgendamento = function(idHora, idCliente) {
@@ -91,15 +105,28 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 		});
 	}
 	
-	$scope.verificaCampoVazio = function(nome) {
-		campo = angular.element( document.querySelector('#divNome'));
+	$scope.verificaCampoVazio = function(nome, div) {
+		campo = angular.element( document.querySelector('#'+div));
 		
 		if(nome != undefined){
+			campo.removeClass('has-error');
 			campo.addClass('has-success');
 			return true;
 		} else {
+			campo.removeClass('has-success');
 			campo.addClass('has-error');
 			return false;
 		}
+	}
+	
+	$scope.verificarLogin = function(usuario) {
+		if (usuario) {
+			$scope.usuarioLogado = true;
+		}
+	}
+	
+	$scope.setSala = function(numeroSala, idSala) {
+		$scope.numeroSala = numeroSala;
+		$scope.idSala = idSala;
 	}
 } ]);

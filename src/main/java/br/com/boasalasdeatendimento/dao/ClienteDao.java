@@ -35,8 +35,8 @@ public class ClienteDao extends ConexaoDao{
 	
 	public Cliente inserir(Cliente cliente) {
 		
+		final StringBuilder sql = new StringBuilder();
 		try {
-			final StringBuilder sql = new StringBuilder();
 
 			conectar();
 			
