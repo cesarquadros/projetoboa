@@ -76,7 +76,7 @@ pageEncoding="UTF-8"%>
 														<div>
 															<!-- simple and vertical -->
 															<ul class="nav nav-pills nav-pills-rose nav-stacked">
-															  <li ng-repeat="sala in unidade.listaSala"><a href="#tab{{sala.numero}}" ng-click="setSala(sala.numero, sala.id)" data-toggle="tab">SALA {{sala.numero}}</a></li>
+															  <li ng-repeat="sala in unidade.listaSala"><a href="#tab{{sala.numero}}" ng-click="carregarHorarios(sala.numero, sala.id)" data-toggle="tab">SALA {{sala.numero}}</a></li>
 															</ul>
 														</div>										
 													</div>
@@ -92,14 +92,14 @@ pageEncoding="UTF-8"%>
 														<label class="control-label">Escolha uma data</label> 
 														<input id="data" class="datepicker form-control" type="text" value="${dataAtual}" /> 
 													</div>
-													<a href="#" class="btn btn-primary btn-sm" style="float: right;" ng-click="carregarHorarios()"> Buscar</a>
+													<a href="#" class="btn btn-primary btn-sm" style="float: right;" ng-click="carregarHorarios(numeroSala, idSala)"> Buscar</a>
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
 								
-								<div class="col-xs-12 col-sm-12 col-md-8" ng-init="carregarHorarios()">
+								<div class="col-xs-12 col-sm-12 col-md-8" ng-init="carregarHorarios(numeroSala, idSala)">
 									<div class="card card-nav-tabs">
 										<div class="card-body">
 										<h3 style="text-align: center;">Sala {{numeroSala}} - Grade de horários {{dataSelecionada}}</h3>

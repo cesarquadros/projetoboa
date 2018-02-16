@@ -22,7 +22,7 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 	
 	
 	$scope.realizarAgendamento = function(idHora, idCliente) {
-		//document.getElementById("loader").style.display = "block";
+
 		loader = angular.element( document.querySelector('#loader'));
 		sucess = angular.element( document.querySelector('#sucess'));
 		
@@ -45,7 +45,7 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 		}).then(function(retorno) {
 			$scope.statusAgendamento = retorno.data;
 			
-			$scope.carregarHorarios();
+			$scope.carregarHorarios($scope.numeroSala, $scope.idSala);
 			
 	        $timeout( function(){
 	        	loader.removeClass('loader-ativo');
@@ -70,12 +70,13 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 		});
 	}
 	
-	$scope.carregarHorarios = function() {
+	$scope.carregarHorarios = function(numeroSala, idSala) {
 		
+		$scope.numeroSala = numeroSala;
 		$scope.dataSelecionada = document.getElementById('data').value;
-		sala = $scope.numeroSala;
+		$scope.idSala = idSala;
 		//newDate = new Date(data);
-		consultaSala = { "sala" : sala, "data" : $scope.dataSelecionada};
+		consultaSala = { "sala" : $scope.idSala, "data" : $scope.dataSelecionada};
 		
 		$http({
 			method : 'post',

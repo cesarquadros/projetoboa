@@ -7,12 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
-
 
 //mapeando o down
 @Repository
-@Transactional
 public class ConexaoDao {
 	
 	private static String URL = "jdbc:mysql://localhost:3306/boa";

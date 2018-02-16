@@ -22,13 +22,12 @@ public class AutenticacaoController {
 	private ClienteDao ClienteDao;
 	
 	@RequestMapping("/login")
-	public String login(Autenticacao autenticacao) {
-		System.out.println("redirecionando LOGIN");
+	public String login() {
 		return "login";
 	}
-
+	
 	@RequestMapping("/autenticar")
-	public String autenticar(Autenticacao autenticacao, HttpSession session, RedirectAttributes redirectAttributes) {
+	public ModelAndView autenticar(Autenticacao autenticacao, HttpSession session, RedirectAttributes redirectAttributes) {
 
 		AutenticarDao autenticarDao = new AutenticarDao();
 		Autenticacao verificaAutenticacao = new Autenticacao();
@@ -45,11 +44,12 @@ public class AutenticacaoController {
 			
 			session.setAttribute("usuarioLogado", cliente);
 
-			return "redirect: index";
+			return new ModelAndView("redirect: index");
 		} else {
-			redirectAttributes.addFlashAttribute("erro", "Usuário ou senha inválidos");
+			ModelAndView modelAndView = new ModelAndView("login");
+			modelAndView.addObject("mensagemErro", "Usuário ou senha inválidos");
+			return modelAndView; 
 		}
-		return "redirect: login";
 	}
 
 	@RequestMapping("/logout")
