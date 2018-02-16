@@ -21,6 +21,7 @@ pageEncoding="UTF-8"%>
 	<!-- CSS Files -->
 	<link href="resources/css/bootstrap.min.css" rel="stylesheet"	media="screen">
 	<link href="resources/css/material-kit.css" rel="stylesheet"	media="screen">
+	<link href="resources/css/loader.css" rel="stylesheet"	media="screen">
 
 	<!-- ANGULAR JS -->
 	<script src=./resources/js/angular.min.js></script>
@@ -28,11 +29,11 @@ pageEncoding="UTF-8"%>
 
 </head>
 <body ng-app="app" ng-controller="appCtrl">
-	
+
 	<!--   Menu   -->
 	<jsp:include page="cabecalho.jsp"></jsp:include>
 	
-	<!-- Modal Core -->
+	<!-- Modal Cadastro -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -46,7 +47,7 @@ pageEncoding="UTF-8"%>
 			</div>
 		</div>
 	</div>
-
+	
 	<div class="wrapper">
 		<div class="header header-filter" style="background-image: url('resources/img/examples/city.jpg'); min-height: 170px"></div>
 		<div class="main main-raised">
@@ -56,8 +57,9 @@ pageEncoding="UTF-8"%>
 					<ul class="nav nav-tabs">
 						<li><a data-toggle="tab" href="#menu1" ng-if="usuarioLogado">Agendamento</a></li>
 						<li class="active"><a data-toggle="tab" href="#menu2">Informações</a></li>
+						<li><span class="loader" id="loader"></span></li>
 					</ul>
-	
+					
 					<div class="tab-content">
 						<div id="menu1" class="tab-pane fade" ng-if="usuarioLogado">
 							

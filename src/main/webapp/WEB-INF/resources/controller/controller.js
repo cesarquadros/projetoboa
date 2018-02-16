@@ -1,11 +1,12 @@
 var app = angular.module('app', []);
-app.controller('appCtrl', [ '$scope', '$http', function($scope, $http) {
+app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http, $timeout) {
 	$scope.numeroSala = 1;
 	$scope.idSala = 1;
 	$scope.listaHorario = [];
 	$scope.unidades = [];
 	$scope.dataSelecionada;
 	$scope.agendamento;
+	$scope.statusAgendamento;
 //	$scope.usuarioLogado = true;
 	
 	$scope.verificarLogin = function(usuario) {
@@ -14,27 +15,42 @@ app.controller('appCtrl', [ '$scope', '$http', function($scope, $http) {
 		}
 	}
 	
-	$scope.ativo = function(numero) {
-		if (numero == 0 ) {
-			return true;
-		} else {
-			return false
-		}
-	}
-	
 	$scope.setSala = function(numeroSala, idSala) {
 		$scope.numeroSala = numeroSala;
 		$scope.idSala = idSala;
 	}
 	
+	
 	$scope.realizarAgendamento = function(idHora, idCliente) {
-		console.log(idHora);
+		//document.getElementById("loader").style.display = "block";
+		loader = angular.element( document.querySelector('#loader'));
+		sucess = angular.element( document.querySelector('#sucess'));
+		
+        loader.addClass('loader-ativo');
+		
 		data = $scope.dataSelecionada;
-		agendamento = {"horario" : {"id" : idHora }, 
+		agendamento = {"horario" : {"id" : idHora}, 
 						"dataAgendamentoString" : data, 
 						"cliente" : {"id" : idCliente},
-						"sala" : {"id" : $scope.idSala}}
-		
+						"sala" : {"id" : $scope.idSala},
+						"status" : 1};
+		$http({
+			method : 'post',
+			url : '/boasalasdeatendimento/realizaragendamento',
+			data : JSON.stringify(agendamento),
+			beforeSend : function(xhr) {
+				xhr.setRequestHeader("Accept", "application/json");
+				xhr.setRequestHeader("Content-Type", "application/json");
+			},
+		}).then(function(retorno) {
+			$scope.statusAgendamento = retorno.data;
+			
+			$scope.carregarHorarios();
+			
+	        $timeout( function(){
+	        	loader.removeClass('loader-ativo');
+	        }, 1000 );
+		});
 	}
 
 	$scope.carregarSalas = function() {

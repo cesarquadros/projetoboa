@@ -6,13 +6,13 @@ import java.util.Date;
 
 public class DataUtil {
 
-	public static String getDateFormat(String dataString, String formatoData) {
+	public static String getDateFormatString(String dataString, String formatoEntrada,String formatoSaida) {
 
 		Date date;
 
 		try {
-			date = new SimpleDateFormat("dd/MM/yyyy").parse(dataString);
-			return new SimpleDateFormat(formatoData).format(date);
+			date = new SimpleDateFormat(formatoEntrada).parse(dataString);
+			return new SimpleDateFormat(formatoSaida).format(date);
 
 		} catch (ParseException e) {
 			e.printStackTrace();

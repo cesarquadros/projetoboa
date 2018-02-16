@@ -33,7 +33,7 @@ pageEncoding="UTF-8"%>
 
 <div class="wrapper">
 
-	<div class="header header-filter" style="background-image: url('resources/img/examples/city.jpg'); min-height: 200px"></div>
+	<div class="header header-filter" style="background-image: url('resources/img/examples/city.jpg'); min-height: 170px"></div>
 	<div class="main main-raised">
 		<div class="profile-content">
 			<div class="container" style="padding-bottom: 10%;">
@@ -77,14 +77,14 @@ pageEncoding="UTF-8"%>
 										<td>01/01/2018</td>
 										<td>13:00</td>
 										<td>SALA 10</td>
-										<td><a href="#"type="button" style="border: 1px solid purple; padding: 5px">Cancelar</a></td>
+										<td><a href="#" type="button" style="border: 1px solid purple; padding: 5px">Cancelar</a></td>
 									</tr>
 									<tr>
 										<td></td>	
 										<td>01/01/2018</td>
 										<td>13:00</td>
 										<td>SALA 10</td>
-										<td><a style="border: 1px solid purple; padding: 5px">Cancelar</a></td>
+										<td><a href="#" type="button" style="border: 1px solid purple; padding: 5px">Cancelar</a></td>
 									</tr>																		
 								</tbody>
 							</table>
@@ -97,22 +97,8 @@ pageEncoding="UTF-8"%>
 	
 </div>
 
-<footer class="footer">
-	<div class="container">
-		<nav class="pull-left">
-			<ul>
-				<li><a href="http://www.creative-tim.com"> Creative Tim </a></li>
-				<li><a href="http://presentation.creative-tim.com"> About Us </a></li>
-				<li><a href="http://blog.creative-tim.com"> Blog </a></li>
-				<li><a href="http://www.creative-tim.com/license"> Licenses	</a></li>
-			</ul>
-		</nav>
-		<div class="copyright pull-right">
-			&copy; 2016, made with <i class="fa fa-heart heart"></i> by Creative
-			Tim
-		</div>
-	</div>
-</footer>
+	<!--   Rodapé   -->
+	<jsp:include page="rodape.jsp"></jsp:include>
 
 </body>
 

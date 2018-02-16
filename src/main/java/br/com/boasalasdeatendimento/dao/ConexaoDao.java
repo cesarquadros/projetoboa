@@ -30,11 +30,9 @@ public class ConexaoDao {
 			
 			Class.forName(DRIVER);
 			conexao = DriverManager.getConnection(URL,user ,password );
-			System.out.println("Conectado!");
 			
 			return conexao;
 		} catch (SQLException e) {
-			
 			System.out.println("Erro ao conectar: "+ e.toString());
 			return null;
 		} catch (ClassNotFoundException e) {

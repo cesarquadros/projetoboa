@@ -2,6 +2,8 @@ package br.com.boasalasdeatendimento.controllers;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.boasalasdeatendimento.model.Autenticacao;
+import br.com.boasalasdeatendimento.model.Cliente;
 import br.com.boasalasdeatendimento.model.Horario;
 import br.com.boasalasdeatendimento.util.DataUtil;
 
@@ -18,47 +21,25 @@ public class HomeController {
 
 	
 	@RequestMapping("/")
-	public static ModelAndView index() {
+	public static ModelAndView index(HttpSession session) {
+		
+		Cliente cliente = (Cliente) session.getAttribute("usuarioLogado");
 		
 		ModelAndView modelAndView = new ModelAndView("index");
 		modelAndView.addObject("dataAtual", DataUtil.getDateTime());
+		modelAndView.addObject("cliente", cliente);
 		
 		return modelAndView;
 	}
 	
 	@RequestMapping("/index")
-	public static ModelAndView index2(Autenticacao value) {
+	public static ModelAndView index2( HttpSession session) {
 		
-		System.out.println(value);
+		Cliente cliente = (Cliente) session.getAttribute("usuarioLogado");
+		
 		ModelAndView modelAndView = new ModelAndView("index");
 		modelAndView.addObject("dataAtual", DataUtil.getDateTime());
-		
+		modelAndView.addObject("cliente", cliente);
 		return modelAndView;
 	}
-
-	@RequestMapping(value = "/listahorarios", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	@ResponseBody
-	public static ArrayList<Horario> listaHorarios() {
-
-		ArrayList<Horario> listaTodosHorarios = getTodosHorarios();
-		ArrayList<Horario> listaHorarios = new ArrayList<Horario>();
-
-		for (int i = 0; i < listaHorarios.size(); i++) {
-			for (int j = 0; j < listaTodosHorarios.size(); j++) {
-				if(listaHorarios.get(i).getHorario().equals(listaTodosHorarios.get(j).getHorario())){
-					listaTodosHorarios.remove(j);
-				}
-			}
-		}
-
-		return listaTodosHorarios;
-	}
-
-	private static ArrayList<Horario> getTodosHorarios() {
-			
-			ArrayList<Horario> listaHorarios = new ArrayList<Horario>();
-			
-			return listaHorarios;
-	}
-	
 }

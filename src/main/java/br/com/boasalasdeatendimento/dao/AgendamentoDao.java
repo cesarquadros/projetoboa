@@ -4,11 +4,7 @@ import java.sql.SQLException;
 
 import org.springframework.stereotype.Repository;
 
-import com.mysql.jdbc.PreparedStatement;
-import com.mysql.jdbc.Statement;
-
 import br.com.boasalasdeatendimento.model.Agendamento;
-import br.com.boasalasdeatendimento.model.Cliente;
 
 @Repository
 public class AgendamentoDao extends ConexaoDao{
@@ -21,7 +17,7 @@ public class AgendamentoDao extends ConexaoDao{
 		cDao.inserir(a);
 	}
 	
-	public void inserir(Agendamento agendamento) {
+	public boolean inserir(Agendamento agendamento) {
 		
 		try {
 			final StringBuilder sql = new StringBuilder();
@@ -42,12 +38,13 @@ public class AgendamentoDao extends ConexaoDao{
 			stmt.setInt(aux++, agendamento.getCliente().getId());
 			stmt.setInt(aux++, agendamento.getSala().getId());
 			stmt.setString(aux++, agendamento.getDataAgendamentoString());
-			stmt.setInt(aux++, 1);
+			stmt.setBoolean(aux++, agendamento.getStatus());
 			
 			stmt.execute();
-			
+			return true;
 		} catch (SQLException e) {
 			System.out.println(e);
+			return false;
 		}
 	}
 }

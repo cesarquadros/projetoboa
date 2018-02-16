@@ -15,7 +15,7 @@ import br.com.boasalasdeatendimento.model.ConsultaSala;
 import br.com.boasalasdeatendimento.model.Unidade;
 
 @RestController
-public class TestRestController {
+public class SalaRestController {
 
 	@PostMapping(value = "/carregarsalas")
 	public ResponseEntity<List<Unidade>> testeGet(@RequestBody ConsultaSala consultaSala) {

@@ -6,8 +6,11 @@ import org.springframework.stereotype.Repository;
 
 import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.Statement;
+import com.mysql.jdbc.Util;
 
+import br.com.boasalasdeatendimento.model.Autenticacao;
 import br.com.boasalasdeatendimento.model.Cliente;
+import br.com.boasalasdeatendimento.util.DataUtil;
 
 @Repository
 public class ClienteDao extends ConexaoDao{
@@ -69,5 +72,46 @@ public class ClienteDao extends ConexaoDao{
 			System.out.println(e);
 		}
 		return cliente;
+	}
+	
+	public Cliente findByIdAutenticacao(Autenticacao autenticacao){
+		
+		final StringBuilder sql = new StringBuilder();
+		
+		try {
+			conectar();
+			
+			sql.append(" SELECT * FROM");
+			sql.append("	cliente ");
+			sql.append(" WHERE ");
+			sql.append(" 	id_autenticacao = ?");
+		
+			stmt = conexao.prepareStatement(sql.toString());
+			
+			stmt.setInt(1, autenticacao.getId());
+			
+			rs = stmt.executeQuery();
+			
+			Cliente cliente = new Cliente();
+			
+			while(rs.next()){
+				cliente.setId(rs.getInt("idCliente"));
+				cliente.setNome(rs.getString("nome"));
+				cliente.setSobrenome(rs.getString("sobrenome"));
+				cliente.setTelFixo(rs.getString("tel_fixo"));
+				cliente.setTelCelular(rs.getString("tel_celular"));
+				cliente.setCpf(rs.getString("cpf"));
+				cliente.setEmail(rs.getString("email"));
+				cliente.setSexo(rs.getString("sexo"));
+				cliente.setAutenticacao(autenticacao);
+				cliente.setDataNascimentoString(DataUtil.getDateFormatString(rs.getString("dt_nasc"), "yyyy-MM-dd" ,"dd/MM/yyyy"));
+				
+				return cliente;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

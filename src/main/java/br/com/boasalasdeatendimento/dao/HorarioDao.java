@@ -33,7 +33,9 @@ public class HorarioDao extends ConexaoDao {
 			sql.append(" AND ");
 			sql.append(" 	a.dt_agendamento = ? ");
 			sql.append(" AND  ");
-			sql.append(" 	a.id_sala = ? ) ");
+			sql.append(" 	a.id_sala = ? ");
+			sql.append(" AND  ");
+			sql.append(" 	a.status = ? ) ");
 
 			stmt = conexao.prepareStatement(sql.toString());
 
@@ -41,6 +43,7 @@ public class HorarioDao extends ConexaoDao {
 
 			stmt.setString(aux++, consultaSala.getData());
 			stmt.setString(aux++, consultaSala.getSala());
+			stmt.setInt(aux++, 1);
 
 			rs = stmt.executeQuery();
 
