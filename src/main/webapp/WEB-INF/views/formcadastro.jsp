@@ -35,13 +35,13 @@
 	<div class="col-xs-12 col-sm-12 col-md-6">
 		<div class="form-group label-floating" id="divSenha">
 			<label class="control-label">Senha</label> 
-			<input required type="text" class="form-control" ng-model="cliente.autenticacao.senha" ng-blur="verificaCampoVazio(cliente.senha, 'divSenha')"/> 
+			<input required type="password" class="form-control" ng-model="cliente.autenticacao.senha" ng-blur="verificaCampoVazio(cliente.autenticacao.senha, 'divSenha')"/> 
 		</div>
 	</div>
 	<div class="col-xs-12 col-sm-12 col-md-6">
 		<div class="form-group label-floating" id="divConfirmarSenha">
 			<label class="control-label">Confirmar Senha</label> 
-			<input type="text" class="form-control" ng-model="confirmaSenha" ng-blur="verificaCampoVazio(confirmaSenha, 'divConfirmarSenha')"/> 
+			<input required type="password" class="form-control" ng-model="confirmaSenha" ng-blur="verificaCampoVazio(confirmaSenha, 'divConfirmarSenha')"/> 
 		</div>
 	</div>
 </div>
@@ -50,14 +50,14 @@
 	<div class="col-xs-12 col-sm-12 col-md-6">
 		<div class="form-group label-floating" id="divTelFixo">
 			<label class="control-label">Telefone Fixo</label>
-			<input type="number" class="form-control" ng-model="cliente.telFixo" ng-blur="verificaCampoVazio(cliente.telFixo, 'divTelFixo')"/>
+			<input id="telefonefixo" required type="text" class="form-control" ng-model="cliente.telFixo" ng-blur="verificaCampoVazio(cliente.telFixo, 'divTelFixo')"/>
 		</div>
 	</div>
 	
 	<div class="col-xs-12 col-sm-12 col-md-6">
 		<div class="form-group label-floating" id="divTelCelular">
 			<label class="control-label">Telefone Celular</label>
-			<input type="number" class="form-control" ng-model="cliente.telCelular" ng-blur="verificaCampoVazio(cliente.telCelular, 'divTelCelular')"/>
+			<input id="telefonecelular" required type="text" class="form-control" ng-model="cliente.telCelular" ng-blur="verificaCampoVazio(cliente.telCelular, 'divTelCelular')"/>
 		</div>
 	</div>	
 </div>
@@ -66,12 +66,12 @@
 	<div class="col-xs-12 col-sm-12 col-md-6">
 		<div class="form-group label-floating" id="divCpf">
 			<label class="control-label">CPF</label> 
-			<input	type="number" class="form-control" ng-model="cliente.cpf" ng-blur="verificaCampoVazio(cliente.cpf, 'divCpf')"/> 
+			<input id="cpf" required type="text" class="form-control" ng-model="cliente.cpf" ng-blur="verificaCampoVazio(cliente.cpf, 'divCpf')"/> 
 		</div>
 	</div>
 	<div class="col-xs-12 col-sm-12 col-md-3">
 		<div class="form-group">
-			<select class="form-control" ng-model="cliente.sexo" id="selectSexo">
+			<select required class="form-control" ng-model="cliente.sexo" id="selectSexo">
 				<option value="M">Masculino</option>
 				<option value="F">Feminino</option>
 			</select>
