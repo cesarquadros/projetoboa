@@ -19,7 +19,7 @@
 
 		<div class="collapse navbar-collapse" id="navigation-example" ng-init="verificarLogin('${cliente.nome}')">
 			<ul class="nav navbar-nav navbar-right">
-				<li ng-if="!usuarioLogado"><a href="#" data-toggle="modal" data-target="#myModal"> Cadastrar </a></li>
+				<li ng-if="!usuarioLogado"><a href="novocadastro"> Cadastrar </a></li>
 				<li ng-if="!usuarioLogado"><a href="login">Efetuar login</a></li>
 				<li ng-if="usuarioLogado">
 					<div class="col-md-3 dropdown">

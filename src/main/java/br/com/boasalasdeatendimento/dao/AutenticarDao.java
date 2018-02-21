@@ -2,9 +2,9 @@ package br.com.boasalasdeatendimento.dao;
 
 import java.sql.SQLException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.Statement;
 
 import br.com.boasalasdeatendimento.model.Autenticacao;
@@ -12,7 +12,10 @@ import br.com.boasalasdeatendimento.security.GenerateHashPasswordUtil;
 
 @Repository
 public class AutenticarDao extends ConexaoDao {
-
+	
+	@Autowired
+	private PerfilDao perfilDao;
+	
 	public Autenticacao autenticar(Autenticacao autenticacao) {
 
 		final StringBuilder sql = new StringBuilder();
@@ -36,9 +39,6 @@ public class AutenticarDao extends ConexaoDao {
 
 			rs = stmt.executeQuery();
 			Autenticacao usuarioAutenticado = new Autenticacao();
-			;
-
-			PerfilDao perfilDao = new PerfilDao();
 
 			while (rs.next()) {
 
@@ -56,7 +56,7 @@ public class AutenticarDao extends ConexaoDao {
 		}
 	}
 
-	public Integer inserir(Autenticacao autenticacao) {
+	public Autenticacao inserir(Autenticacao autenticacao) {
 
 		final StringBuilder sql = new StringBuilder();
 
@@ -81,12 +81,45 @@ public class AutenticarDao extends ConexaoDao {
 			rs = stmt.getGeneratedKeys();
 			
 			while (rs.next()) {
-				return rs.getInt(1);
+				
+				 autenticacao.setId(rs.getInt(1));
+				 autenticacao.setPerfil(perfilDao.getPerfil(1));
+
+				 return autenticacao;
 			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public Boolean findByUsuario(String usuario) {
+		
+		final StringBuilder sql = new StringBuilder();
+		
+		conectar();
+		
+		try {
+			
+			sql.append(" SELECT * FROM");
+			sql.append(" 	autenticacao");
+			sql.append(" WHERE");
+			sql.append(" 	usuario = ? ");
+			
+			stmt = conexao.prepareStatement(sql.toString());
+			stmt.setString(1, usuario);
+			
+			rs = stmt.executeQuery();
+			
+			if(rs.next()) {
+				return true;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return false;
 	}
 }

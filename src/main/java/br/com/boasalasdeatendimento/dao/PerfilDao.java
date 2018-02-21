@@ -2,10 +2,11 @@ package br.com.boasalasdeatendimento.dao;
 
 import java.sql.SQLException;
 
-import com.mysql.jdbc.PreparedStatement;
+import org.springframework.stereotype.Repository;
 
 import br.com.boasalasdeatendimento.model.Perfil;
 
+@Repository
 public class PerfilDao extends ConexaoDao {
 
 	public Perfil getPerfil(Integer idPerfil) {

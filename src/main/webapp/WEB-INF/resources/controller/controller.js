@@ -9,6 +9,7 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 	$scope.statusAgendamento;
 	$scope.cliente;
 //	$scope.usuarioLogado = true;
+	$scope.listaErros = [];
 	
 	
 	$scope.cadastrarCliente = function(cliente) {
@@ -24,13 +25,11 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 		}).then(function(retorno) {
 			$scope.unidades = retorno.data;
 		});
-		
-		
-		
-		
 	}
 	
-	
+	$scope.getErros = function(erros){
+		$scope.listaErros = erros;
+	}
 	
 	
 	

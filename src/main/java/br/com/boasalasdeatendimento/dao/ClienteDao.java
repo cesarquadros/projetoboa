@@ -52,9 +52,9 @@ public class ClienteDao extends ConexaoDao{
 			
 			stmt.setString(aux++, cliente.getNome());
 			stmt.setString(aux++, cliente.getSobrenome());
-			stmt.setString(aux++, cliente.getTelFixo());
-			stmt.setString(aux++, cliente.getTelCelular());
-			stmt.setString(aux++,cliente.getCpf());
+			stmt.setString(aux++, cliente.getTelFixo().replace("(", "").replace(")", "").replace("-", ""));
+			stmt.setString(aux++, cliente.getTelCelular().replace("(", "").replace(")", "").replace("-", ""));
+			stmt.setString(aux++,cliente.getCpf().replace("-", "").replace(".", ""));
 			stmt.setString(aux++, cliente.getEmail());
 			stmt.setString(aux++, cliente.getSexo());
 			stmt.setString(aux++, cliente.getDataNascimentoString());
@@ -113,5 +113,34 @@ public class ClienteDao extends ConexaoDao{
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	public Boolean findByIdCpf(String cpf){
+		
+		final StringBuilder sql = new StringBuilder();
+		
+		try {
+			conectar();
+			
+			sql.append(" SELECT * FROM");
+			sql.append("	cliente ");
+			sql.append(" WHERE ");
+			sql.append(" 	cpf = ?");
+		
+			stmt = conexao.prepareStatement(sql.toString());
+			
+			stmt.setString(1, cpf);
+			
+			rs = stmt.executeQuery();
+			
+			if(rs.next()){
+				
+				return true;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 }

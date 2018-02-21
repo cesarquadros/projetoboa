@@ -1,5 +1,8 @@
 package br.com.boasalasdeatendimento.model;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Autenticacao {
 
 	private Integer id;
