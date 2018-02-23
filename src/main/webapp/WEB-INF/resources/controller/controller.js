@@ -27,8 +27,13 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 		});
 	}
 	
-	$scope.getErros = function(erros){
-		$scope.listaErros = erros;
+	$scope.verificaErros = function(erros){
+		if(erros){
+			$scope.listaErros = erros;
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	

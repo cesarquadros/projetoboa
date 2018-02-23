@@ -43,7 +43,7 @@ public class ValidatorCliente {
 			listaErros.add("Campo CPF FIXO é obrigatório");
 		}
 		
-		if (null ==cliente.getSexo()) {
+		if (null == cliente.getSexo() || (!cliente.getSexo().equals("M") && !cliente.getSexo().equals("F"))) {
 			listaErros.add("Campo SEXO é obrigatório");
 		}
 		return listaErros;		

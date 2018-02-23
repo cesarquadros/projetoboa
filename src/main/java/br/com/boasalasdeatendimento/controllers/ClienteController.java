@@ -16,6 +16,7 @@ import br.com.boasalasdeatendimento.dao.ClienteDao;
 import br.com.boasalasdeatendimento.model.Autenticacao;
 import br.com.boasalasdeatendimento.model.Cliente;
 import br.com.boasalasdeatendimento.model.Status;
+import br.com.boasalasdeatendimento.util.DataUtil;
 import br.com.boasalasdeatendimento.validators.ValidatorCliente;
 
 @RestController
@@ -33,8 +34,7 @@ public class ClienteController {
 	@RequestMapping(value = "/cadastrarcliente")
 	public ModelAndView cadastrarCliente(Cliente cliente, Autenticacao autenticacao, RedirectAttributes redirectAttributes, HttpSession session) {
 
-		Cliente cliente2 = new Cliente();
-		List<String> listaErros = validatorCliente.validarCliente(cliente2, autenticacao);
+		List<String> listaErros = validatorCliente.validarCliente(cliente, autenticacao);
 		
 		ModelAndView modelAndView = new ModelAndView("cadastrocliente");
 	
@@ -59,23 +59,28 @@ public class ClienteController {
 				}else {
 					modelAndView.addObject("mensagemErro", "Ocorreu um erro ao realizar o cadastro, tente novamente");
 					modelAndView.addObject("cliente", cliente);
-					return modelAndView; 
+					return new ModelAndView("redirect: novocadastro"); 
 				}
+			} else {
+				listaErros.add("CPF ou Email já cadastrados");
+				modelAndView.addObject("listaErros", listaErros);
+				session.setAttribute("usuarioLogado", cliente);
+				return new ModelAndView("redirect: novocadastro");
 			}
 		} else {
 			modelAndView.addObject("listaErros", listaErros);
 			modelAndView.addObject("cliente", cliente);
 			return modelAndView;
 		}
-		modelAndView.addObject("mensagemErro", "Ocorreu um erro ao realizar o cadastro, tente novamente");
-		modelAndView.addObject("cliente", cliente);
-		return modelAndView;
 	}
 	
 	@RequestMapping("/novocadastro")
 	public static ModelAndView formCadastro(HttpSession session) {
 		
 		ModelAndView modelAndView = new ModelAndView("cadastrocliente");
+		Cliente cliente = (Cliente)session.getAttribute("usuarioLogado");
+		modelAndView.addObject("cliente", cliente);
+		
 		return modelAndView;
 	}
 	

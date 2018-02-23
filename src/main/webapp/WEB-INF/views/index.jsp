@@ -60,13 +60,28 @@ pageEncoding="UTF-8"%>
 						<li><span class="loader" id="loader"></span></li>
 					</ul>
 					
-					<div class="tab-content">
+					<div class="tab-content" >
 						<div id="menu1" class="tab-pane fade" ng-if="usuarioLogado">
 							
 							<div class="row" ng-init="carregarSalas()">
-								<div class="col-xs-12 col-sm-12 col-md-4">
+							
+								<div class="col-xs-12 col-sm-12 col-md-4" >
 									<div class="row">
-										
+										<div class="col-xs-12 col-sm-12 col-md-12">
+											<div class="card card-nav-tabs">
+												<div class="card-body ">
+													<!-- markup -->
+													<b>Dica: </b>Escolha uma data, em seguida clique na sala
+													<br />
+													<div class="form-group label-floating">
+														<label class="control-label">Escolha uma data</label> 
+														<input id="data" class="datepicker form-control" type="text" value="${dataAtual}" readonly="readonly"/> 
+													</div>
+												</div>
+											</div>
+										</div>
+									
+									
 										<div class="col-xs-12 col-sm-12 col-md-12">
 											<div class="card card-nav-tabs">
 												<div class="card-body ">
@@ -80,19 +95,6 @@ pageEncoding="UTF-8"%>
 															</ul>
 														</div>										
 													</div>
-												</div>
-											</div>
-										</div>
-										
-										<div class="col-xs-12 col-sm-12 col-md-12">
-											<div class="card card-nav-tabs">
-												<div class="card-body ">
-													<!-- markup -->
-													<div class="form-group label-floating">
-														<label class="control-label">Escolha uma data</label> 
-														<input id="data" class="datepicker form-control" type="text" value="${dataAtual}" /> 
-													</div>
-													<a href="#" class="btn btn-primary btn-sm" style="float: right;" ng-click="carregarHorarios(numeroSala, idSala)"> Buscar</a>
 												</div>
 											</div>
 										</div>

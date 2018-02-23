@@ -28,23 +28,53 @@ pageEncoding="UTF-8"%>
 
 </head>
 <body ng-app="app" ng-controller="appCtrl">
+
+
+<nav
+	class="navbar navbar-transparent navbar-fixed-top navbar-color-on-scroll">
+	<div class="container">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example">
+				<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+				</button>
+
+			<!-- Logotipo -->
+			<a href="./index">
+				<img style="width: 5%;" src="./resources/img/boa/logo_boa_branco.png" alt="Creative Tim Logo">
+			</a>
+			
+		</div>
+
+		<div class="collapse navbar-collapse" id="navigation-example">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="./index"> Pagina inicial </a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+
+
+
+
 	
 <div class="wrapper" ng-init="getErros('${listaErros}')">
 <div class="header header-filter" style="background-image: url('resources/img/examples/city.jpg'); min-height: 170px"></div>
 	<div class="main main-raised">
 		<div class="profile-content">
-			<div class="container" style="padding-bottom: 5%;">
-				<br /><br />
+			<div class="container" style="padding-bottom: 3%;">
+				<br />
 				
-				
-
 				<ul class="nav nav-tabs">
 					<li class="active"><a data-toggle="tab" href="#menu1">Novo cadastro</a></li>
 				</ul>		
 							
-				<c:forEach items="${listaErros}" var="errrrrro">
-		                ${errrrrro}
-		        </c:forEach>				
+ 		<c:forEach items="${listaErros}" var="errrrrro">
+                ${errrrrro}
+        </c:forEach>
+							
+				
 					
 				<div class="card card-nav-tabs">
 					<div class="card-body ">

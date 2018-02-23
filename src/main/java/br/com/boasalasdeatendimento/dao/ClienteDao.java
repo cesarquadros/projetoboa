@@ -57,8 +57,10 @@ public class ClienteDao extends ConexaoDao{
 			stmt.setString(aux++,cliente.getCpf().replace("-", "").replace(".", ""));
 			stmt.setString(aux++, cliente.getEmail());
 			stmt.setString(aux++, cliente.getSexo());
-			stmt.setString(aux++, cliente.getDataNascimentoString());
+			stmt.setString(aux++, DataUtil.getDateFormatString(cliente.getDataNascimentoString() ,"dd/MM/yyyy", "yyyyMMdd"));
 			stmt.setInt(aux++, cliente.getAutenticacao().getId());
+			
+			
 			
 			stmt.execute();
 			
@@ -129,7 +131,7 @@ public class ClienteDao extends ConexaoDao{
 		
 			stmt = conexao.prepareStatement(sql.toString());
 			
-			stmt.setString(1, cpf);
+			stmt.setString(1, cpf.replace("-", "").replace(".", ""));
 			
 			rs = stmt.executeQuery();
 			
