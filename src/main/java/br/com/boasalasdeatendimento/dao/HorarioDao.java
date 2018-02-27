@@ -43,7 +43,7 @@ public class HorarioDao extends ConexaoDao {
 
 			stmt.setString(aux++, consultaSala.getData());
 			stmt.setString(aux++, consultaSala.getSala());
-			stmt.setString(aux++, "ABERTO");
+			stmt.setInt(aux++, 1);
 
 			rs = stmt.executeQuery();
 

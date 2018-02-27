@@ -23,8 +23,6 @@ public class MeusAgendamentosController {
 	@Autowired
 	private AgendamentoDao agendamentoDao;
 	
-	@Autowired
-	private Agendamento agendamento;
 
 	@RequestMapping("/meusagendamentos")
 	public static ModelAndView meusAgendamentos(HttpSession session) {
@@ -41,7 +39,7 @@ public class MeusAgendamentosController {
 	}
 
 	@RequestMapping("/meusagendamentos/{idCliente}")
-	public ResponseEntity<?> getAgendamento(@PathVariable int idCliente, HttpSession session){// REST Endpoint.
+	public ResponseEntity<?> getAgendamento(@PathVariable int idCliente, HttpSession session){
 
 		Cliente cliente = (Cliente) session.getAttribute("usuarioLogado");
 		
@@ -50,6 +48,23 @@ public class MeusAgendamentosController {
 			return ResponseEntity.ok(listaAgendamento);
 		}
 		
+		return new ResponseEntity<Error>(HttpStatus.CONFLICT);
+	}
+	
+	
+	@RequestMapping("/cancelaragendamento/{idAgendamento}")
+	public ResponseEntity<?> cancelarAgendamento(@PathVariable int idAgendamento, HttpSession session){
+
+		Cliente cliente = (Cliente) session.getAttribute("usuarioLogado");
+		
+		if(cliente != null) {
+			Boolean cancelarAgendamento = agendamentoDao.cancelarAgendamento(idAgendamento);
+			
+			if(cancelarAgendamento) {
+				return new ResponseEntity<Error>(HttpStatus.ACCEPTED);
+			}
+			return new ResponseEntity<Error>(HttpStatus.CONFLICT);
+		}
 		return new ResponseEntity<Error>(HttpStatus.CONFLICT);
 	}
 }

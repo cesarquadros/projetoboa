@@ -33,24 +33,28 @@ pageEncoding="UTF-8"%>
 
 <div class="wrapper" ng-init="meusAgendamentosById('${cliente.id}')">
 
-	<div class="header header-filter" style="background-image: url('resources/img/examples/city.jpg'); min-height: 170px"></div>
+	<div class="header header-filter" style="background-image: url('resources/img/examples/city.jpg'); min-height: 140px"></div>
 	<div class="main main-raised">
 		<div class="profile-content">
-			<div class="container" style="padding-bottom: 10%;">
+			<div class="container" style="padding-bottom: 5%;">
 				<h1></h1>
 				<ul class="nav nav-tabs">
 					<li class="active"><a data-toggle="tab" href="#menu1">Meus Agendamentos</a></li>
 				</ul>
 
 				<div>
-					<h3 style="margin-top: 20px; text-align: center;">{{msgAgendamentos}}</h3>
+					<h3 style="margin-top: 10px; text-align: center;">{{msgAgendamentos}}</h3>
 					
 					<div class="row" style="margin-top: 5px">
 					
+						<div class="col-xs-12 col-sm-12 col-md-12" ng-if="mensagem">
+							<p ng-init="meusAgendamentosById('${cliente.id}')">Cancelado com sucesso</p>
+						</div>
+						
 						<div class="card card-nav-tabs">
 							<div class="card-body ">
 					
-								<div class="col-xs-12 col-sm-12 col-md-12" >
+								<div class="col-xs-12 col-sm-12 col-md-12" style="overflow: auto; height: 350px;">
 									<table class="table" style="margin-left: auto; margin-right: auto;">
 										<thead>
 											<tr>
@@ -62,7 +66,7 @@ pageEncoding="UTF-8"%>
 												<th>Status</th>
 											</tr>
 										</thead>
-										<tbody>
+										<tbody style="overflow: scroll;">
 											<tr ng-repeat="agendamento in meusAgendamentos">
 												<td>{{agendamento.id}}</td>
 												<td>{{agendamento.dataAgendamentoString}}</td>
@@ -70,7 +74,7 @@ pageEncoding="UTF-8"%>
 												<td>{{agendamento.sala.unidade.nomeUnidade}}</td>
 												<td>SALA {{agendamento.sala.numero}}</td>
 												<td ng-if="agendamento.status != 'ABERTO'">{{agendamento.status}}</td>
-												<td ng-if="agendamento.status == 'ABERTO'"><a href="#" type="button" style="border: 1px solid purple; padding: 5px">Cancelar</a></td>
+												<td ng-if="agendamento.status == 'ABERTO'"><a href="#" ng-click="cancelarAgendamento(agendamento.id)" type="button" style="border: 1px solid purple; padding: 5px">Cancelar</a></td>
 											</tr>
 											<!-- 
 												<tr>
@@ -84,8 +88,6 @@ pageEncoding="UTF-8"%>
 										</tbody>
 									</table>
 								</div>
-						
-						
 							</div>
 						</div>
 					</div>
