@@ -9,11 +9,10 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 	$scope.agendamento;
 	$scope.statusAgendamento;
 	$scope.cliente;
-//	$scope.usuarioLogado = true;
 	$scope.listaErros = [];
 	
 	
-	$scope.cadastrarCliente = function(cliente) {
+/*	$scope.cadastrarCliente = function(cliente) {
 		
 		$http({
 			method : 'post',
@@ -26,8 +25,8 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 		}).then(function(retorno) {
 			$scope.unidades = retorno.data;
 		});
-	}
-
+	}*/
+	//----------------------------------------------------------------------------------------------------------------
 	$scope.realizarAgendamento = function(idHora, idCliente) {
 
 		loader = angular.element( document.querySelector('#loader'));
@@ -120,12 +119,37 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 				$scope.meusAgendamentos = retorno.data;
 				return true;
 			}
-			
 		});
 	}
 	
+	$scope.cancelarAgendamento = function(idAgendamento) {
+		
+		json = { "id" : "id"};
+		
+		$http({
+			method : 'post',
+			url : '/boasalasdeatendimento/cancelaragendamento/'+ idAgendamento,
+			data : JSON.stringify(json),
+			beforeSend : function(xhr) {
+				xhr.setRequestHeader("Accept", "application/json");
+				xhr.setRequestHeader("Content-Type", "application/json");
+			},
+		}).then(function(retorno) {
+			var retorno =  retorno.statusText;
+			
+			if(retorno == ""){
+				return false;
+			} else {
+				return true;
+			}
+		});
+	}
+	
+	//-----------------------------------------------------FIM REQUISIÇÕES-----------------------------------------------------------
+
 	
 	
+	//----------------------------------------------------------------------------------------------------------------
 	$scope.verificaErros = function(erros){
 		if(erros){
 			$scope.listaErros = erros;

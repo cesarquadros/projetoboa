@@ -70,7 +70,7 @@ pageEncoding="UTF-8"%>
 												<td>{{agendamento.sala.unidade.nomeUnidade}}</td>
 												<td>SALA {{agendamento.sala.numero}}</td>
 												<td ng-if="agendamento.status != 'ABERTO'">{{agendamento.status}}</td>
-												<td ng-if="agendamento.status == 'ABERTO'"><a href="#" type="button" style="border: 1px solid purple; padding: 5px">Cancelar</a></td>
+												<td ng-if="agendamento.status == 'ABERTO'"><a href="#" ng-click="cancelarAgendamento(agendamento.id)" type="button" style="border: 1px solid purple; padding: 5px">Cancelar</a></td>
 											</tr>
 											<!-- 
 												<tr>
