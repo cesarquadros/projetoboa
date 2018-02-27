@@ -4,6 +4,7 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 	$scope.idSala = 1;
 	$scope.listaHorario = [];
 	$scope.unidades = [];
+	$scope.meusAgendamentos = [];
 	$scope.dataSelecionada;
 	$scope.agendamento;
 	$scope.statusAgendamento;
@@ -26,19 +27,7 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 			$scope.unidades = retorno.data;
 		});
 	}
-	
-	$scope.verificaErros = function(erros){
-		if(erros){
-			$scope.listaErros = erros;
-			return true;
-		} else {
-			return false;
-		}
-	}
-	
-	
-	
-	
+
 	$scope.realizarAgendamento = function(idHora, idCliente) {
 
 		loader = angular.element( document.querySelector('#loader'));
@@ -50,8 +39,7 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 		agendamento = {"horario" : {"id" : idHora}, 
 						"dataAgendamentoString" : data, 
 						"cliente" : {"id" : idCliente},
-						"sala" : {"id" : $scope.idSala},
-						"status" : 1};
+						"sala" : {"id" : $scope.idSala}};
 		$http({
 			method : 'post',
 			url : '/boasalasdeatendimento/realizaragendamento',
@@ -107,6 +95,44 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 		}).then(function(retorno) {
 			$scope.listaHorario = retorno.data;
 		});
+	}
+	
+	$scope.meusAgendamentosById = function(idCliente) {
+		
+		json = { "id" : "id"};
+		
+		$http({
+			method : 'post',
+			url : '/boasalasdeatendimento/meusagendamentos/'+idCliente,
+			data : JSON.stringify(json),
+			beforeSend : function(xhr) {
+				xhr.setRequestHeader("Accept", "application/json");
+				xhr.setRequestHeader("Content-Type", "application/json");
+			},
+		}).then(function(retorno) {
+			var agendamentos =  retorno.data
+			
+			if(agendamentos == ""){
+				$scope.msgAgendamentos= "Não existem agendamentos";
+				return false;
+			} else {
+				$scope.msgAgendamentos= "Agendamentos realizados";
+				$scope.meusAgendamentos = retorno.data;
+				return true;
+			}
+			
+		});
+	}
+	
+	
+	
+	$scope.verificaErros = function(erros){
+		if(erros){
+			$scope.listaErros = erros;
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	$scope.verificaCampoVazio = function(nome, div) {

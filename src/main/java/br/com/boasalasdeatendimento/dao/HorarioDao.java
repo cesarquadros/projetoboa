@@ -43,7 +43,7 @@ public class HorarioDao extends ConexaoDao {
 
 			stmt.setString(aux++, consultaSala.getData());
 			stmt.setString(aux++, consultaSala.getSala());
-			stmt.setInt(aux++, 1);
+			stmt.setString(aux++, "ABERTO");
 
 			rs = stmt.executeQuery();
 
@@ -60,6 +60,43 @@ public class HorarioDao extends ConexaoDao {
 				listaHorarios.add(horario);
 			}
 			return listaHorarios;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public Horario findHorarioById(Integer idHorario) {
+		try {
+
+			final StringBuilder sql = new StringBuilder();
+
+			conectar();
+
+			sql.append(" SELECT * ");
+			sql.append(" FROM ");
+			sql.append(" 	horarios ");
+			sql.append(" WHERE ");
+			sql.append(" 	idHorario = ? ");
+
+			stmt = conexao.prepareStatement(sql.toString());
+
+			int aux = 1;
+
+			stmt.setInt(aux++, idHorario);
+
+			rs = stmt.executeQuery();
+
+			Horario horario = null;
+
+			while (rs.next()) {
+				horario = new Horario();
+
+				horario.setId(rs.getInt("idHorario"));
+				horario.setHorarioString(rs.getString("horario"));
+
+			}
+			return horario;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;

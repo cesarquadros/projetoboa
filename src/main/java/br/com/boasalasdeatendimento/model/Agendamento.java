@@ -2,6 +2,9 @@ package br.com.boasalasdeatendimento.model;
 
 import java.util.Date;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Agendamento {
 
 	private Integer id;
@@ -10,7 +13,7 @@ public class Agendamento {
 	private Sala sala;
 	private Date dataAgendamento;
 	private String dataAgendamentoString;
-	private Boolean status;
+	private String status;
 	
 	public Integer getId() {
 		return id;
@@ -48,10 +51,10 @@ public class Agendamento {
 	public void setDataAgendamentoString(String dataAgendamentoString) {
 		this.dataAgendamentoString = dataAgendamentoString;
 	}
-	public Boolean getStatus() {
+	public String getStatus() {
 		return status;
 	}
-	public void setStatus(Boolean status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 }

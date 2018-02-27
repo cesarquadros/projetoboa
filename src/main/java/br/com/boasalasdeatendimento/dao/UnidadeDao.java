@@ -77,4 +77,40 @@ public class UnidadeDao extends ConexaoDao {
 
 		return unindade;
 	}
+	
+	public Unidade findByIdSemSalas(Integer idUnidade) {
+
+		final StringBuilder sql = new StringBuilder();
+
+		try {
+		conectar();
+
+		sql.append(" SELECT * ");
+		sql.append(" FROM ");
+		sql.append(" 	Unidade ");
+		sql.append(" WHERE ");
+		sql.append(" 	idUnidade = ? ");
+
+		int aux = 1;
+
+			stmt = conexao.prepareStatement(sql.toString());
+
+		stmt.setInt(aux++, idUnidade);
+
+		rs = stmt.executeQuery();
+
+		Unidade unindade = new Unidade();
+
+		while (rs.next()) {
+
+			unindade.setId(rs.getInt("idUnidade"));
+			unindade.setNomeUnidade(rs.getString("nome_unidade"));
+			return unindade;
+		}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

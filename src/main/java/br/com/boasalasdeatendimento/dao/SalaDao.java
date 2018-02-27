@@ -50,4 +50,40 @@ public class SalaDao extends ConexaoDao {
 			return null; 
 		} 
 	}
+	
+	public Sala listaSalaByIdComUnidade(Integer idSala) {
+
+		final StringBuilder sql = new StringBuilder();
+
+		try {
+			conectar();
+
+			sql.append(" SELECT * ");
+			sql.append(" FROM ");
+			sql.append(" 	Sala ");
+			sql.append(" WHERE ");
+			sql.append(" 	idSala = ? ");
+
+			stmt = conexao.prepareStatement(sql.toString());
+
+			stmt.setInt(1, idSala);
+
+			rs = stmt.executeQuery();
+
+			Sala sala = new Sala();;
+			UnidadeDao unidadeDao = new UnidadeDao();
+
+			while (rs.next()) {
+
+				sala.setId(rs.getInt("idSala"));
+				sala.setUnidade(unidadeDao.findByIdSemSalas(rs.getInt("id_unidade")));
+				sala.setNumero(rs.getInt("numero"));
+			}
+			
+			return sala;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null; 
+		} 
+	}
 }

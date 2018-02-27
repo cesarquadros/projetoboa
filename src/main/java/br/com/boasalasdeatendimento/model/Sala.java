@@ -4,6 +4,7 @@ public class Sala {
 
 	private Integer id;
 	private Integer idUnidade;
+	private Unidade unidade;
 	private Integer numero;
 	private String detalhes;
 	
@@ -30,5 +31,11 @@ public class Sala {
 	}
 	public void setDetalhes(String detalhes) {
 		this.detalhes = detalhes;
+	}
+	public Unidade getUnidade() {
+		return unidade;
+	}
+	public void setUnidade(Unidade unidade) {
+		this.unidade = unidade;
 	}
 }
