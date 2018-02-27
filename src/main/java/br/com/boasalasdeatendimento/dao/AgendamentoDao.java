@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import br.com.boasalasdeatendimento.model.Agendamento;
 import br.com.boasalasdeatendimento.util.DataUtil;
+import br.com.boasalasdeatendimento.util.Util;
 
 @Repository
 public class AgendamentoDao extends ConexaoDao{
@@ -79,7 +80,7 @@ public List<Agendamento> meusAgendamentosById(Integer idCliente){
 				agendamento = new Agendamento();
 				
 				agendamento.setId(rs.getInt("idAgendamento"));
-				agendamento.setStatus(rs.getString("status"));
+				agendamento.setStatus(Util.mapStatus.get(rs.getInt("status")));
 				agendamento.setHorario(horarioDao.findHorarioById(rs.getInt("id_horario")));
 				agendamento.setSala(salaDao.listaSalaByIdComUnidade(rs.getInt("id_sala")));
 				agendamento.setDataAgendamentoString(DataUtil.getDateFormatString(rs.getString("dt_agendamento"), "yyyy-MM-dd" ,"dd/MM/yyyy"));
