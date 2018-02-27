@@ -23,8 +23,6 @@ public class MeusAgendamentosController {
 	@Autowired
 	private AgendamentoDao agendamentoDao;
 	
-	@Autowired
-	private Agendamento agendamento;
 
 	@RequestMapping("/meusagendamentos")
 	public static ModelAndView meusAgendamentos(HttpSession session) {
@@ -60,9 +58,13 @@ public class MeusAgendamentosController {
 		Cliente cliente = (Cliente) session.getAttribute("usuarioLogado");
 		
 		if(cliente != null) {
-			return new ResponseEntity<Error>(HttpStatus.ACCEPTED);
+			Boolean cancelarAgendamento = agendamentoDao.cancelarAgendamento(idAgendamento);
+			
+			if(cancelarAgendamento) {
+				return new ResponseEntity<Error>(HttpStatus.ACCEPTED);
+			}
+			return new ResponseEntity<Error>(HttpStatus.CONFLICT);
 		}
-		
 		return new ResponseEntity<Error>(HttpStatus.CONFLICT);
 	}
 }

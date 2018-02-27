@@ -137,10 +137,16 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 		}).then(function(retorno) {
 			var retorno =  retorno.statusText;
 			
-			if(retorno == ""){
-				return false;
-			} else {
+			if(retorno == "Accepted"){
+				$scope.mensagem = true;
+				
+		        $timeout( function(){
+		        	$scope.mensagem = false;
+		        }, 1000 );
+				
 				return true;
+			} else {
+				return false;
 			}
 		});
 	}

@@ -47,6 +47,10 @@ pageEncoding="UTF-8"%>
 					
 					<div class="row" style="margin-top: 5px">
 					
+						<div class="col-xs-12 col-sm-12 col-md-12" ng-if="mensagem">
+							<p ng-init="meusAgendamentosById('${cliente.id}')">Cancelado com sucesso</p>
+						</div>
+						
 						<div class="card card-nav-tabs">
 							<div class="card-body ">
 					
