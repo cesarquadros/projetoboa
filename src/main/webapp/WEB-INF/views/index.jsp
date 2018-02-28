@@ -57,7 +57,6 @@ pageEncoding="UTF-8"%>
 					<ul class="nav nav-tabs">
 						<li><a data-toggle="tab" href="#menu1" ng-if="usuarioLogado">Agendamento</a></li>
 						<li class="active"><a data-toggle="tab" href="#menu2">Informações</a></li>
-						<li><span class="loader" id="loader"></span></li>
 					</ul>
 					
 					<div class="tab-content" >
@@ -104,6 +103,7 @@ pageEncoding="UTF-8"%>
 								<div class="col-xs-12 col-sm-12 col-md-8" ng-init="carregarHorarios(numeroSala, idSala)">
 									<div class="card card-nav-tabs">
 										<div class="card-body">
+										<span class="loader" id="loader"></span>
 										<h3 style="text-align: center;">Sala {{numeroSala}} - Grade de horários {{dataSelecionada}}</h3>
 										<div style="overflow: auto; height: 345px;">
 											<table class="table">

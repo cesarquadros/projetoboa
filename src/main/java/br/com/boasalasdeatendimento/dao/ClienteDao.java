@@ -71,8 +71,10 @@ public class ClienteDao extends ConexaoDao{
 			}
 			
 		} catch (SQLException e) {
+			fecharConexao();
 			System.out.println(e);
 		}
+		fecharConexao();
 		return cliente;
 	}
 	
@@ -108,10 +110,12 @@ public class ClienteDao extends ConexaoDao{
 				cliente.setAutenticacao(autenticacao);
 				cliente.setDataNascimentoString(DataUtil.getDateFormatString(rs.getString("dt_nasc"), "yyyy-MM-dd" ,"dd/MM/yyyy"));
 				
+				fecharConexao();
 				return cliente;
 			}
 			
 		} catch (SQLException e) {
+			fecharConexao();
 			e.printStackTrace();
 		}
 		return null;
@@ -136,12 +140,13 @@ public class ClienteDao extends ConexaoDao{
 			rs = stmt.executeQuery();
 			
 			if(rs.next()){
-				
+				fecharConexao();
 				return true;
 			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+			fecharConexao();
 		}
 		return false;
 	}

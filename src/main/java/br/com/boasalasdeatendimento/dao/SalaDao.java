@@ -43,9 +43,9 @@ public class SalaDao extends ConexaoDao {
 				sala.setNumero(rs.getInt("numero"));
 				listaSala.add(sala);
 			}
-			
 			return listaSala;
 		} catch (SQLException e) {
+			fecharConexao();
 			e.printStackTrace();
 			return null; 
 		} 
@@ -82,6 +82,7 @@ public class SalaDao extends ConexaoDao {
 			
 			return sala;
 		} catch (SQLException e) {
+			fecharConexao();
 			e.printStackTrace();
 			return null; 
 		} 

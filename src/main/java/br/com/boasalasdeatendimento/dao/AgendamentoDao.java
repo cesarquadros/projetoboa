@@ -44,9 +44,12 @@ public class AgendamentoDao extends ConexaoDao {
 			
 			stmt.execute();
 			
+			fecharConexao();
+			
 			return true;
 			
 		} catch (SQLException e) {
+			fecharConexao();
 			e.printStackTrace();
 		}
 		return null;
@@ -75,8 +78,11 @@ public class AgendamentoDao extends ConexaoDao {
 			stmt.setString(aux++, agendamento.getDataAgendamentoString());
 
 			stmt.execute();
+			
+			fecharConexao();
 			return true;
 		} catch (SQLException e) {
+			fecharConexao();
 			System.out.println(e);
 			return false;
 		}
@@ -114,15 +120,16 @@ public class AgendamentoDao extends ConexaoDao {
 				agendamento.setStatus(Util.mapStatus.get(rs.getInt("status")));
 				agendamento.setHorario(horarioDao.findHorarioById(rs.getInt("id_horario")));
 				agendamento.setSala(salaDao.listaSalaByIdComUnidade(rs.getInt("id_sala")));
-				agendamento.setDataAgendamentoString(
-						DataUtil.getDateFormatString(rs.getString("dt_agendamento"), "yyyy-MM-dd", "dd/MM/yyyy"));
+				agendamento.setDataAgendamentoString(DataUtil.getDateFormatString(rs.getString("dt_agendamento"), "yyyy-MM-dd", "dd/MM/yyyy"));
 
 				listaAgendamentos.add(agendamento);
 
 			}
+			fecharConexao();
 			return listaAgendamentos;
 
 		} catch (SQLException e) {
+			fecharConexao();
 			e.printStackTrace();
 		}
 		return null;

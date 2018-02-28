@@ -36,9 +36,10 @@ public class UnidadeDao extends ConexaoDao {
 				unindade.setListaSala(salaDao.listaSalaById(unindade.getId()));
 				listaUnidade.add(unindade);
 			}
-			
+			fecharConexao();
 			return listaUnidade;
 		} catch (SQLException e) {
+			fecharConexao();
 			e.printStackTrace();
 			return null;
 		}
@@ -74,7 +75,7 @@ public class UnidadeDao extends ConexaoDao {
 			unindade.setNomeUnidade(rs.getString("nome_unidade"));
 			unindade.setListaSala(salaDao.listaSalaById(idUnidade));
 		}
-
+		fecharConexao();
 		return unindade;
 	}
 	
@@ -93,7 +94,7 @@ public class UnidadeDao extends ConexaoDao {
 
 		int aux = 1;
 
-			stmt = conexao.prepareStatement(sql.toString());
+		stmt = conexao.prepareStatement(sql.toString());
 
 		stmt.setInt(aux++, idUnidade);
 
@@ -109,6 +110,7 @@ public class UnidadeDao extends ConexaoDao {
 		}
 
 		} catch (SQLException e) {
+			fecharConexao();
 			e.printStackTrace();
 		}
 		return null;

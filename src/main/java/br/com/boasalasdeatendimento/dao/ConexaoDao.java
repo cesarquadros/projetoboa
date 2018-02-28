@@ -14,11 +14,11 @@ public class ConexaoDao {
 	
 	private static String URL = "jdbc:mysql://localhost:3306/boa";
 	private static String user = "root";
-	private static String password = "Ces@r190788";
+	private static String password = "admin";
 	private static final String DRIVER = "com.mysql.jdbc.Driver";
 	
 	protected static Connection conexao;
-	protected PreparedStatement stmt;
+	protected static PreparedStatement stmt;
 	protected ResultSet rs;
 	
 	public static Connection conectar() {
@@ -35,6 +35,15 @@ public class ConexaoDao {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 			return null;
+		}
+	}
+	
+	public static void fecharConexao() {
+		try {
+			stmt.close();
+			conexao.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 }

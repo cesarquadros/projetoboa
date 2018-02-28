@@ -27,15 +27,14 @@ public class PerfilDao extends ConexaoDao {
 
 			rs = stmt.executeQuery();
 			Perfil perfilAutenticado = new Perfil();
-			;
 
 			while (rs.next()) {
 				perfilAutenticado.setId(rs.getInt("idPerfil"));
 				perfilAutenticado.setNomePerfil(rs.getString("nome_perfil"));
 			}
-
 			return perfilAutenticado;
 		} catch (SQLException e) {
+			fecharConexao();
 			e.printStackTrace();
 			return null;
 		}

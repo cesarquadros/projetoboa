@@ -59,8 +59,10 @@ public class HorarioDao extends ConexaoDao {
 
 				listaHorarios.add(horario);
 			}
+			fecharConexao();
 			return listaHorarios;
 		} catch (SQLException e) {
+			fecharConexao();
 			e.printStackTrace();
 			return null;
 		}
@@ -98,6 +100,7 @@ public class HorarioDao extends ConexaoDao {
 			}
 			return horario;
 		} catch (SQLException e) {
+			fecharConexao();
 			e.printStackTrace();
 			return null;
 		}

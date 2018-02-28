@@ -49,8 +49,10 @@ public class AutenticarDao extends ConexaoDao {
 
 			}
 
+			fecharConexao();
 			return usuarioAutenticado;
 		} catch (SQLException e) {
+			fecharConexao();
 			e.printStackTrace();
 			return null;
 		}
@@ -85,10 +87,11 @@ public class AutenticarDao extends ConexaoDao {
 				 autenticacao.setId(rs.getInt(1));
 				 autenticacao.setPerfil(perfilDao.getPerfil(1));
 
+				 fecharConexao();
 				 return autenticacao;
 			}
-			
 		} catch (SQLException e) {
+			fecharConexao();
 			e.printStackTrace();
 		}
 		return null;
@@ -113,10 +116,12 @@ public class AutenticarDao extends ConexaoDao {
 			rs = stmt.executeQuery();
 			
 			if(rs.next()) {
+				fecharConexao();
 				return true;
 			}
 			
 		} catch (SQLException e) {
+			fecharConexao();
 			e.printStackTrace();
 		}
 		

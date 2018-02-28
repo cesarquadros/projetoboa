@@ -26,7 +26,7 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 			$scope.unidades = retorno.data;
 		});
 	}*/
-	//----------------------------------------------------------------------------------------------------------------
+	//------------------------------------------------------------- Requisições ---------------------------------------------------
 	$scope.realizarAgendamento = function(idHora, idCliente) {
 
 		loader = angular.element( document.querySelector('#loader'));
@@ -112,19 +112,19 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 			var agendamentos =  retorno.data
 			
 			if(agendamentos == ""){
-				$scope.msgAgendamentos= "Não existem agendamentos";
 				return false;
 			} else {
-				$scope.msgAgendamentos= "Agendamentos realizados";
 				$scope.meusAgendamentos = retorno.data;
 				return true;
 			}
 		});
 	}
 	
-	$scope.cancelarAgendamento = function(idAgendamento) {
+	$scope.cancelarAgendamento = function(idAgendamento, idCliente) {
 		
 		json = { "id" : "id"};
+		loader = angular.element( document.querySelector('#loader'));
+		loader.addClass('loader-ativo');
 		
 		$http({
 			method : 'post',
@@ -141,7 +141,11 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 				$scope.mensagem = true;
 				
 		        $timeout( function(){
+		        	
 		        	$scope.mensagem = false;
+		        	$scope.meusAgendamentosById(idCliente);
+		        	loader.removeClass('loader-ativo');
+		        	
 		        }, 1000 );
 				
 				return true;

@@ -21,6 +21,7 @@ pageEncoding="UTF-8"%>
 	<!-- CSS Files -->
 	<link href="resources/css/bootstrap.min.css" rel="stylesheet"	media="screen">
 	<link href="resources/css/material-kit.css" rel="stylesheet"	media="screen">
+	<link href="resources/css/loader.css" rel="stylesheet"	media="screen">
 
 	<!-- ANGUALR JS -->
 	<script src=./resources/js/angular.min.js></script>
@@ -43,17 +44,13 @@ pageEncoding="UTF-8"%>
 				</ul>
 
 				<div>
-					<h3 style="margin-top: 10px; text-align: center;">{{msgAgendamentos}}</h3>
+					<h3 style="margin-top: 10px; text-align: center;">Agendamentos realizados </h3>
 					
 					<div class="row" style="margin-top: 5px">
 					
-						<div class="col-xs-12 col-sm-12 col-md-12" ng-if="mensagem">
-							<p ng-init="meusAgendamentosById('${cliente.id}')">Cancelado com sucesso</p>
-						</div>
-						
 						<div class="card card-nav-tabs">
 							<div class="card-body ">
-					
+							<i class="loader" id="loader"></i>
 								<div class="col-xs-12 col-sm-12 col-md-12" style="overflow: auto; height: 350px;">
 									<table class="table" style="margin-left: auto; margin-right: auto;">
 										<thead>
@@ -74,7 +71,11 @@ pageEncoding="UTF-8"%>
 												<td>{{agendamento.sala.unidade.nomeUnidade}}</td>
 												<td>SALA {{agendamento.sala.numero}}</td>
 												<td ng-if="agendamento.status != 'ABERTO'">{{agendamento.status}}</td>
-												<td ng-if="agendamento.status == 'ABERTO'"><a href="#" ng-click="cancelarAgendamento(agendamento.id)" type="button" style="border: 1px solid purple; padding: 5px">Cancelar</a></td>
+												<td ng-if="agendamento.status == 'ABERTO'">
+													<a href="#" ng-click="cancelarAgendamento(agendamento.id, '${cliente.id}')" type="button" style="border: 1px solid purple; padding: 5px">
+														Cancelar
+													</a>
+												</td>
 											</tr>
 											<!-- 
 												<tr>
