@@ -35,7 +35,7 @@ public class AutenticacaoController {
 		Autenticacao verificaAutenticacao = new Autenticacao();
 
 		autenticacao.setSenha(GenerateHashPasswordUtil.generateHash(autenticacao.getSenha()));
-		verificaAutenticacao = autenticarDao.autenticar(autenticacao);
+		verificaAutenticacao = AutenticarDao.autenticar(autenticacao);
 
 		if (null != verificaAutenticacao.getId()) {
 
