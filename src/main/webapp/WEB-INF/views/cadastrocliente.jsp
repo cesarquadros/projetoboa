@@ -68,13 +68,35 @@ pageEncoding="UTF-8"%>
 				
 				<ul class="nav nav-tabs">
 					<li class="active"><a data-toggle="tab" href="#menu1">Novo cadastro</a></li>
-				</ul>		
-							
- 		<c:forEach items="${listaErros}" var="errrrrro">
-                ${errrrrro}
-        </c:forEach>
-							
+				</ul>	
 				
+<div class="alert alert-warning" ng-if="'${listaErros}'">
+    <div class="container-fluid">
+	  <div class="alert-icon">
+		<i class="material-icons">warning</i>
+	  </div>
+	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		<span aria-hidden="true"><i class="material-icons">clear</i></span>
+	  </button>
+      <b>Os campos:</b> 
+		<c:forEach items="${listaErros}" var="camposErros">
+        	<span>'${camposErros}',</span>
+        </c:forEach>
+    </div>
+</div>		
+
+<div class="alert alert-warning" ng-if="'${usuarioJaCadastrado}'">
+    <div class="container-fluid">
+	  <div class="alert-icon">
+		<i class="material-icons">warning</i>
+	  </div>
+	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		<span aria-hidden="true"><i class="material-icons">clear</i></span>
+	  </button>
+      <b>OPS!:</b> 
+        	<span>'${usuarioJaCadastrado}',</span>
+    </div>
+</div>		
 					
 				<div class="card card-nav-tabs">
 					<div class="card-body ">

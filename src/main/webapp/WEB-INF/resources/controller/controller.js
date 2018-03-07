@@ -188,6 +188,11 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 			$scope.usuarioLogado = true;
 		}
 	}
+
+	$scope.preencheObjeto = function(cliente) {
+		if(cliente)
+		$scope.cliente = cliente;
+	}
 	
 	$scope.setSala = function(numeroSala, idSala) {
 		$scope.numeroSala = numeroSala;

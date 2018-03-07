@@ -63,9 +63,9 @@ public class ClienteController {
 				}
 			} else {
 				listaErros.add("CPF ou Email já cadastrados");
-				modelAndView.addObject("listaErros", listaErros);
-				session.setAttribute("usuarioLogado", cliente);
-				return new ModelAndView("redirect: novocadastro");
+				modelAndView.addObject("usuarioJaCadastrado", listaErros);
+				modelAndView.addObject("cliente", cliente);
+				return modelAndView;
 			}
 		} else {
 			modelAndView.addObject("listaErros", listaErros);

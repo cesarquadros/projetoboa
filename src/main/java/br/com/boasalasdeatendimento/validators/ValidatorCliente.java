@@ -16,35 +16,35 @@ public class ValidatorCliente {
 		List<String> listaErros = new ArrayList<String>();
 		
 		if(null == cliente.getNome()) {
-			listaErros.add("Campo NOME é obrigatório");
+			listaErros.add("NOME");
 		}
 		
 		if(null == cliente.getSobrenome()) {
-			listaErros.add("Campo SOBRENOME é obrigatório");
+			listaErros.add("SOBRENOME");
 		}
 		
 		if (null ==cliente.getEmail()) {
-			listaErros.add("Campo EMAIL é obrigatório");
+			listaErros.add("EMAIL");
 		}
 		
 		if(null == autenticacao.getSenha()) {
-			listaErros.add("Campo SENHA é obrigatório");
+			listaErros.add("SENHA");
 		}
 		
 		if(null ==cliente.getTelCelular()) {
-			listaErros.add("Campo TELEFONE CELULAR é obrigatório");
+			listaErros.add("CELULAR");
 		}
 		
 		if(null ==cliente.getTelCelular()) {
-			listaErros.add("Campo TELEFONE FIXO é obrigatório");
+			listaErros.add("TELEFONE FIXO");
 		}
 		
 		if (null ==cliente.getCpf()) {
-			listaErros.add("Campo CPF FIXO é obrigatório");
+			listaErros.add("CPF");
 		}
 		
 		if (null == cliente.getSexo() || (!cliente.getSexo().equals("M") && !cliente.getSexo().equals("F"))) {
-			listaErros.add("Campo SEXO é obrigatório");
+			listaErros.add("SEXO");
 		}
 		return listaErros;		
 	}

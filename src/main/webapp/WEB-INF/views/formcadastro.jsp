@@ -1,4 +1,4 @@
-<form class="form" method="post" action="/boasalasdeatendimento/cadastrarcliente">
+<form class="form" name="mainForm" method="post" action="/boasalasdeatendimento/cadastrarcliente" ng-init="preencheObjeto('${cliente}')">
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-4">
 			<div class="form-group label-floating" id="divNome">
@@ -11,7 +11,6 @@
 			<div class="form-group label-floating" id="divSobreNome">
 				<label class="control-label">Sobrenome</label> 
 				<input required type="text" class="form-control" name="sobrenome" ng-model="cliente.sobrenome" ng-blur="verificaCampoVazio(cliente.sobrenome, 'divSobreNome')"> 
-
 			</div>
 		</div>		
 		
@@ -51,7 +50,7 @@
 		
 		<div class="col-xs-12 col-sm-12 col-md-3">
 			<div class="form-group label-floating" id="divTelCelular">
-				<label class="control-label">Telefone Celular</label>
+				<label class="control-label">Celular</label>
 				<input required type="text" class="form-control" name="telCelular" ng-model="cliente.telCelular" ng-blur="verificaCampoVazio(cliente.telCelular, 'divTelCelular')"/>
 			</div>
 		</div>				
@@ -61,7 +60,9 @@
 		<div class="col-xs-12 col-sm-12 col-md-3">
 			<div class="form-group label-floating" id="divEmail">
 				<label class="control-label">Email</label> 
-				<input required type="text" class="form-control" name="email" ng-model="cliente.email" ng-blur="verificaCampoVazio(cliente.email, 'divEmail')" />
+				<input required type="email" class="form-control" name="email" ng-model="cliente.email" ng-blur="verificaCampoVazio(cliente.email, 'divEmail')" />
+			    <span ng-class="error" ng-show="mainForm.email.$error.email"> Formato do e-mail é inválido</span>
+				
 			</div>
 		</div>
 		<div class="col-xs-12 col-sm-12 col-md-3">
@@ -88,10 +89,10 @@
 	<div class="col-xs-12 col-sm-12 col-md-12">
 		<div class="modal-footer" style="text-align: center;">
 			<div class="col-xs-12 col-sm-12 col-md-2">
-				<button type="submit" class="btn btn-info btn-simple">SALVAR</button>
+				<button type="submit" class="btn btn-info btn-success" ng-disabled="mainForm.$invalid">SALVAR</button>
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-2">
-				<button type="reset" class="btn btn-info btn-simple">LIMPAR</button>
+				<button type="reset" class="btn btn-info btn-default">LIMPAR</button>
 			</div>
 		</div>	
 	</div>	
