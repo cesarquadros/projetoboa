@@ -4,12 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.log4j.chainsaw.Main;
-
-import com.mysql.jdbc.PreparedStatement;
-
 import br.com.boasalasdeatendimento.model.Sala;
-import br.com.boasalasdeatendimento.model.Unidade;
 
 public class SalaDao extends ConexaoDao {
 
