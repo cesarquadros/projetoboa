@@ -11,7 +11,7 @@ import br.com.boasalasdeatendimento.util.DataUtil;
 import br.com.boasalasdeatendimento.util.Util;
 
 @Repository
-public class AgendamentoDao extends ConexaoDao {
+public class AgendamentoDao extends ConexaoAzure {
 
 	public static void main(String[] args) {
 

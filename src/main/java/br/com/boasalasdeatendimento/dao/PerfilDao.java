@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import br.com.boasalasdeatendimento.model.Perfil;
 
 @Repository
-public class PerfilDao extends ConexaoDao {
+public class PerfilDao extends ConexaoAzure {
 
 	public Perfil getPerfil(Integer idPerfil) {
 

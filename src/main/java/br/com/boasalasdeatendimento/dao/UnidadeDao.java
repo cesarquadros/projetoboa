@@ -8,7 +8,7 @@ import com.mysql.jdbc.PreparedStatement;
 
 import br.com.boasalasdeatendimento.model.Unidade;
 
-public class UnidadeDao extends ConexaoDao {
+public class UnidadeDao extends ConexaoAzure {
 
 	public List<Unidade> listaUnidades() {
 

@@ -11,12 +11,12 @@ import br.com.boasalasdeatendimento.model.Autenticacao;
 import br.com.boasalasdeatendimento.security.GenerateHashPasswordUtil;
 
 @Repository
-public class AutenticarDao extends ConexaoDao {
+public class AutenticarDao extends ConexaoAzure {
 	
 	@Autowired
 	private PerfilDao perfilDao;
 	
-	public Autenticacao autenticar(Autenticacao autenticacao) {
+	public static Autenticacao autenticar(Autenticacao autenticacao) {
 
 		final StringBuilder sql = new StringBuilder();
 
@@ -45,7 +45,6 @@ public class AutenticarDao extends ConexaoDao {
 				usuarioAutenticado.setId(rs.getInt("idAutenticacao"));
 				usuarioAutenticado.setUsuario(rs.getString("usuario"));
 				usuarioAutenticado.setSenha(rs.getString("senha"));
-				usuarioAutenticado.setPerfil(perfilDao.getPerfil(rs.getInt("id_perfil")));
 
 			}
 

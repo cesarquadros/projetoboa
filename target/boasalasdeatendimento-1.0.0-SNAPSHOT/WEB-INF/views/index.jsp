@@ -11,9 +11,9 @@ pageEncoding="UTF-8"%>
 
 	<title>BOA Salas de Atendimento</title>
 
-	<meta	content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'	name='viewport' />
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'	name='viewport' />
 
-	<!--     Fonts and icons     -->
+	<!-- Fonts and icons -->
 	<link rel="stylesheet"	href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 	<link rel="stylesheet" type="text/css"	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" />
 	<link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
@@ -21,94 +21,106 @@ pageEncoding="UTF-8"%>
 	<!-- CSS Files -->
 	<link href="resources/css/bootstrap.min.css" rel="stylesheet"	media="screen">
 	<link href="resources/css/material-kit.css" rel="stylesheet"	media="screen">
+	<link href="resources/css/loader.css" rel="stylesheet"	media="screen">
 
-	<!-- ANGUALR JS -->
+	<!-- ANGULAR JS -->
 	<script src=./resources/js/angular.min.js></script>
 	<script src="./resources/controller/controller.js"></script>
 
 </head>
 <body ng-app="app" ng-controller="appCtrl">
-	
-	
+
 	<!--   Menu   -->
 	<jsp:include page="cabecalho.jsp"></jsp:include>
 	
-	<!-- Modal Core -->
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<!-- Modal Cadastro -->
+	<div class="modal fade"  id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h4 class="modal-title" id="myModalLabel">Novo Cadastro</h4>
+					<h2 class="modal-title" id="myModalLabel">Novo Cadastro</h2>
 				</div>
-				<div class="modal-body">
+				<div class="modal-body" style="padding-left: 50px; padding-right: 50px;">
 					<jsp:include page="formcadastro.jsp"></jsp:include>
 				</div>
 			</div>
 		</div>
 	</div>
-
+	
 	<div class="wrapper">
-		<div class="header header-filter" style="background-image: url('resources/img/examples/city.jpg'); min-height: 200px"></div>
+		<div class="header header-filter" style="background-image: url('resources/img/examples/city.jpg'); min-height: 170px"></div>
 		<div class="main main-raised">
 			<div class="profile-content">
-				<div class="container" style="padding-bottom: 10%;">
+				<div class="container" style="padding-bottom: 5%;">
 					<h1></h1>
 					<ul class="nav nav-tabs">
 						<li><a data-toggle="tab" href="#menu1" ng-if="usuarioLogado">Agendamento</a></li>
 						<li class="active"><a data-toggle="tab" href="#menu2">Informações</a></li>
 					</ul>
-	
-					<div class="tab-content">
+					
+					<div class="tab-content" >
 						<div id="menu1" class="tab-pane fade" ng-if="usuarioLogado">
-							<br /><br />
-							<div class="row">
-								<div class="col-xs-12 col-sm-12 col-md-3">
-									<p>
-									  <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-									    Filial Yervant
-									  </a>
-									</p>
-									<div class="collapse" id="collapseExample">
-										<h4>
-											<a href="#" class="btn btn-default btn-xs" ng-click="setSala('1')"	ng-model="data" value="1">Sala 1</a> 
-											<a href="#" class="btn btn-default btn-xs" ng-click="setSala('2')">Sala 2</a>
-										</h4>
+							
+							<div class="row" ng-init="carregarSalas()">
+							
+								<div class="col-xs-12 col-sm-12 col-md-4" >
+									<div class="row">
+										<div class="col-xs-12 col-sm-12 col-md-12">
+											<div class="card card-nav-tabs">
+												<div class="card-body ">
+													<!-- markup -->
+													<b>Dica: </b>Escolha uma data, em seguida clique na sala
+													<br />
+													<div class="form-group label-floating">
+														<label class="control-label">Escolha uma data</label> 
+														<input id="data" class="datepicker form-control" type="text" value="${dataAtual}" readonly="readonly"/> 
+													</div>
+												</div>
+											</div>
+										</div>
+									
+									
+										<div class="col-xs-12 col-sm-12 col-md-12">
+											<div class="card card-nav-tabs">
+												<div class="card-body ">
+													<div ng-repeat="unidade in unidades" style="text-align: center;">
+														<h4 >Unidade: {{unidade.nomeUnidade}}</h4>
+				
+														<div>
+															<!-- simple and vertical -->
+															<ul class="nav nav-pills nav-pills-rose nav-stacked">
+															  <li ng-repeat="sala in unidade.listaSala"><a href="#tab{{sala.numero}}" ng-click="carregarHorarios(sala.numero, sala.id)" data-toggle="tab">SALA {{sala.numero}}</a></li>
+															</ul>
+														</div>										
+													</div>
+												</div>
+											</div>
+										</div>
 									</div>
-									
-									
-									<p>
-									  <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
-									    Filial Interlagos
-									  </a>
-									</p>
-									<div class="collapse" id="collapseExample2">
-										<h4>
-											<a href="#" class="btn btn-default btn-xs" ng-click="setSala('1')"	ng-model="data" value="1">Sala 1</a> 
-											<a href="#" class="btn btn-default btn-xs" ng-click="setSala('2')">Sala 2</a>
-										</h4>
-									</div>								
-									
-									
 								</div>
-								<div class="col-xs-12 col-sm-12 col-md-4">
-									<!-- markup -->
-									<input id="data" class="datepicker form-control" type="text" value="${dataAtual}" /> 
-									<a href="#" class="btn btn-primary btn-sm" style="float: right;" ng-click="testeBusca()"> Buscar</a>
-								</div>
-	
-								<div class="col-xs-12 col-sm-12 col-md-4" ng-init="testeBusca()">
-									<table class="table">
-										<h3>Sala {{numeroSala}}</h3>
-										<tbody ng-repeat="horario in listaHorario">
-											<tr>
-												<td class="text-center">{{horario.horario}}</td>
-												<td>Horário disponível</td>
-												<td><button class="btn btn-success btn-xs">Agendar</button></td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
+								
+								<div class="col-xs-12 col-sm-12 col-md-8" ng-init="carregarHorarios(numeroSala, idSala)">
+									<div class="card card-nav-tabs">
+										<div class="card-body">
+										<span class="loader" id="loader"></span>
+										<h3 style="text-align: center;">Sala {{numeroSala}} - Grade de horários {{dataSelecionada}}</h3>
+										<div style="overflow: auto; height: 345px;">
+											<table class="table">
+												
+												<tbody ng-repeat="horario in listaHorario" style="overflow: scroll;">
+													<tr>
+														<td class="text-center">{{horario.horarioString}}</td>
+														<td>Horário disponível</td>
+														<td><a class="btn btn-success btn-xs" ng-click="realizarAgendamento(horario.id, '${cliente.id}')">Agendar</a></td>
+													</tr>
+												</tbody>
+											</table>
+											
+											</div>
+										</div>
+									</div>
+								</div>		
 							</div>
 						</div>
 	
@@ -133,6 +145,10 @@ pageEncoding="UTF-8"%>
 <script src="resources/js/jquery.min.js" type="text/javascript"></script>
 <script src="resources/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="resources/js/material.min.js"></script>
+<script src="resources/js/mask.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js" type="text/javascript"></script>
 
 <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
 <script src="resources/js/nouislider.min.js" type="text/javascript"></script>

@@ -12,7 +12,7 @@ import br.com.boasalasdeatendimento.model.ConsultaSala;
 import br.com.boasalasdeatendimento.model.Horario;
 
 @Repository
-public class HorarioDao extends ConexaoDao {
+public class HorarioDao extends ConexaoAzure {
 
 	public List<Horario> horariosDisponiveis(ConsultaSala consultaSala) {
 		try {

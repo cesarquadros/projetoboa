@@ -13,7 +13,7 @@ import br.com.boasalasdeatendimento.model.Cliente;
 import br.com.boasalasdeatendimento.util.DataUtil;
 
 @Repository
-public class ClienteDao extends ConexaoDao{
+public class ClienteDao extends ConexaoAzure{
 
 	public static void main(String[] args) {
 		Cliente cliente = new Cliente();

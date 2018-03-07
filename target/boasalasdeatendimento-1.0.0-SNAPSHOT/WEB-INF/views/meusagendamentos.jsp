@@ -21,6 +21,7 @@ pageEncoding="UTF-8"%>
 	<!-- CSS Files -->
 	<link href="resources/css/bootstrap.min.css" rel="stylesheet"	media="screen">
 	<link href="resources/css/material-kit.css" rel="stylesheet"	media="screen">
+	<link href="resources/css/loader.css" rel="stylesheet"	media="screen">
 
 	<!-- ANGUALR JS -->
 	<script src=./resources/js/angular.min.js></script>
@@ -31,63 +32,64 @@ pageEncoding="UTF-8"%>
 	<!--   Menu   -->
 	<jsp:include page="cabecalho.jsp"></jsp:include>
 
-<div class="wrapper">
+<div class="wrapper" ng-init="meusAgendamentosById('${cliente.id}')">
 
-	<div class="header header-filter" style="background-image: url('resources/img/examples/city.jpg'); min-height: 200px"></div>
+	<div class="header header-filter" style="background-image: url('resources/img/examples/city.jpg'); min-height: 140px"></div>
 	<div class="main main-raised">
 		<div class="profile-content">
-			<div class="container" style="padding-bottom: 10%;">
+			<div class="container" style="padding-bottom: 5%;">
 				<h1></h1>
 				<ul class="nav nav-tabs">
 					<li class="active"><a data-toggle="tab" href="#menu1">Meus Agendamentos</a></li>
 				</ul>
 
 				<div>
-					<h5 style="margin-top: 30px">Você já realizou 12 agendamentos</h5>
+					<h3 style="margin-top: 10px; text-align: center;">Agendamentos realizados </h3>
 					
-					<div class="row" style="margin-top: 35px">
-						<div class="col-xs-12 col-sm-12 col-md-10" >
-							<table class="table" style="margin-left: auto; margin-right: auto;">
-								<thead>
-									<tr>
-										<th></th>
-										<th>Data</th>
-										<th>Horário</th>
-										<th>Sala</th>
-										<th>Status</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td></td>
-										<td>01/01/2018</td>
-										<td>13:00</td>
-										<td>SALA 10</td>
-										<td>Finalizado</td>
-									</tr>
-									<tr>
-										<td></td>
-										<td>01/01/2018</td>
-										<td>13:00</td>
-										<td>SALA 10</td>
-										<td>Finalizado</td>
-									</tr>	
-									<tr>
-										<td></td>
-										<td>01/01/2018</td>
-										<td>13:00</td>
-										<td>SALA 10</td>
-										<td><a href="#"type="button" style="border: 1px solid purple; padding: 5px">Cancelar</a></td>
-									</tr>
-									<tr>
-										<td></td>	
-										<td>01/01/2018</td>
-										<td>13:00</td>
-										<td>SALA 10</td>
-										<td><a style="border: 1px solid purple; padding: 5px">Cancelar</a></td>
-									</tr>																		
-								</tbody>
-							</table>
+					<div class="row" style="margin-top: 5px">
+					
+						<div class="card card-nav-tabs">
+							<div class="card-body ">
+							<i class="loader" id="loader"></i>
+								<div class="col-xs-12 col-sm-12 col-md-12" style="overflow: auto; height: 350px;">
+									<table class="table" style="margin-left: auto; margin-right: auto;">
+										<thead>
+											<tr>
+												<th>Código</th>
+												<th>Data</th>
+												<th>Horário</th>
+												<th>Unidade</th>
+												<th>Sala</th>
+												<th>Status</th>
+											</tr>
+										</thead>
+										<tbody style="overflow: scroll;">
+											<tr ng-repeat="agendamento in meusAgendamentos">
+												<td>{{agendamento.id}}</td>
+												<td>{{agendamento.dataAgendamentoString}}</td>
+												<td>{{agendamento.horario.horarioString}}</td>
+												<td>{{agendamento.sala.unidade.nomeUnidade}}</td>
+												<td>SALA {{agendamento.sala.numero}}</td>
+												<td ng-if="agendamento.status != 'ABERTO'">{{agendamento.status}}</td>
+												<td ng-if="agendamento.status == 'ABERTO'">
+													<a href="#" ng-click="cancelarAgendamento(agendamento.id, '${cliente.id}')" type="button" style="border: 1px solid purple; padding: 5px">
+														Cancelar
+													</a>
+												</td>
+											</tr>
+											<!-- 
+												<tr>
+												<td></td>
+												<td>01/01/2018</td>
+												<td>13:00</td>
+												<td>SALA 10</td>
+												<td><a href="#" type="button" style="border: 1px solid purple; padding: 5px">Cancelar</a></td>
+											</tr> 
+											-->
+										</tbody>
+									</table>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -97,22 +99,8 @@ pageEncoding="UTF-8"%>
 	
 </div>
 
-<footer class="footer">
-	<div class="container">
-		<nav class="pull-left">
-			<ul>
-				<li><a href="http://www.creative-tim.com"> Creative Tim </a></li>
-				<li><a href="http://presentation.creative-tim.com"> About Us </a></li>
-				<li><a href="http://blog.creative-tim.com"> Blog </a></li>
-				<li><a href="http://www.creative-tim.com/license"> Licenses	</a></li>
-			</ul>
-		</nav>
-		<div class="copyright pull-right">
-			&copy; 2016, made with <i class="fa fa-heart heart"></i> by Creative
-			Tim
-		</div>
-	</div>
-</footer>
+	<!--   Rodapé   -->
+	<jsp:include page="rodape.jsp"></jsp:include>
 
 </body>
 

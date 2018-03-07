@@ -6,7 +6,7 @@ import java.util.List;
 
 import br.com.boasalasdeatendimento.model.Sala;
 
-public class SalaDao extends ConexaoDao {
+public class SalaDao extends ConexaoAzure {
 
 	public List<Sala> listaSalaById(Integer idUnidade) {
 
