@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.mysql.jdbc.Statement;
 
 import br.com.boasalasdeatendimento.model.Autenticacao;
+import br.com.boasalasdeatendimento.model.Perfil;
 import br.com.boasalasdeatendimento.security.GenerateHashPasswordUtil;
 
 @Repository
@@ -49,10 +50,15 @@ public class AutenticarDao {
 			Autenticacao usuarioAutenticado = new Autenticacao();
 
 			while (rs.next()) {
+				
+				Perfil perfil = new Perfil();
+				
+				perfil.setId(rs.getInt("id_perfil"));
 
 				usuarioAutenticado.setId(rs.getInt("idAutenticacao"));
 				usuarioAutenticado.setUsuario(rs.getString("usuario"));
 				usuarioAutenticado.setSenha(rs.getString("senha"));
+				usuarioAutenticado.setPerfil(perfil);;
 			}
 
 			return usuarioAutenticado;

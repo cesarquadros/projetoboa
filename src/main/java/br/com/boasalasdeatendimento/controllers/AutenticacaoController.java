@@ -45,8 +45,13 @@ public class AutenticacaoController {
 			redirectAttributes.addFlashAttribute("dataAtual", DataUtil.getDateTime());
 			
 			session.setAttribute("usuarioLogado", cliente);
-
-			return new ModelAndView("redirect: index");
+			if(verificaAutenticacao.getPerfil().getId() == 1) {
+				
+				return new ModelAndView("redirect: index");
+			}
+			
+			return new ModelAndView("redirect: administrativo");
+			
 		} else {
 			ModelAndView modelAndView = new ModelAndView("login");
 			modelAndView.addObject("mensagemErro", "Usuário ou senha inválidos");

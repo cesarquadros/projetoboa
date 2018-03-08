@@ -35,7 +35,7 @@ public class ClienteDao{
 	}
 	
 	@Autowired
-	ConexaoDao conexaoDao;
+	private ConexaoDao conexaoDao;
 	
 	public Cliente inserir(Cliente cliente) {
 		
