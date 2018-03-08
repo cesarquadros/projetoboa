@@ -5,7 +5,7 @@
 		<li class="active"><a data-toggle="tab" href="#menu1">Relatório
 				de Agendamentos</a></li>
 	</ul>
-	<div class="row" style="margin: auto; display: flex;">
+	<div class="row" style="margin: auto;">
 
 		<div class="col-xs-12 col-sm-12 col-md-9" style="margin: auto;">
 
@@ -53,34 +53,24 @@
 					<table class="table" style="margin-left: auto; margin-right: auto;">
 						<thead>
 							<tr>
+								<th>Código</th>
 								<th>Cliente</th>
 								<th>Data</th>
 								<th>Horário</th>
+								<th>Unidade</th>
 								<th>Sala</th>
 								<th>Status</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
+								<td>1</td>
 								<td>João</td>
 								<td>01/01/2018</td>
 								<td>13:00</td>
+								<td>Missionaria</td>
 								<td>SALA 10</td>
 								<td>Finalizado</td>
-							</tr>
-							<tr>
-								<td>José</td>
-								<td>01/01/2018</td>
-								<td>13:00</td>
-								<td>SALA 10</td>
-								<td>Cancelado</td>
-							</tr>
-							<tr>
-								<td>Malaquias</td>
-								<td>01/01/2018</td>
-								<td>13:00</td>
-								<td>SALA 10</td>
-								<td>Reservado</td>
 							</tr>
 						</tbody>
 					</table>
