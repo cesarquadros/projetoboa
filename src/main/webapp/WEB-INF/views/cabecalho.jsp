@@ -33,7 +33,7 @@
 							<li><a href="#" data-toggle="modal" data-target="#myModal">Alterar
 									dados</a></li>
 							<li class="divider"></li>
-							<li><a href="/boasalasdeatendimento/logout">Sair</a></li>
+							<li><a href="./logout">Sair</a></li>
 						</ul>
 					</div>
 				</li>
