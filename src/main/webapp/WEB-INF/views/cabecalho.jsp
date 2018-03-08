@@ -30,8 +30,7 @@
 						<ul class="dropdown-menu">
 							<li><a href="meusagendamentos">Meus agendamentos</a></li>
 							<li><a href="#">Alterar senha</a></li>
-							<li><a href="#" data-toggle="modal" data-target="#myModal">Alterar
-									dados</a></li>
+							<li><a href="#" data-toggle="modal" data-target="#myModal">Alterar dados</a></li>
 							<li class="divider"></li>
 							<li><a href="./logout">Sair</a></li>
 						</ul>
