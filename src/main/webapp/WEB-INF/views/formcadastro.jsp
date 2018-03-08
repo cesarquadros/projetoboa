@@ -51,7 +51,7 @@
 		<div class="col-xs-12 col-sm-12 col-md-3">
 			<div class="form-group label-floating" id="divTelCelular">
 				<label class="control-label">Celular</label>
-				<input required type="text" class="form-control" name="telCelular" ng-model="cliente.telCelular" ng-blur="verificaCampoVazio(cliente.telCelular, 'divTelCelular')"/>
+				<input required id="telefonecelular" type="text" class="form-control" name="telCelular" ng-model="cliente.telCelular" ng-blur="verificaCampoVazio(cliente.telCelular, 'divTelCelular')"/>
 			</div>
 		</div>				
 	</div>

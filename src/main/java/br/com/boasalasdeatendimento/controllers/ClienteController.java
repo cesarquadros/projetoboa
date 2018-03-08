@@ -55,11 +55,11 @@ public class ClienteController {
 				if(clienteInserido != null) {
 					redirectAttributes.addFlashAttribute("cliente", cliente);
 					session.setAttribute("usuarioLogado", cliente);
-					return new ModelAndView("redirect: index");
+					return new ModelAndView("redirect:index");
 				}else {
 					modelAndView.addObject("mensagemErro", "Ocorreu um erro ao realizar o cadastro, tente novamente");
 					modelAndView.addObject("cliente", cliente);
-					return new ModelAndView("redirect: novocadastro"); 
+					return new ModelAndView("redirect:novocadastro"); 
 				}
 			} else {
 				listaErros.add("CPF ou Email já cadastrados");

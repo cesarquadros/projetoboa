@@ -11,6 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import br.com.boasalasdeatendimento.model.Agendamento;
+import br.com.boasalasdeatendimento.model.Horario;
+import br.com.boasalasdeatendimento.model.Sala;
+import br.com.boasalasdeatendimento.model.Unidade;
 import br.com.boasalasdeatendimento.util.DataUtil;
 import br.com.boasalasdeatendimento.util.Util;
 
@@ -105,10 +108,18 @@ public class AgendamentoDao {
 		
 		try {
 			
-			sql.append(" SELECT * FROM");
-			sql.append("	agendamento ");
-			sql.append(" WHERE ");
-			sql.append(" 	id_cliente = ?");
+			sql.append(" SELECT");
+			sql.append("	 a.idagendamento, a.dt_agendamento, h.horario, u.nome_unidade, s.numero, a.status ");
+			sql.append(" FROM ");
+			sql.append(" 	agendamento a ");
+			sql.append(" INNER JOIN	 ");
+			sql.append(" 	horarios h on a.id_horario = h.idhorario ");
+			sql.append(" INNER JOIN	 ");
+			sql.append(" 	sala s on a.id_sala = s.idsala ");
+			sql.append(" INNER JOIN	 ");
+			sql.append(" 	unidade u on s.id_unidade = u.idUnidade ");
+			sql.append(" WHERE	 ");
+			sql.append(" 	a.id_cliente = ? ");
 
 			stmt = conexao.prepareStatement(sql.toString());
 
@@ -119,18 +130,27 @@ public class AgendamentoDao {
 			Agendamento agendamento = new Agendamento();
 			List<Agendamento> listaAgendamentos = new ArrayList<Agendamento>();
 
-			HorarioDao horarioDao = new HorarioDao();
-			SalaDao salaDao = new SalaDao();
-
 			while (rs.next()) {
 
+				Horario horario = new Horario();
+				Sala sala = new Sala();
+				Unidade unidade = new Unidade();
+				
 				agendamento = new Agendamento();
 
 				agendamento.setId(rs.getInt("idAgendamento"));
-				agendamento.setStatus(Util.mapStatus.get(rs.getInt("status")));
-				agendamento.setHorario(horarioDao.findHorarioById(rs.getInt("id_horario")));
-				agendamento.setSala(salaDao.listaSalaByIdComUnidade(rs.getInt("id_sala")));
 				agendamento.setDataAgendamentoString(DataUtil.getDateFormatString(rs.getString("dt_agendamento"), "yyyy-MM-dd", "dd/MM/yyyy"));
+				agendamento.setStatus(Util.mapStatus.get(rs.getInt("status")));
+				
+				//setando horario
+				horario.setHorarioString(rs.getString("horario"));
+				agendamento.setHorario(horario);
+				
+				//setando numero da sala e nome unidade
+				sala.setNumero(rs.getInt("numero"));
+				unidade.setNomeUnidade(rs.getString("nome_unidade"));
+				sala.setUnidade(unidade);
+				agendamento.setSala(sala);
 
 				listaAgendamentos.add(agendamento);
 

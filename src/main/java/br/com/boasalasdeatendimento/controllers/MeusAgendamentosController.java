@@ -35,7 +35,7 @@ public class MeusAgendamentosController {
 			return modelAndView;
 		}
 
-		return new ModelAndView("redirect: login");
+		return new ModelAndView("redirect:login");
 	}
 
 	@RequestMapping("/meusagendamentos/{idCliente}")

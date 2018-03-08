@@ -20,10 +20,10 @@ public class AdministrativoController {
 			if(cliente.getAutenticacao().getPerfil().getId() == 2) {
 				return new ModelAndView("indexadm");
 			} else {
-				return new ModelAndView("redirect: index");
+				return new ModelAndView("redirect:index");
 			}
 		} else {
-			return new ModelAndView("redirect: login");
+			return new ModelAndView("redirect:login");
 		}
 	}
 	
@@ -36,10 +36,10 @@ public class AdministrativoController {
 			if(cliente.getAutenticacao().getPerfil().getId() == 2) {
 				return new ModelAndView("relatorioagendamentos");
 			} else {
-				return new ModelAndView("redirect: index");
+				return new ModelAndView("redirect:index");
 			}
 		} else {
-			return new ModelAndView("redirect: login");
+			return new ModelAndView("redirect:login");
 		}
 	}
 }

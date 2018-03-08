@@ -47,10 +47,10 @@ public class AutenticacaoController {
 			session.setAttribute("usuarioLogado", cliente);
 			if(verificaAutenticacao.getPerfil().getId() == 1) {
 				
-				return new ModelAndView("redirect: index");
+				return new ModelAndView("redirect:index");
 			}
 			
-			return new ModelAndView("redirect: administrativo");
+			return new ModelAndView("redirect:administrativo");
 			
 		} else {
 			ModelAndView modelAndView = new ModelAndView("login");
