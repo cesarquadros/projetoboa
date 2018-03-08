@@ -1,4 +1,4 @@
-<form class="form" name="mainForm" method="post" action="/boasalasdeatendimento/cadastrarcliente" ng-init="preencheObjeto('${cliente}')">
+<form class="form" name="mainForm" method="post" action="./cadastrarcliente" ng-init="preencheObjeto('${cliente}')">
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-4">
 			<div class="form-group label-floating" id="divNome">

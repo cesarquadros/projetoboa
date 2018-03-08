@@ -1,30 +1,38 @@
 package br.com.boasalasdeatendimento.model;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mysql.jdbc.PreparedStatement;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import br.com.boasalasdeatendimento.dao.ConexaoDao;
 import br.com.boasalasdeatendimento.dao.SalaDao;
 
-public class UnidadeDao extends ConexaoDao {
+public class UnidadeDao {
+
+	@Autowired
+	private ConexaoDao conexaoDao;
 
 	public List<Unidade> listaUnidades() {
 
 		final StringBuilder sql = new StringBuilder();
 
+		Connection conexao = conexaoDao.conectar();
+		PreparedStatement stmt = null;
+
 		try {
-			conectar();
 
 			sql.append(" SELECT * ");
 			sql.append(" FROM ");
 			sql.append(" 	Unidade ");
 
-			stmt = (PreparedStatement) conexao.prepareStatement(sql.toString());
+			stmt = conexao.prepareStatement(sql.toString());
 
-			rs = stmt.executeQuery();
+			ResultSet rs = stmt.executeQuery();
 
 			Unidade unindade;
 			List<Unidade> listaUnidade = new ArrayList<Unidade>();
@@ -41,14 +49,17 @@ public class UnidadeDao extends ConexaoDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
+		} finally {
+			conexaoDao.fecharConexao(stmt, conexao);
 		}
 	}
 
-	public Unidade findById(Integer idUnidade) throws SQLException, ClassNotFoundException {
+	public Unidade findById(Integer idUnidade) {
 
 		final StringBuilder sql = new StringBuilder();
 
-		conectar();
+		Connection conexao = conexaoDao.conectar();
+		PreparedStatement stmt = null;
 
 		sql.append(" SELECT * ");
 		sql.append(" FROM ");
@@ -58,23 +69,29 @@ public class UnidadeDao extends ConexaoDao {
 
 		int aux = 1;
 
-		stmt = (PreparedStatement) conexao.prepareStatement(sql.toString());
+		try {
+			stmt = conexao.prepareStatement(sql.toString());
 
-		stmt.setInt(aux++, idUnidade);
+			stmt.setInt(aux++, idUnidade);
 
-		rs = stmt.executeQuery();
+			ResultSet rs = stmt.executeQuery();
 
-		Unidade unindade = new Unidade();
+			Unidade unindade = new Unidade();
 
-		SalaDao salaDao = new SalaDao();
+			SalaDao salaDao = new SalaDao();
 
-		while (rs.next()) {
+			while (rs.next()) {
 
-			unindade.setId(rs.getInt("idUnidade"));
-			unindade.setNomeUnidade(rs.getString("nome_unidade"));
-			unindade.setListaSala(salaDao.listaSalaById(idUnidade));
+				unindade.setId(rs.getInt("idUnidade"));
+				unindade.setNomeUnidade(rs.getString("nome_unidade"));
+				unindade.setListaSala(salaDao.listaSalaById(idUnidade));
+			}
+			return unindade;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			conexaoDao.fecharConexao(stmt, conexao);
 		}
-
-		return unindade;
+		return null;
 	}
 }

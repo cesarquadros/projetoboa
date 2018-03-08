@@ -1,25 +1,32 @@
 package br.com.boasalasdeatendimento.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import com.mysql.jdbc.PreparedStatement;
 
 import br.com.boasalasdeatendimento.model.ConsultaSala;
 import br.com.boasalasdeatendimento.model.Horario;
 
 @Repository
-public class HorarioDao extends ConexaoAzure {
+public class HorarioDao {
+
 
 	public List<Horario> horariosDisponiveis(ConsultaSala consultaSala) {
+
+		final StringBuilder sql = new StringBuilder();
+
+		ConexaoDao c = new ConexaoDao();
+		
+		Connection conexao = c.conectar();
+		PreparedStatement stmt = null;
+
 		try {
-
-			final StringBuilder sql = new StringBuilder();
-
-			conectar();
 
 			sql.append(" SELECT * ");
 			sql.append(" FROM ");
@@ -45,7 +52,7 @@ public class HorarioDao extends ConexaoAzure {
 			stmt.setString(aux++, consultaSala.getSala());
 			stmt.setInt(aux++, 1);
 
-			rs = stmt.executeQuery();
+			ResultSet rs = stmt.executeQuery();
 
 			List<Horario> listaHorarios = new ArrayList<Horario>();
 
@@ -59,21 +66,25 @@ public class HorarioDao extends ConexaoAzure {
 
 				listaHorarios.add(horario);
 			}
-			fecharConexao();
 			return listaHorarios;
 		} catch (SQLException e) {
-			fecharConexao();
 			e.printStackTrace();
 			return null;
+		} finally {
+			c.fecharConexao(stmt, conexao);
 		}
 	}
-	
+
 	public Horario findHorarioById(Integer idHorario) {
+
+		final StringBuilder sql = new StringBuilder();
+		
+		ConexaoDao c = new ConexaoDao();
+
+		Connection conexao = c.conectar();
+		PreparedStatement stmt = null;
+
 		try {
-
-			final StringBuilder sql = new StringBuilder();
-
-			conectar();
 
 			sql.append(" SELECT * ");
 			sql.append(" FROM ");
@@ -87,22 +98,22 @@ public class HorarioDao extends ConexaoAzure {
 
 			stmt.setInt(aux++, idHorario);
 
-			rs = stmt.executeQuery();
+			ResultSet rs = stmt.executeQuery();
 
 			Horario horario = null;
 
 			while (rs.next()) {
-				horario = new Horario();
 
+				horario = new Horario();
 				horario.setId(rs.getInt("idHorario"));
 				horario.setHorarioString(rs.getString("horario"));
-
 			}
 			return horario;
 		} catch (SQLException e) {
-			fecharConexao();
 			e.printStackTrace();
 			return null;
+		} finally {
+			c.fecharConexao(stmt, conexao);
 		}
 	}
 }

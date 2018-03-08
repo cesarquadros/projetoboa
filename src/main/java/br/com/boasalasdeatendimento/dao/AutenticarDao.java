@@ -1,5 +1,8 @@
 package br.com.boasalasdeatendimento.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,18 +14,23 @@ import br.com.boasalasdeatendimento.model.Autenticacao;
 import br.com.boasalasdeatendimento.security.GenerateHashPasswordUtil;
 
 @Repository
-public class AutenticarDao extends ConexaoAzure {
+public class AutenticarDao {
 	
 	@Autowired
 	private PerfilDao perfilDao;
 	
-	public static Autenticacao autenticar(Autenticacao autenticacao) {
+	@Autowired
+	private ConexaoDao conexaoDao;
+	
+	public Autenticacao autenticar(Autenticacao autenticacao) {
 
 		final StringBuilder sql = new StringBuilder();
 
+		Connection conexao = conexaoDao.conectar();
+		PreparedStatement stmt = null;
+		
 		try {
-			conectar();
-
+			
 			sql.append(" SELECT * FROM");
 			sql.append("	autenticacao ");
 			sql.append(" WHERE ");
@@ -37,7 +45,7 @@ public class AutenticarDao extends ConexaoAzure {
 			stmt.setString(aux++, autenticacao.getUsuario());
 			stmt.setString(aux++, autenticacao.getSenha());
 
-			rs = stmt.executeQuery();
+			ResultSet rs = stmt.executeQuery();
 			Autenticacao usuarioAutenticado = new Autenticacao();
 
 			while (rs.next()) {
@@ -45,24 +53,25 @@ public class AutenticarDao extends ConexaoAzure {
 				usuarioAutenticado.setId(rs.getInt("idAutenticacao"));
 				usuarioAutenticado.setUsuario(rs.getString("usuario"));
 				usuarioAutenticado.setSenha(rs.getString("senha"));
-
 			}
 
-			fecharConexao();
 			return usuarioAutenticado;
 		} catch (SQLException e) {
-			fecharConexao();
 			e.printStackTrace();
 			return null;
+		} finally {
+			conexaoDao.fecharConexao(stmt, conexao);
 		}
 	}
 
 	public Autenticacao inserir(Autenticacao autenticacao) {
 
 		final StringBuilder sql = new StringBuilder();
+		
+		Connection conexao = conexaoDao.conectar();
+		PreparedStatement stmt = null;
 
 		try {
-			conectar();
 
 			sql.append(" INSERT INTO ");
 			sql.append(" 	autenticacao ");
@@ -79,19 +88,19 @@ public class AutenticarDao extends ConexaoAzure {
 			
 			stmt.execute();
 			
-			rs = stmt.getGeneratedKeys();
+			ResultSet rs = stmt.getGeneratedKeys();
 			
 			while (rs.next()) {
 				
 				 autenticacao.setId(rs.getInt(1));
 				 autenticacao.setPerfil(perfilDao.getPerfil(1));
 
-				 fecharConexao();
 				 return autenticacao;
 			}
 		} catch (SQLException e) {
-			fecharConexao();
 			e.printStackTrace();
+		} finally {
+			conexaoDao.fecharConexao(stmt, conexao);
 		}
 		return null;
 	}
@@ -100,7 +109,8 @@ public class AutenticarDao extends ConexaoAzure {
 		
 		final StringBuilder sql = new StringBuilder();
 		
-		conectar();
+		Connection conexao = conexaoDao.conectar();
+		PreparedStatement stmt = null;
 		
 		try {
 			
@@ -112,16 +122,16 @@ public class AutenticarDao extends ConexaoAzure {
 			stmt = conexao.prepareStatement(sql.toString());
 			stmt.setString(1, usuario);
 			
-			rs = stmt.executeQuery();
+			ResultSet rs = stmt.executeQuery();
 			
 			if(rs.next()) {
-				fecharConexao();
 				return true;
 			}
 			
 		} catch (SQLException e) {
-			fecharConexao();
 			e.printStackTrace();
+		} finally {
+			conexaoDao.fecharConexao(stmt, conexao);
 		}
 		
 		return false;

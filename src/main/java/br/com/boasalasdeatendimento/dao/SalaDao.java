@@ -1,20 +1,29 @@
 package br.com.boasalasdeatendimento.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import br.com.boasalasdeatendimento.model.Sala;
 
-public class SalaDao extends ConexaoAzure {
-
+public class SalaDao {
+	
 	public List<Sala> listaSalaById(Integer idUnidade) {
 
 		final StringBuilder sql = new StringBuilder();
 
+		ConexaoDao c = new ConexaoDao();
+		
+		Connection conexao = c.conectar();
+		PreparedStatement stmt = null;
+		
 		try {
-			conectar();
-
+			
 			sql.append(" SELECT * ");
 			sql.append(" FROM ");
 			sql.append(" 	Sala ");
@@ -25,7 +34,7 @@ public class SalaDao extends ConexaoAzure {
 
 			stmt.setInt(1, idUnidade);
 
-			rs = stmt.executeQuery();
+			ResultSet rs = stmt.executeQuery();
 
 			Sala sala;
 			List<Sala> listaSala = new ArrayList<Sala>();
@@ -40,18 +49,23 @@ public class SalaDao extends ConexaoAzure {
 			}
 			return listaSala;
 		} catch (SQLException e) {
-			fecharConexao();
 			e.printStackTrace();
 			return null; 
-		} 
+		} finally {
+			c.fecharConexao(stmt, conexao);
+		}
 	}
 	
 	public Sala listaSalaByIdComUnidade(Integer idSala) {
 
 		final StringBuilder sql = new StringBuilder();
 
+		ConexaoDao c = new ConexaoDao();
+		
+		Connection conexao = c.conectar();
+		PreparedStatement stmt = null;
+		
 		try {
-			conectar();
 
 			sql.append(" SELECT * ");
 			sql.append(" FROM ");
@@ -63,7 +77,7 @@ public class SalaDao extends ConexaoAzure {
 
 			stmt.setInt(1, idSala);
 
-			rs = stmt.executeQuery();
+			ResultSet rs = stmt.executeQuery();
 
 			Sala sala = new Sala();;
 			UnidadeDao unidadeDao = new UnidadeDao();
@@ -77,9 +91,10 @@ public class SalaDao extends ConexaoAzure {
 			
 			return sala;
 		} catch (SQLException e) {
-			fecharConexao();
 			e.printStackTrace();
 			return null; 
-		} 
+		} finally {
+			c.fecharConexao(stmt, conexao);
+		}
 	}
 }

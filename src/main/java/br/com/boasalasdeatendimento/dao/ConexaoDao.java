@@ -14,17 +14,14 @@ public class ConexaoDao {
 	
 	private static String URL = "jdbc:mysql://localhost:3306/boa";
 	private static String user = "root";
-	private static String password = "Ces@r190788";
+	private static String password = "admin";
 	private static final String DRIVER = "com.mysql.jdbc.Driver";
 	
-	protected static Connection conexao;
-	protected static PreparedStatement stmt;
-	protected ResultSet rs;
 	
-	public static Connection conectar() {
+	public Connection conectar() {
 		
 		try {
-			
+			Connection conexao;
 			Class.forName(DRIVER);
 			conexao = DriverManager.getConnection(URL,user ,password );
 			
@@ -38,7 +35,7 @@ public class ConexaoDao {
 		}
 	}
 	
-	public static void fecharConexao() {
+	public void fecharConexao(PreparedStatement stmt, Connection conexao) {
 		try {
 			stmt.close();
 			conexao.close();

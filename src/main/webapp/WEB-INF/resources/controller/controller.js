@@ -41,7 +41,7 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 						"sala" : {"id" : $scope.idSala}};
 		$http({
 			method : 'post',
-			url : '/boasalasdeatendimento/realizaragendamento',
+			url : './realizaragendamento',
 			data : JSON.stringify(agendamento),
 			beforeSend : function(xhr) {
 				xhr.setRequestHeader("Accept", "application/json");
@@ -51,10 +51,7 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 			$scope.statusAgendamento = retorno.data;
 			
 			$scope.carregarHorarios($scope.numeroSala, $scope.idSala);
-			
-	        $timeout( function(){
-	        	loader.removeClass('loader-ativo');
-	        }, 1000 );
+	        loader.removeClass('loader-ativo');
 		});
 	}
 
@@ -64,7 +61,7 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 		
 		$http({
 			method : 'post',
-			url : '/boasalasdeatendimento/carregarsalas',
+			url : './carregarsalas',
 			data : JSON.stringify(json),
 			beforeSend : function(xhr) {
 				xhr.setRequestHeader("Accept", "application/json");
@@ -85,7 +82,7 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 		
 		$http({
 			method : 'post',
-			url : '/boasalasdeatendimento/carregarhorariodisponivel',
+			url : './carregarhorariodisponivel',
 			data : JSON.stringify(consultaSala),
 			beforeSend : function(xhr) {
 				xhr.setRequestHeader("Accept", "application/json");
@@ -99,10 +96,12 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 	$scope.meusAgendamentosById = function(idCliente) {
 		
 		json = { "id" : "id"};
+		loader = angular.element( document.querySelector('#loader'));
+		loader.addClass('loader-ativo');
 		
 		$http({
 			method : 'post',
-			url : '/boasalasdeatendimento/meusagendamentos/'+idCliente,
+			url : './meusagendamentos/'+idCliente,
 			data : JSON.stringify(json),
 			beforeSend : function(xhr) {
 				xhr.setRequestHeader("Accept", "application/json");
@@ -112,8 +111,10 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 			var agendamentos =  retorno.data
 			
 			if(agendamentos == ""){
+				loader.removeClass('loader-ativo');
 				return false;
 			} else {
+				loader.removeClass('loader-ativo');
 				$scope.meusAgendamentos = retorno.data;
 				return true;
 			}
@@ -128,7 +129,7 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 		
 		$http({
 			method : 'post',
-			url : '/boasalasdeatendimento/cancelaragendamento/'+ idAgendamento,
+			url : './cancelaragendamento/'+ idAgendamento,
 			data : JSON.stringify(json),
 			beforeSend : function(xhr) {
 				xhr.setRequestHeader("Accept", "application/json");
@@ -139,14 +140,9 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 			
 			if(retorno == "Accepted"){
 				$scope.mensagem = true;
-				
-		        $timeout( function(){
 		        	
 		        	$scope.mensagem = false;
 		        	$scope.meusAgendamentosById(idCliente);
-		        	loader.removeClass('loader-ativo');
-		        	
-		        }, 1000 );
 				
 				return true;
 			} else {

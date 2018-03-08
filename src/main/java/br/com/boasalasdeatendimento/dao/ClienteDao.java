@@ -1,19 +1,20 @@
 package br.com.boasalasdeatendimento.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import com.mysql.jdbc.PreparedStatement;
-import com.mysql.jdbc.Statement;
-import com.mysql.jdbc.Util;
 
 import br.com.boasalasdeatendimento.model.Autenticacao;
 import br.com.boasalasdeatendimento.model.Cliente;
 import br.com.boasalasdeatendimento.util.DataUtil;
 
 @Repository
-public class ClienteDao extends ConexaoAzure{
+public class ClienteDao{
 
 	public static void main(String[] args) {
 		Cliente cliente = new Cliente();
@@ -33,13 +34,18 @@ public class ClienteDao extends ConexaoAzure{
 		cDao.inserir(cliente);
 	}
 	
+	@Autowired
+	ConexaoDao conexaoDao;
+	
 	public Cliente inserir(Cliente cliente) {
 		
 		final StringBuilder sql = new StringBuilder();
+		
+		Connection conexao = conexaoDao.conectar();
+		PreparedStatement stmt = null;
+		
 		try {
 
-			conectar();
-			
 			sql.append(" INSERT INTO ");
 			sql.append(" 	cliente ");
 			sql.append(" 	(nome, sobrenome, tel_fixo, tel_celular, cpf, email, sexo, dt_nasc, id_autenticacao) ");
@@ -60,21 +66,19 @@ public class ClienteDao extends ConexaoAzure{
 			stmt.setString(aux++, DataUtil.getDateFormatString(cliente.getDataNascimentoString() ,"dd/MM/yyyy", "yyyyMMdd"));
 			stmt.setInt(aux++, cliente.getAutenticacao().getId());
 			
-			
-			
 			stmt.execute();
 			
-			rs = stmt.getGeneratedKeys();
+			ResultSet rs = stmt.getGeneratedKeys();
 			
 			while (rs.next()) {
 				cliente.setId(rs.getInt(1));
 			}
 			
 		} catch (SQLException e) {
-			fecharConexao();
 			System.out.println(e);
+		} finally {
+			conexaoDao.fecharConexao(stmt, conexao);
 		}
-		fecharConexao();
 		return cliente;
 	}
 	
@@ -82,8 +86,10 @@ public class ClienteDao extends ConexaoAzure{
 		
 		final StringBuilder sql = new StringBuilder();
 		
+		Connection conexao = conexaoDao.conectar();
+		PreparedStatement stmt = null;
+		
 		try {
-			conectar();
 			
 			sql.append(" SELECT * FROM");
 			sql.append("	cliente ");
@@ -94,7 +100,7 @@ public class ClienteDao extends ConexaoAzure{
 			
 			stmt.setInt(1, autenticacao.getId());
 			
-			rs = stmt.executeQuery();
+			ResultSet rs = stmt.executeQuery();
 			
 			Cliente cliente = new Cliente();
 			
@@ -110,13 +116,13 @@ public class ClienteDao extends ConexaoAzure{
 				cliente.setAutenticacao(autenticacao);
 				cliente.setDataNascimentoString(DataUtil.getDateFormatString(rs.getString("dt_nasc"), "yyyy-MM-dd" ,"dd/MM/yyyy"));
 				
-				fecharConexao();
 				return cliente;
 			}
 			
 		} catch (SQLException e) {
-			fecharConexao();
 			e.printStackTrace();
+		} finally {
+			conexaoDao.fecharConexao(stmt, conexao);
 		}
 		return null;
 	}
@@ -125,8 +131,10 @@ public class ClienteDao extends ConexaoAzure{
 		
 		final StringBuilder sql = new StringBuilder();
 		
+		Connection conexao = conexaoDao.conectar();
+		PreparedStatement stmt = null;
+		
 		try {
-			conectar();
 			
 			sql.append(" SELECT * FROM");
 			sql.append("	cliente ");
@@ -137,16 +145,16 @@ public class ClienteDao extends ConexaoAzure{
 			
 			stmt.setString(1, cpf.replace("-", "").replace(".", ""));
 			
-			rs = stmt.executeQuery();
+			ResultSet rs = stmt.executeQuery();
 			
 			if(rs.next()){
-				fecharConexao();
 				return true;
 			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-			fecharConexao();
+		} finally {
+			conexaoDao.fecharConexao(stmt, conexao);
 		}
 		return false;
 	}

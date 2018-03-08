@@ -1,9 +1,13 @@
 package br.com.boasalasdeatendimento.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import br.com.boasalasdeatendimento.model.Agendamento;
@@ -11,7 +15,7 @@ import br.com.boasalasdeatendimento.util.DataUtil;
 import br.com.boasalasdeatendimento.util.Util;
 
 @Repository
-public class AgendamentoDao extends ConexaoAzure {
+public class AgendamentoDao {
 
 	public static void main(String[] args) {
 
@@ -21,13 +25,17 @@ public class AgendamentoDao extends ConexaoAzure {
 		cDao.inserir(a);
 	}
 
+	@Autowired
+	private ConexaoDao conexaoDao;
+	
 	public Boolean cancelarAgendamento(Integer idAgendamento) {
 
 		final StringBuilder sql = new StringBuilder();
+		
+		Connection conexao = conexaoDao.conectar();
+		PreparedStatement stmt = null;
 
 		try {
-
-			conectar();
 
 			sql.append(" UPDATE AGENDAMENTO ");
 			sql.append(" SET ");
@@ -44,23 +52,23 @@ public class AgendamentoDao extends ConexaoAzure {
 			
 			stmt.execute();
 			
-			fecharConexao();
-			
 			return true;
 			
 		} catch (SQLException e) {
-			fecharConexao();
 			e.printStackTrace();
+		} finally {
+			conexaoDao.fecharConexao(stmt, conexao);
 		}
 		return null;
 	}
 
 	public boolean inserir(Agendamento agendamento) {
 
+		Connection conexao = conexaoDao.conectar();
+		PreparedStatement stmt = null;
+		
 		try {
 			final StringBuilder sql = new StringBuilder();
-
-			conectar();
 
 			sql.append(" INSERT INTO ");
 			sql.append(" 	agendamento ");
@@ -79,12 +87,12 @@ public class AgendamentoDao extends ConexaoAzure {
 
 			stmt.execute();
 			
-			fecharConexao();
 			return true;
 		} catch (SQLException e) {
-			fecharConexao();
 			System.out.println(e);
 			return false;
+		} finally {
+			conexaoDao.fecharConexao(stmt, conexao);
 		}
 	}
 
@@ -92,9 +100,11 @@ public class AgendamentoDao extends ConexaoAzure {
 
 		final StringBuilder sql = new StringBuilder();
 
+		Connection conexao = conexaoDao.conectar();
+		PreparedStatement stmt = null;
+		
 		try {
-			conectar();
-
+			
 			sql.append(" SELECT * FROM");
 			sql.append("	agendamento ");
 			sql.append(" WHERE ");
@@ -104,7 +114,7 @@ public class AgendamentoDao extends ConexaoAzure {
 
 			stmt.setInt(1, idCliente);
 
-			rs = stmt.executeQuery();
+			ResultSet rs = stmt.executeQuery();
 
 			Agendamento agendamento = new Agendamento();
 			List<Agendamento> listaAgendamentos = new ArrayList<Agendamento>();
@@ -125,12 +135,12 @@ public class AgendamentoDao extends ConexaoAzure {
 				listaAgendamentos.add(agendamento);
 
 			}
-			fecharConexao();
 			return listaAgendamentos;
 
 		} catch (SQLException e) {
-			fecharConexao();
 			e.printStackTrace();
+		} finally {
+			conexaoDao.fecharConexao(stmt, conexao);
 		}
 		return null;
 	}

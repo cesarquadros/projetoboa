@@ -1,21 +1,29 @@
 package br.com.boasalasdeatendimento.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import br.com.boasalasdeatendimento.model.Perfil;
 
 @Repository
-public class PerfilDao extends ConexaoAzure {
+public class PerfilDao {
+	
+	@Autowired
+	private ConexaoDao conexaoDao;
 
 	public Perfil getPerfil(Integer idPerfil) {
 
 		final StringBuilder sql = new StringBuilder();
 
+		Connection conexao = conexaoDao.conectar();
+		PreparedStatement stmt = null;
+		
 		try {
-			conectar();
-
 			sql.append(" SELECT * FROM");
 			sql.append("	perfil ");
 			sql.append(" WHERE ");
@@ -25,7 +33,7 @@ public class PerfilDao extends ConexaoAzure {
 
 			stmt.setInt(1, idPerfil);
 
-			rs = stmt.executeQuery();
+			ResultSet rs = stmt.executeQuery();
 			Perfil perfilAutenticado = new Perfil();
 
 			while (rs.next()) {
@@ -34,9 +42,10 @@ public class PerfilDao extends ConexaoAzure {
 			}
 			return perfilAutenticado;
 		} catch (SQLException e) {
-			fecharConexao();
 			e.printStackTrace();
 			return null;
+		} finally {
+			conexaoDao.fecharConexao(stmt, conexao);
 		}
 	}
 }

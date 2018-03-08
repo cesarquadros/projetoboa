@@ -55,7 +55,7 @@ pageEncoding="UTF-8"%>
 				<div class="row">
 					<div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
 						<div class="card card-signup">
-							<form class="form" method="post" action="/boasalasdeatendimento/autenticar">
+							<form class="form" method="post" action="./autenticar">
 								<div class="header header-primary text-center">
 									<h4>Faça seu Login</h4>
 								</div>

@@ -1,21 +1,28 @@
 package br.com.boasalasdeatendimento.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mysql.jdbc.PreparedStatement;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import br.com.boasalasdeatendimento.model.Unidade;
 
-public class UnidadeDao extends ConexaoAzure {
+public class UnidadeDao {
 
 	public List<Unidade> listaUnidades() {
 
 		final StringBuilder sql = new StringBuilder();
+		
+		ConexaoDao c = new ConexaoDao();
+	
+		Connection conexao = c.conectar();
+		PreparedStatement stmt = null;
 
 		try {
-			conectar();
 
 			sql.append(" SELECT * ");
 			sql.append(" FROM ");
@@ -23,7 +30,7 @@ public class UnidadeDao extends ConexaoAzure {
 
 			stmt = conexao.prepareStatement(sql.toString());
 
-			rs = stmt.executeQuery();
+			ResultSet rs = stmt.executeQuery();
 
 			Unidade unindade;
 			List<Unidade> listaUnidade = new ArrayList<Unidade>();
@@ -36,82 +43,96 @@ public class UnidadeDao extends ConexaoAzure {
 				unindade.setListaSala(salaDao.listaSalaById(unindade.getId()));
 				listaUnidade.add(unindade);
 			}
-			fecharConexao();
 			return listaUnidade;
 		} catch (SQLException e) {
-			fecharConexao();
 			e.printStackTrace();
 			return null;
+		} finally {
+			c.fecharConexao(stmt, conexao);
 		}
 	}
 
-	public Unidade findById(Integer idUnidade) throws SQLException, ClassNotFoundException {
+	public Unidade findById(Integer idUnidade) {
 
 		final StringBuilder sql = new StringBuilder();
 
-		conectar();
+		ConexaoDao c = new ConexaoDao();
+		
+		Connection conexao = c.conectar();
+		PreparedStatement stmt = null;
+		
+		try {
 
-		sql.append(" SELECT * ");
-		sql.append(" FROM ");
-		sql.append(" 	Unidade ");
-		sql.append(" WHERE ");
-		sql.append(" 	idUnidade = ? ");
+			sql.append(" SELECT * ");
+			sql.append(" FROM ");
+			sql.append(" 	Unidade ");
+			sql.append(" WHERE ");
+			sql.append(" 	idUnidade = ? ");
 
-		int aux = 1;
+			int aux = 1;
 
-		stmt = conexao.prepareStatement(sql.toString());
+			stmt = conexao.prepareStatement(sql.toString());
 
-		stmt.setInt(aux++, idUnidade);
+			stmt.setInt(aux++, idUnidade);
 
-		rs = stmt.executeQuery();
+			ResultSet rs = stmt.executeQuery();
 
-		Unidade unindade = new Unidade();
+			Unidade unindade = new Unidade();
 
-		SalaDao salaDao = new SalaDao();
+			SalaDao salaDao = new SalaDao();
 
-		while (rs.next()) {
+			while (rs.next()) {
 
-			unindade.setId(rs.getInt("idUnidade"));
-			unindade.setNomeUnidade(rs.getString("nome_unidade"));
-			unindade.setListaSala(salaDao.listaSalaById(idUnidade));
+				unindade.setId(rs.getInt("idUnidade"));
+				unindade.setNomeUnidade(rs.getString("nome_unidade"));
+				unindade.setListaSala(salaDao.listaSalaById(idUnidade));
+			}
+			return unindade;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			c.fecharConexao(stmt, conexao);
 		}
-		fecharConexao();
-		return unindade;
+		return null;
 	}
-	
+
 	public Unidade findByIdSemSalas(Integer idUnidade) {
 
 		final StringBuilder sql = new StringBuilder();
 
+		ConexaoDao c = new ConexaoDao();
+		
+		Connection conexao = c.conectar();
+		PreparedStatement stmt = null;
+		
 		try {
-		conectar();
+			sql.append(" SELECT * ");
+			sql.append(" FROM ");
+			sql.append(" 	Unidade ");
+			sql.append(" WHERE ");
+			sql.append(" 	idUnidade = ? ");
 
-		sql.append(" SELECT * ");
-		sql.append(" FROM ");
-		sql.append(" 	Unidade ");
-		sql.append(" WHERE ");
-		sql.append(" 	idUnidade = ? ");
+			int aux = 1;
 
-		int aux = 1;
+			stmt = conexao.prepareStatement(sql.toString());
 
-		stmt = conexao.prepareStatement(sql.toString());
+			stmt.setInt(aux++, idUnidade);
 
-		stmt.setInt(aux++, idUnidade);
+			ResultSet rs = stmt.executeQuery();
 
-		rs = stmt.executeQuery();
+			Unidade unindade = new Unidade();
 
-		Unidade unindade = new Unidade();
+			while (rs.next()) {
 
-		while (rs.next()) {
-
-			unindade.setId(rs.getInt("idUnidade"));
-			unindade.setNomeUnidade(rs.getString("nome_unidade"));
-			return unindade;
-		}
+				unindade.setId(rs.getInt("idUnidade"));
+				unindade.setNomeUnidade(rs.getString("nome_unidade"));
+				return unindade;
+			}
 
 		} catch (SQLException e) {
-			fecharConexao();
 			e.printStackTrace();
+		}finally {
+			c.fecharConexao(stmt, conexao);
 		}
 		return null;
 	}
