@@ -141,12 +141,12 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 		}).then(function(retorno) {
 			var retorno =  retorno.statusText;
 			
-			if(retorno == "Accepted"){
+			if(retorno == "OK"){
 				$scope.mensagem = true;
 		        	
 		        	$scope.mensagem = false;
 		        	$scope.meusAgendamentosById(idCliente);
-				
+		        	loader.removeClass('loader-ativo');
 				return true;
 			} else {
 				return false;

@@ -38,17 +38,15 @@ pageEncoding="UTF-8"%>
 	<div class="main main-raised">
 		<div class="profile-content">
 			<div class="container" style="padding-bottom: 5%;">
-				<br /><br />
 
 				<div class="row" style="margin: auto; display:flex;">
 					<div class="col-xs-12 col-sm-12 col-md-9" style="margin: auto; display:flex;">
-						<h1 style="margin: auto;">ADMINISTRATIVO</h1>
 					</div>
 				</div>			
 				<br /><br /><br />
-				<div class="row" style="margin: auto; display:flex;">
-					<div class="col-xs-12 col-sm-12 col-md-12" >
-						<ul class="nav nav-pills nav-pills-primary" role="tablist" >
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12" style="display:flex;">
+						<ul class="nav nav-pills nav-pills-primary" role="tablist" style="margin: auto;">
 							<li>
 								<a href="#clientes" role="tab" data-toggle="tab">
 									<i class="material-icons">people</i>

@@ -41,7 +41,7 @@ pageEncoding="UTF-8"%>
 
 			<!-- Logotipo -->
 			<a href="./index">
-				<img style="width: 5%;" src="./resources/img/boa/logo_boa_branco.png" alt="Creative Tim Logo">
+				<img style="width: 5%;" src="./resources/img/boa/logo_boa_branco.png" alt="Logo Boa">
 			</a>
 			
 		</div>

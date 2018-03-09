@@ -50,42 +50,46 @@
 	</div>
 
 	<div class="row">
-		<div class="card card-nav-tabs">
+		<div class="card card-nav-tabs" style="margin-top: 10px;">
 			<div class="card-body ">
 				<span class="loader" id="loader"></span>
 				<div class="col-xs-12 col-sm-12 col-md-12">
-					<table class="table" style="margin-left: auto; margin-right: auto;">
-						<thead>
-							<tr>
-								<th>Código</th>
-								<th>Cliente</th>
-								<th>Data</th>
-								<th>Horário</th>
-								<th>Unidade</th>
-								<th>Sala</th>
-								<th>Status</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr ng-repeat="agendamento in agendamentos | filter:pesquisaCliente">
-								<td>{{agendamento.id}}</td>
-								<td>{{agendamento.cliente.nome}}</td>
-								<td>{{agendamento.dataAgendamentoString}}</td>
-								<td>{{agendamento.horario.horarioString}}</td>
-								<td>{{agendamento.sala.unidade.nomeUnidade}}</td>
-								<td>SALA {{agendamento.sala.numero}}</td>
-								<td ng-if="agendamento.status != 'ABERTO'">{{agendamento.status}}</td>
-								<td ng-if="agendamento.status == 'ABERTO'">
-									<a href="#" ng-click="cancelarAgendamento(agendamento.id, '${cliente.id}')" type="button" style="border: 1px solid purple; padding: 5px">
-										Cancelar
-									</a> &nbsp;    
-									<a href="#" ng-click="cancelarAgendamento(agendamento.id, '${cliente.id}')" type="button" style="border: 1px solid green; padding: 5px; color: green">
-										FInalizar
-									</a>									
-								</td>							
-							</tr>
-						</tbody>
-					</table>
+					<div style="overflow: auto; height: 345px;">
+				
+						<table class="table" style="margin-left: auto; margin-right: auto; overflow: scroll;">
+							<thead>
+								<tr>
+									<th>Código</th>
+									<th>Cliente</th>
+									<th>Data</th>
+									<th>Horário</th>
+									<th>Unidade</th>
+									<th>Sala</th>
+									<th>Status</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="agendamento in agendamentos | filter:pesquisaCliente">
+									<td>{{agendamento.id}}</td>
+									<td>{{agendamento.cliente.nome}}</td>
+									<td>{{agendamento.dataAgendamentoString}}</td>
+									<td>{{agendamento.horario.horarioString}}</td>
+									<td>{{agendamento.sala.unidade.nomeUnidade}}</td>
+									<td>SALA {{agendamento.sala.numero}}</td>
+									<td ng-if="agendamento.status != 'ABERTO'">{{agendamento.status}}</td>
+									<td ng-if="agendamento.status == 'ABERTO'">
+										<a href="#" ng-click="cancelarAgendamento(agendamento.id, '${cliente.id}')" type="button" style="border: 1px solid purple; padding: 5px">
+											Cancelar
+										</a> &nbsp;    
+										<a href="#" ng-click="cancelarAgendamento(agendamento.id, '${cliente.id}')" type="button" style="border: 1px solid green; padding: 5px; color: green">
+											FInalizar
+										</a>									
+									</td>							
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					
 				</div>
 			</div>
 		</div>
