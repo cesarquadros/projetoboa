@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -31,7 +33,9 @@ public class ClienteDao{
 		
 		ClienteDao cDao = new ClienteDao();
 		
-		cDao.inserir(cliente);
+		//cDao.inserir(cliente);
+		
+		cDao.clienteListAll();
 	}
 	
 	@Autowired
@@ -126,6 +130,54 @@ public class ClienteDao{
 		}
 		return null;
 	}
+	
+	
+	public List<Cliente> clienteListAll(){
+		
+		final StringBuilder sql = new StringBuilder();
+		
+		Connection conexao = conexaoDao.conectar();
+		PreparedStatement stmt = null;
+		
+		try {
+			
+			sql.append(" SELECT * FROM");
+			sql.append("	cliente ");
+		
+			stmt = conexao.prepareStatement(sql.toString());
+			
+			ResultSet rs = stmt.executeQuery();
+			
+			List<Cliente> listaClientes = new ArrayList<Cliente>();
+			Cliente cliente;
+			
+			while(rs.next()){
+				
+				cliente = new Cliente();
+				
+				cliente.setId(rs.getInt("idCliente"));
+				cliente.setNome(rs.getString("nome"));
+				cliente.setSobrenome(rs.getString("sobrenome"));
+				cliente.setTelFixo(rs.getString("tel_fixo"));
+				cliente.setTelCelular(rs.getString("tel_celular"));
+				cliente.setCpf(rs.getString("cpf"));
+				cliente.setEmail(rs.getString("email"));
+				cliente.setSexo(rs.getString("sexo"));
+				cliente.setDataNascimentoString(DataUtil.getDateFormatString(rs.getString("dt_nasc"), "yyyy-MM-dd" ,"dd/MM/yyyy"));
+				
+				listaClientes.add(cliente);
+			}
+			return listaClientes;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			conexaoDao.fecharConexao(stmt, conexao);
+		}
+		return null;
+	}
+	
+	
 	
 	public Boolean findByIdCpf(String cpf){
 		

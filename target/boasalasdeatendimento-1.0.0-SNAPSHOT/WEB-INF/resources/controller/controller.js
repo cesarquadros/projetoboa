@@ -11,7 +11,6 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 	$scope.cliente;
 	$scope.listaErros = [];
 	
-	
 /*	$scope.cadastrarCliente = function(cliente) {
 		
 		$http({
@@ -26,6 +25,7 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 			$scope.unidades = retorno.data;
 		});
 	}*/
+	
 	//------------------------------------------------------------- Requisições ---------------------------------------------------
 	$scope.realizarAgendamento = function(idHora, idCliente) {
 
@@ -57,6 +57,8 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 
 	$scope.carregarSalas = function() {
 		
+		$scope.mensagemUnidade = 'Carregando...';
+		
 		json = { "id" : "id"};
 		
 		$http({
@@ -69,6 +71,7 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 			},
 		}).then(function(retorno) {
 			$scope.unidades = retorno.data;
+			$scope.mensagemUnidade = '';
 		});
 	}
 	
@@ -138,12 +141,12 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 		}).then(function(retorno) {
 			var retorno =  retorno.statusText;
 			
-			if(retorno == "Accepted"){
+			if(retorno == "OK"){
 				$scope.mensagem = true;
 		        	
 		        	$scope.mensagem = false;
 		        	$scope.meusAgendamentosById(idCliente);
-				
+		        	loader.removeClass('loader-ativo');
 				return true;
 			} else {
 				return false;

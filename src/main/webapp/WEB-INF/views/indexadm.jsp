@@ -48,7 +48,7 @@ pageEncoding="UTF-8"%>
 					<div class="col-xs-12 col-sm-12 col-md-12" style="display:flex;">
 						<ul class="nav nav-pills nav-pills-primary" role="tablist" style="margin: auto;">
 							<li>
-								<a href="#clientes" role="tab" data-toggle="tab">
+								<a href="#clientes" role="tab" data-toggle="tab" ng-init="getRelatorioClientes()">
 									<i class="material-icons">people</i>
 									Clientes
 								</a>

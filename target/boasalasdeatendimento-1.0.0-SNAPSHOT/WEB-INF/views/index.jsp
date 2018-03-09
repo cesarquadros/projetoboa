@@ -84,6 +84,7 @@ pageEncoding="UTF-8"%>
 										<div class="col-xs-12 col-sm-12 col-md-12">
 											<div class="card card-nav-tabs">
 												<div class="card-body ">
+														<p>{{mensagemUnidade}}</p>
 													<div ng-repeat="unidade in unidades" style="text-align: center;">
 														<h4 >Unidade: {{unidade.nomeUnidade}}</h4>
 				

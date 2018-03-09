@@ -3,6 +3,7 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 
 	$scope.agendamentos = [];
 	$scope.relatorioAgendamento;
+	$scope.relatorioClientes = [];
 	
 	//------------------------------------------------------------- Requisições ---------------------------------------------------
 
@@ -68,6 +69,38 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 			}
 		});
 	}
+	
+	
+	$scope.getRelatorioClientes = function(idAgendamento, idCliente) {
+		
+		json = { "id" : "id"};
+		loader = angular.element( document.querySelector('#loader'));
+		loader.addClass('loader-ativo');
+		
+		$http({
+			method : 'post',
+			url : './relatorioclientes',
+			data : JSON.stringify(json),
+			beforeSend : function(xhr) {
+				xhr.setRequestHeader("Accept", "application/json");
+				xhr.setRequestHeader("Content-Type", "application/json");
+			},
+		}).then(function(retorno) {
+			$scope.relatorioClientes  =  retorno.data;
+			
+			if(retorno == "OK"){
+				
+				$scope.mensagem = true;
+	        	$scope.mensagem = false;
+	        	$scope.gerarRelatorio();
+				
+				return true;
+			} else {
+				return false;
+			}
+		});
+	}
+	
 	//-----------------------------------------------------FIM REQUISIÇÕES-----------------------------------------------------------
 
 } ]);

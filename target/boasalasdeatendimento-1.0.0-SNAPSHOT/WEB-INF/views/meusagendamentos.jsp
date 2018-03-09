@@ -44,7 +44,6 @@ pageEncoding="UTF-8"%>
 				</ul>
 
 				<div>
-					<h3 style="margin-top: 10px; text-align: center;">Agendamentos realizados </h3>
 					
 					<div class="row" style="margin-top: 5px">
 					
