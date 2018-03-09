@@ -7,48 +7,52 @@
 	</ul>
 	<div class="row" style="margin: auto;">
 
-		<div class="col-xs-12 col-sm-12 col-md-9" style="margin: auto;">
+		<div class="col-xs-12 col-sm-12 col-md-12" style="margin: auto;">
 
-			<form>
-				<div class="col-xs-12 col-sm-12 col-md-3">
-					<div class="form-group">
-						<label>Data inicio</label> <input id="data"
-							class="datepicker form-control" type="text" />
-					</div>
+			<div class="col-xs-12 col-sm-12 col-md-3">
+				<div class="form-group">
+					<label>Data inicio</label> 
+					<input value="${dataAtual}"  id="dataInicio" class="datepicker form-control" type="text"/>
 				</div>
+			</div>
 
-				<div class="col-xs-12 col-sm-12 col-md-3">
-					<div class="form-group">
-						<label>Data fim</label> <input id="datafim"
-							class="datepicker form-control" type="text" />
-					</div>
+			<div class="col-xs-12 col-sm-12 col-md-3">
+				<div class="form-group">
+					<label>Data fim</label> 
+					<input value="${dataAtual}"  id="dataFim" class="datepicker form-control" type="text"/>
 				</div>
+			</div>
 
-				<div class="col-xs-12 col-sm-12 col-md-3">
-					<div class="form-group">
-						<label>Status</label> <select class="form-control"
-							id="exampleFormControlSelect1">
-							<option></option>
-							<option>Reservado</option>
-							<option>Cancelado</option>
-							<option>Finalizado</option>
-						</select>
-					</div>
+			<div class="col-xs-12 col-sm-12 col-md-2">
+				<div class="form-group">
+					<label>Status</label> 
+					<select class="form-control" id="status">
+						<option value="0">Todos</option>
+						<option value="1">Aberto</option>
+						<option value="2">Finalizado</option>
+						<option value="3">Cancelado</option>
+					</select>
 				</div>
+			</div>
 
-				<div class="col-xs-12 col-sm-12 col-md-3">
-					<div class="form-group">
-						<label>Cliente</label> <input type="text" class="form-control">
-					</div>
+			<div class="col-xs-12 col-sm-12 col-md-2">
+				<div class="form-group">
+					<label>Cliente</label> 
+					<input type="text" class="form-control" ng-model="pesquisaCliente">
 				</div>
-			</form>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-2">
+				<div class="form-group">
+					<button type="button" class="btn btn-success" ng-click="gerarRelatorio()">Buscar</button>
+				</div>
+			</div>			
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="card card-nav-tabs">
 			<div class="card-body ">
-
+				<span class="loader" id="loader"></span>
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<table class="table" style="margin-left: auto; margin-right: auto;">
 						<thead>
@@ -63,14 +67,22 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>1</td>
-								<td>João</td>
-								<td>01/01/2018</td>
-								<td>13:00</td>
-								<td>Missionaria</td>
-								<td>SALA 10</td>
-								<td>Finalizado</td>
+							<tr ng-repeat="agendamento in agendamentos | filter:pesquisaCliente">
+								<td>{{agendamento.id}}</td>
+								<td>{{agendamento.cliente.nome}}</td>
+								<td>{{agendamento.dataAgendamentoString}}</td>
+								<td>{{agendamento.horario.horarioString}}</td>
+								<td>{{agendamento.sala.unidade.nomeUnidade}}</td>
+								<td>SALA {{agendamento.sala.numero}}</td>
+								<td ng-if="agendamento.status != 'ABERTO'">{{agendamento.status}}</td>
+								<td ng-if="agendamento.status == 'ABERTO'">
+									<a href="#" ng-click="cancelarAgendamento(agendamento.id, '${cliente.id}')" type="button" style="border: 1px solid purple; padding: 5px">
+										Cancelar
+									</a> &nbsp;    
+									<a href="#" ng-click="cancelarAgendamento(agendamento.id, '${cliente.id}')" type="button" style="border: 1px solid green; padding: 5px; color: green">
+										FInalizar
+									</a>									
+								</td>							
 							</tr>
 						</tbody>
 					</table>

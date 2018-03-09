@@ -21,10 +21,11 @@ pageEncoding="UTF-8"%>
 	<!-- CSS Files -->
 	<link href="resources/css/bootstrap.min.css" rel="stylesheet"	media="screen">
 	<link href="resources/css/material-kit.css" rel="stylesheet"	media="screen">
+	<link href="resources/css/loader.css" rel="stylesheet"	media="screen">
 
 	<!-- ANGUALR JS -->
 	<script src ="./resources/js/angular.min.js"></script>
-	<script src ="./resources/controller/controller.js"></script>
+	<script src ="./resources/controller/controllerAdmin.js"></script>
 
 </head>
 <body ng-app="app" ng-controller="appCtrl">

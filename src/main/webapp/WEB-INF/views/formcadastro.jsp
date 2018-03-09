@@ -89,10 +89,10 @@
 	<div class="col-xs-12 col-sm-12 col-md-12">
 		<div class="modal-footer" style="text-align: center;">
 			<div class="col-xs-12 col-sm-12 col-md-2">
-				<button type="submit" class="btn btn-info btn-success" ng-disabled="mainForm.$invalid">SALVAR</button>
+				<button type="submit" class="btn btn-success" ng-disabled="mainForm.$invalid">SALVAR</button>
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-2">
-				<button type="reset" class="btn btn-info btn-default">LIMPAR</button>
+				<button type="reset" class="btn btn-default">LIMPAR</button>
 			</div>
 		</div>	
 	</div>	

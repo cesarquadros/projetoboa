@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.boasalasdeatendimento.model.Cliente;
+import br.com.boasalasdeatendimento.util.DataUtil;
 
 @Controller
 public class AdministrativoController {
@@ -18,7 +19,11 @@ public class AdministrativoController {
 		
 		if (cliente != null) {
 			if(cliente.getAutenticacao().getPerfil().getId() == 2) {
-				return new ModelAndView("indexadm");
+				
+				ModelAndView modelAndView = new ModelAndView("indexadm");
+				modelAndView.addObject("dataAtual", DataUtil.getDateTime());
+				
+				return modelAndView;
 			} else {
 				return new ModelAndView("redirect:index");
 			}
