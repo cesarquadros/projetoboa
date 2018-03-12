@@ -74,7 +74,7 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 	$scope.getRelatorioClientes = function(idAgendamento, idCliente) {
 		
 		json = { "id" : "id"};
-		loader = angular.element( document.querySelector('#loader'));
+		loader = angular.element( document.querySelector('#loader-cliente'));
 		loader.addClass('loader-ativo');
 		
 		$http({
@@ -90,12 +90,10 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 			
 			if(retorno == "OK"){
 				
-				$scope.mensagem = true;
-	        	$scope.mensagem = false;
-	        	$scope.gerarRelatorio();
-				
+				loader.removeClass('loader-ativo');				
 				return true;
 			} else {
+				loader.removeClass('loader-ativo');	
 				return false;
 			}
 		});

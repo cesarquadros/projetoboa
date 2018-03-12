@@ -11,8 +11,8 @@
 			<form>
 				<div class="col-xs-12 col-sm-12 col-md-6">
 					<div class="form-group">
-						<label>Cliente</label> <input type="text" class="form-control"
-							placeholder="Digite o nome, cpf ou email do cliente">
+						<label>Filtro</label> <input type="text" class="form-control"
+							placeholder="Digite o nome, cpf ou email do cliente" ng-model="pesqCli">
 					</div>
 				</div>
 			</form>
@@ -22,38 +22,27 @@
 	<div class="row">
 		<div class="card card-nav-tabs" style="margin-top: 5px;">
 			<div class="card-body ">
+			<span class="loader" id="loader-cliente"></span>
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<table class="table">
 						<thead>
 							<tr>
 								<th>Nome</th>
-								<th>Email</th>
 								<th>CPF</th>
-								<th>Alugueis realizados</th>
-								<th>Status</th>
+								<th>Email</th>
+								<th>Telefone fixo</th>
+								<th>Celular</th>
+								<th>Data de nascimento</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>João</td>
-								<td>joao@gmail.com</td>
-								<td>37765288878</td>
-								<td>10</td>
-								<td>Ativo</td>
-							</tr>
-							<tr>
-								<td>José</td>
-								<td>José@gmail.com</td>
-								<td>37765288878</td>
-								<td>10</td>
-								<td>Ativo</td>
-							</tr>
-							<tr>
-								<td>Marcola</td>
-								<td>Marcola@gmail.com</td>
-								<td>37765288878</td>
-								<td>10</td>
-								<td>Inativo</td>
+							<tr ng-repeat="cliente in relatorioClientes | filter: pesqCli">
+								<td>{{cliente.nome}} {{cliente.sobrenome}}</td>
+								<td>{{cliente.cpf}}</td>
+								<td>{{cliente.email}}</td>
+								<td>{{cliente.telFixo}}</td>
+								<td>{{cliente.telCelular}}</td>
+								<td>{{cliente.dataNascimentoString}}</td>
 							</tr>
 						</tbody>
 					</table>
