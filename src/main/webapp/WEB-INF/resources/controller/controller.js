@@ -8,11 +8,11 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 	$scope.dataSelecionada;
 	$scope.agendamento;
 	$scope.statusAgendamento;
-	$scope.cliente = [];
+	$scope.cliente;
 	$scope.listaErros = [];
 	$scope.emailValido = true;
 	
-/*	$scope.cadastrarCliente = function(cliente) {
+	$scope.cadastrarCliente = function(cliente) {
 		
 		cliente.data = "teste"
 		
@@ -26,8 +26,11 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 			},
 		}).then(function(retorno) {
 			$scope.unidades = retorno.data;
+		}, function(erro){
+			alert("Ops! Ocorreu um erro, tente novamente");
+			loader.removeClass('loader-ativo');
 		});
-	}*/
+	}
 	
 	//------------------------------------------------------------- Requisições ---------------------------------------------------
 	$scope.realizarAgendamento = function(idHora, idCliente) {

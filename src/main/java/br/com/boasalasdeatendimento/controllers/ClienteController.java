@@ -39,8 +39,8 @@ public class ClienteController {
 	@Autowired
 	private ValidatorCliente validatorCliente;
 
-	@RequestMapping(value = "/cadastrarcliente")
-	public ModelAndView cadastrarCliente(Cliente cliente, Autenticacao autenticacao,
+	@PostMapping(value = "/cadastrarcliente")
+	public ModelAndView cadastrarCliente(@RequestBody Cliente cliente, Autenticacao autenticacao,
 			RedirectAttributes redirectAttributes, HttpSession session) {
 
 		List<String> listaErros = validatorCliente.validarCliente(cliente, autenticacao);
@@ -106,5 +106,11 @@ public class ClienteController {
 			}
 		}
 		return new ResponseEntity<Error>(HttpStatus.BAD_REQUEST);
+	}
+	
+	@PostMapping(value = "/cadacli")
+	public void carregarSalas() {
+
+		System.out.println("");
 	}
 }

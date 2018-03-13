@@ -1,4 +1,4 @@
-<form class="form" name="mainForm" method="post" action="./cadastrarcliente" ng-init="preencheObjeto('${cliente}')">
+<form class="form" name="mainForm" method="post" action="./cadastrarcliente" ng-submit="cadastrarCliente(cliente)">
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-4">
 			<div class="form-group label-floating" id="divNome">
@@ -90,7 +90,7 @@
 	<div class="col-xs-12 col-sm-12 col-md-12">
 		<div class="modal-footer" style="text-align: center;">
 			<div class="col-xs-12 col-sm-12 col-md-2">
-				<button type="submit" class="btn btn-success" ng-disabled="mainForm.$invalid">SALVAR</button>
+				<button type="button" class="btn btn-success" ng-disabled="mainForm.$invalid">SALVAR</button>
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-2">
 				<button type="reset" class="btn btn-default">LIMPAR</button>
