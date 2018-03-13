@@ -8,10 +8,13 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 	$scope.dataSelecionada;
 	$scope.agendamento;
 	$scope.statusAgendamento;
-	$scope.cliente;
+	$scope.cliente = [];
 	$scope.listaErros = [];
+	$scope.emailValido = true;
 	
 /*	$scope.cadastrarCliente = function(cliente) {
+		
+		cliente.data = "teste"
 		
 		$http({
 			method : 'post',
@@ -159,6 +162,47 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 	
 	
 	//----------------------------------------------------------------------------------------------------------------
+	$scope.validaSenha = function(senha, confirmaSenha){
+		campoSenha = angular.element( document.querySelector('#divConfirmarSenha'));
+		
+		$scope.result = angular.equals(senha, confirmaSenha);
+		
+		if (!$scope.result) {
+			$scope.confirmaSenha = "";
+			
+			campoSenha.removeClass('has-success');
+			campoSenha.addClass('has-error');
+			
+			$scope.result = true;
+		} else {
+			
+			campoSenha.removeClass('has-error');
+			campoSenha.addClass('has-success');
+			
+			$scope.result = false;
+		}
+		
+	}
+	
+	
+	$scope.senha = function(){
+		campoEmail = angular.element( document.querySelector('#divSenha'));
+		campoConfirmaEmail = angular.element( document.querySelector('#divConfirmarSenha'));
+		
+		$scope.emailValido = angular.equals($scope.cliente.email, $scope.confirmaEmail);
+		
+		if ($scope.emailValido) {
+			campoConfirmaEmail.removeClass('has-error');
+			campoConfirmaEmail.addClass('has-success');
+		} else {
+			campoConfirmaEmail.removeClass('has-success');
+			campoConfirmaEmail.addClass('has-error');
+			$scope.confirmaEmail = "";
+		}
+		
+	}
+	
+	
 	$scope.verificaErros = function(erros){
 		if(erros){
 			$scope.listaErros = erros;

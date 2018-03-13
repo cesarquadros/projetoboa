@@ -65,12 +65,12 @@
 				
 			</div>
 		</div>
-		<div class="col-xs-12 col-sm-12 col-md-3">
+<!-- 		<div class="col-xs-12 col-sm-12 col-md-3">
 			<div class="form-group label-floating" id="divConfirmaEmail">
 				<label class="control-label">Confirmar Email</label> 
 				<input required	type="text" class="form-control" ng-model="confirmaEmail" ng-blur="verificaCampoVazio(confirmaEmail, 'divConfirmaEmail')"/> 
 			</div>
-		</div>
+		</div> -->
 		<div class="col-xs-12 col-sm-12 col-md-3">
 			<div class="form-group label-floating" id="divSenha">
 				<label class="control-label">Senha</label> 
@@ -80,7 +80,8 @@
 		<div class="col-xs-12 col-sm-12 col-md-3">
 			<div class="form-group label-floating" id="divConfirmarSenha">
 				<label class="control-label">Confirmar Senha</label> 
-				<input required type="password" class="form-control" ng-model="confirmaSenha" ng-blur="verificaCampoVazio(confirmaSenha, 'divConfirmarSenha')"/> 
+				<input required type="password" class="form-control" ng-model="confirmaSenha" ng-blur="validaSenha(cliente.autenticacao.senha, confirmaSenha)"/> 
+				<span ng-class="error" ng-show="result" style="color: red;"> Senhas não conferem</span>
 			</div>
 		</div>
 	</div>
