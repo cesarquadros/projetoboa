@@ -12,8 +12,20 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 	$scope.listaErros = [];
 	$scope.emailValido = true;
 	
-	$scope.cadastrarCliente = function(cliente) {
+	$scope.cadastrarCliente = function(cliente, confirmaSenha) {
 		
+		
+		campoSenha = angular.element( document.querySelector('#divConfirmarSenha'));
+		
+		$scope.result = angular.equals(cliente.autenticacao.senha, cliente.confirmaSenha);
+		
+		if ($scope.result) {
+		
+		campoSenha.removeClass('has-error');
+		campoSenha.addClass('has-success');
+		
+		$scope.result = false;
+			
 		loader = angular.element( document.querySelector('#loader'));
 		loader.addClass('loader-ativo');
 		
@@ -53,6 +65,14 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 			loader.removeClass('loader-ativo');
 			$scope.carregando = ''
 		});
+		
+		} else {
+			campoSenha.removeClass('has-success');
+			campoSenha.addClass('has-error');
+			$scope.confirmaSenha = '';
+			$scope.result = true;
+		}
+		
 	}
 	
 	//------------------------------------------------------------- Requisições ---------------------------------------------------
@@ -205,10 +225,10 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 		$scope.result = angular.equals(senha, senha2);
 		
 		if (!$scope.result) {
-			$scope.confirmaSenha = '';
 			
 			campoSenha.removeClass('has-success');
 			campoSenha.addClass('has-error');
+			$scope.confirmaSenha = '';
 			
 			$scope.result = true;
 		} else {
@@ -220,24 +240,6 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 		}
 		
 	}
-	
-	$scope.senha = function(){
-		campoEmail = angular.element( document.querySelector('#divSenha'));
-		campoConfirmaEmail = angular.element( document.querySelector('#divConfirmarSenha'));
-		
-		$scope.emailValido = angular.equals($scope.cliente.email, $scope.confirmaEmail);
-		
-		if ($scope.emailValido) {
-			campoConfirmaEmail.removeClass('has-error');
-			campoConfirmaEmail.addClass('has-success');
-		} else {
-			campoConfirmaEmail.removeClass('has-success');
-			campoConfirmaEmail.addClass('has-error');
-			$scope.confirmaEmail = "";
-		}
-		
-	}
-	
 	$scope.verificaErros = function(erros){
 		if(erros){
 			$scope.listaErros = erros;

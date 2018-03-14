@@ -1,4 +1,4 @@
-<form class="form" name="mainForm" method="post" ng-submit="cadastrarCliente(cliente)">
+<form class="form" name="mainForm" method="post" ng-submit="cadastrarCliente(cliente, confirmaSenha)">
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-4">
 			<div class="form-group label-floating" id="divNome">
@@ -80,7 +80,7 @@
 		<div class="col-xs-12 col-sm-12 col-md-4">
 			<div class="form-group label-floating" id="divConfirmarSenha">
 				<label class="control-label">Confirmar Senha</label> 
-				<input required type="password" class="form-control" ng-model="confirmaSenha" ng-blur="validaSenha(cliente.autenticacao.senha, confirmaSenha)"/> 
+				<input required type="password" class="form-control" ng-model="cliente.confirmaSenha"/> 
 				<span ng-class="error" ng-show="result" style="color: red;"> Senhas não conferem</span>
 			</div>
 		</div>
