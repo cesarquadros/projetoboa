@@ -44,12 +44,11 @@ pageEncoding="UTF-8"%>
 				</ul>
 
 				<div>
-					
 					<div class="row" style="margin-top: 5px">
 					
 						<div class="card card-nav-tabs">
+					<i class="loader" id="loader"></i>
 							<div class="card-body ">
-							<i class="loader" id="loader"></i>
 								<div class="col-xs-12 col-sm-12 col-md-12" style="overflow: auto; height: 350px;">
 									<table class="table" style="margin-left: auto; margin-right: auto;">
 										<thead>

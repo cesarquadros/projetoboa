@@ -14,13 +14,16 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 	
 	$scope.cadastrarCliente = function(cliente) {
 		
+		loader = angular.element( document.querySelector('#loader'));
+		loader.addClass('loader-ativo');
+		
 		$scope.erro = false;
 		$scope.carregando = 'Aguarde...'
 	//	cliente.data = document.getElementById('data').value;
 		
 		$http({
 			method : 'post',
-			url : '/boasalasdeatendimento/cadastrarcliente',
+			url : './cadastrarcliente',
 			data : JSON.stringify(cliente),
 			beforeSend : function(xhr) {
 				xhr.setRequestHeader("Accept", "application/json");
@@ -31,21 +34,23 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 			$scope.unidades = retorno.statusText;
 			$scope.sucesso = true;
 			
-			$scope.carregando = ''
+			$scope.carregando = '';
+			loader.removeClass('loader-ativo');
 		}, function(erro){
 			
 			var tipoErro = erro.status;
 			$scope.listaErros = erro.data;
 			$scope.erro = true;
 			
-			if(tipoErro == 502)
+			if(tipoErro == 502){
 				$scope.msgerro = 'Por favor preencher o campo: '
-			else if(tipoErro == 400)		
+			}else if(tipoErro == 400){		
 				$scope.msgerro = 'OPS!!: '
-			else
+			} else{
 				$scope.msgerro = ''	
-					
+			}		
 			
+			loader.removeClass('loader-ativo');
 			$scope.carregando = ''
 		});
 	}
@@ -76,6 +81,8 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 			
 			$scope.carregarHorarios($scope.numeroSala, $scope.idSala);
 	        loader.removeClass('loader-ativo');
+		}, function(erro) {
+			alert("Ops! Ocorreu um erro, tente novamente");
 		});
 	}
 
@@ -96,6 +103,8 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 		}).then(function(retorno) {
 			$scope.unidades = retorno.data;
 			$scope.mensagemUnidade = '';
+		}, function(erro) {
+			alert("Ops! Ocorreu um erro, tente novamente");
 		});
 	}
 	
@@ -117,6 +126,8 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 			},
 		}).then(function(retorno) {
 			$scope.listaHorario = retorno.data;
+		}, function(erro) {
+			alert("Ops! Ocorreu um erro, tente novamente");
 		});
 	}
 	
@@ -145,6 +156,8 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 				$scope.meusAgendamentos = retorno.data;
 				return true;
 			}
+		}, function(erro) {
+			alert("Ops! Ocorreu um erro, tente novamente");
 		});
 	}
 	
@@ -167,14 +180,17 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 			
 			if(retorno == "OK"){
 				$scope.mensagem = true;
-		        	
-		        	$scope.mensagem = false;
-		        	$scope.meusAgendamentosById(idCliente);
-		        	loader.removeClass('loader-ativo');
+	        	
+	        	$scope.mensagem = false;
+	        	$scope.meusAgendamentosById(idCliente);
+	        	loader.removeClass('loader-ativo');
 				return true;
 			} else {
 				return false;
 			}
+		}, function(erro){
+			alert("Ops! Ocorreu um erro, tente novamente");
+			loader.removeClass('loader-ativo');
 		});
 	}
 	
@@ -183,13 +199,13 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 	
 	
 	//----------------------------------------------------------------------------------------------------------------
-	$scope.validaSenha = function(senha, confirmaSenha){
+	$scope.validaSenha = function(senha, senha2){
 		campoSenha = angular.element( document.querySelector('#divConfirmarSenha'));
 		
-		$scope.result = angular.equals(senha, confirmaSenha);
+		$scope.result = angular.equals(senha, senha2);
 		
 		if (!$scope.result) {
-			$scope.confirmaSenha = "";
+			$scope.confirmaSenha = '';
 			
 			campoSenha.removeClass('has-success');
 			campoSenha.addClass('has-error');
@@ -204,7 +220,6 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 		}
 		
 	}
-	
 	
 	$scope.senha = function(){
 		campoEmail = angular.element( document.querySelector('#divSenha'));
@@ -222,7 +237,6 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 		}
 		
 	}
-	
 	
 	$scope.verificaErros = function(erros){
 		if(erros){

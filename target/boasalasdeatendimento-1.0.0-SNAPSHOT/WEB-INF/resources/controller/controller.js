@@ -10,21 +10,50 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 	$scope.statusAgendamento;
 	$scope.cliente;
 	$scope.listaErros = [];
+	$scope.emailValido = true;
 	
-/*	$scope.cadastrarCliente = function(cliente) {
+	$scope.cadastrarCliente = function(cliente) {
+		
+		loader = angular.element( document.querySelector('#loader'));
+		loader.addClass('loader-ativo');
+		
+		$scope.erro = false;
+		$scope.carregando = 'Aguarde...'
+	//	cliente.data = document.getElementById('data').value;
 		
 		$http({
 			method : 'post',
-			url : '/boasalasdeatendimento/cadastrarcliente',
+			url : './cadastrarcliente',
 			data : JSON.stringify(cliente),
 			beforeSend : function(xhr) {
 				xhr.setRequestHeader("Accept", "application/json");
 				xhr.setRequestHeader("Content-Type", "application/json");
 			},
 		}).then(function(retorno) {
-			$scope.unidades = retorno.data;
+			
+			$scope.unidades = retorno.statusText;
+			$scope.sucesso = true;
+			
+			$scope.carregando = '';
+			loader.removeClass('loader-ativo');
+		}, function(erro){
+			
+			var tipoErro = erro.status;
+			$scope.listaErros = erro.data;
+			$scope.erro = true;
+			
+			if(tipoErro == 502){
+				$scope.msgerro = 'Por favor preencher o campo: '
+			}else if(tipoErro == 400){		
+				$scope.msgerro = 'OPS!!: '
+			} else{
+				$scope.msgerro = ''	
+			}		
+			
+			loader.removeClass('loader-ativo');
+			$scope.carregando = ''
 		});
-	}*/
+	}
 	
 	//------------------------------------------------------------- Requisições ---------------------------------------------------
 	$scope.realizarAgendamento = function(idHora, idCliente) {
@@ -52,6 +81,8 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 			
 			$scope.carregarHorarios($scope.numeroSala, $scope.idSala);
 	        loader.removeClass('loader-ativo');
+		}, function(erro) {
+			alert("Ops! Ocorreu um erro, tente novamente");
 		});
 	}
 
@@ -72,6 +103,8 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 		}).then(function(retorno) {
 			$scope.unidades = retorno.data;
 			$scope.mensagemUnidade = '';
+		}, function(erro) {
+			alert("Ops! Ocorreu um erro, tente novamente");
 		});
 	}
 	
@@ -93,6 +126,8 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 			},
 		}).then(function(retorno) {
 			$scope.listaHorario = retorno.data;
+		}, function(erro) {
+			alert("Ops! Ocorreu um erro, tente novamente");
 		});
 	}
 	
@@ -121,6 +156,8 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 				$scope.meusAgendamentos = retorno.data;
 				return true;
 			}
+		}, function(erro) {
+			alert("Ops! Ocorreu um erro, tente novamente");
 		});
 	}
 	
@@ -143,14 +180,17 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 			
 			if(retorno == "OK"){
 				$scope.mensagem = true;
-		        	
-		        	$scope.mensagem = false;
-		        	$scope.meusAgendamentosById(idCliente);
-		        	loader.removeClass('loader-ativo');
+	        	
+	        	$scope.mensagem = false;
+	        	$scope.meusAgendamentosById(idCliente);
+	        	loader.removeClass('loader-ativo');
 				return true;
 			} else {
 				return false;
 			}
+		}, function(erro){
+			alert("Ops! Ocorreu um erro, tente novamente");
+			loader.removeClass('loader-ativo');
 		});
 	}
 	
@@ -159,6 +199,45 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 	
 	
 	//----------------------------------------------------------------------------------------------------------------
+	$scope.validaSenha = function(senha, senha2){
+		campoSenha = angular.element( document.querySelector('#divConfirmarSenha'));
+		
+		$scope.result = angular.equals(senha, senha2);
+		
+		if (!$scope.result) {
+			$scope.confirmaSenha = '';
+			
+			campoSenha.removeClass('has-success');
+			campoSenha.addClass('has-error');
+			
+			$scope.result = true;
+		} else {
+			
+			campoSenha.removeClass('has-error');
+			campoSenha.addClass('has-success');
+			
+			$scope.result = false;
+		}
+		
+	}
+	
+	$scope.senha = function(){
+		campoEmail = angular.element( document.querySelector('#divSenha'));
+		campoConfirmaEmail = angular.element( document.querySelector('#divConfirmarSenha'));
+		
+		$scope.emailValido = angular.equals($scope.cliente.email, $scope.confirmaEmail);
+		
+		if ($scope.emailValido) {
+			campoConfirmaEmail.removeClass('has-error');
+			campoConfirmaEmail.addClass('has-success');
+		} else {
+			campoConfirmaEmail.removeClass('has-success');
+			campoConfirmaEmail.addClass('has-error');
+			$scope.confirmaEmail = "";
+		}
+		
+	}
+	
 	$scope.verificaErros = function(erros){
 		if(erros){
 			$scope.listaErros = erros;

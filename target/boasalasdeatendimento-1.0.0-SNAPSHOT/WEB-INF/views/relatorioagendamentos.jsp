@@ -51,8 +51,8 @@
 
 	<div class="row">
 		<div class="card card-nav-tabs" style="margin-top: 10px;">
-			<div class="card-body ">
 				<span class="loader" id="loader"></span>
+			<div class="card-body ">
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<div style="overflow: auto; height: 345px;">
 				
@@ -69,7 +69,7 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr ng-repeat="agendamento in agendamentos | filter:pesquisaCliente">
+								<tr ng-repeat="agendamento in agendamentosSerch = (agendamentos | filter:pesquisaCliente)">
 									<td>{{agendamento.id}}</td>
 									<td>{{agendamento.cliente.nome}}</td>
 									<td>{{agendamento.dataAgendamentoString}}</td>
@@ -81,11 +81,12 @@
 										<a href="#" ng-click="cancelarAgendamento(agendamento.id, '${cliente.id}')" type="button" style="border: 1px solid purple; padding: 5px">
 											Cancelar
 										</a> &nbsp;    
-										<a href="#" ng-click="cancelarAgendamento(agendamento.id, '${cliente.id}')" type="button" style="border: 1px solid green; padding: 5px; color: green">
+										<a href="#" ng-click="finalizarAgendamento(agendamento.id, '${cliente.id}')" type="button" style="border: 1px solid green; padding: 5px; color: green">
 											FInalizar
 										</a>									
-									</td>							
+									</td>	
 								</tr>
+								<tr><td><h3>Total agendamentos: {{agendamentosSerch.length}}</h3></td></tr>
 							</tbody>
 						</table>
 					</div>

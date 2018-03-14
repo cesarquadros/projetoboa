@@ -21,8 +21,8 @@
 
 	<div class="row">
 		<div class="card card-nav-tabs" style="margin-top: 5px;">
-			<div class="card-body ">
 			<span class="loader" id="loader-cliente"></span>
+			<div class="card-body ">
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<table class="table">
 						<thead>

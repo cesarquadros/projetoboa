@@ -51,8 +51,8 @@
 
 	<div class="row">
 		<div class="card card-nav-tabs" style="margin-top: 10px;">
-			<div class="card-body ">
 				<span class="loader" id="loader"></span>
+			<div class="card-body ">
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<div style="overflow: auto; height: 345px;">
 				

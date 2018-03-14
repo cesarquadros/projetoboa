@@ -76,6 +76,7 @@ pageEncoding="UTF-8"%>
 				    </div>
 				</div>		
 				<div class="card card-nav-tabs">
+				<span class="loader" id="loader"></span>
 					<div class="card-body ">
 						{{carregando}}
 						<div class="col-xs-12 col-sm-12 col-md-12" ng-if="!sucesso">			
