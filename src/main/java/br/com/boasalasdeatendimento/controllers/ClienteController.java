@@ -38,12 +38,14 @@ public class ClienteController {
 
 	@Autowired
 	private ValidatorCliente validatorCliente;
-
+	
+	
+/*
 	@PostMapping(value = "/cadastrarcliente")
 	public ModelAndView cadastrarCliente(@RequestBody Cliente cliente, Autenticacao autenticacao,
 			RedirectAttributes redirectAttributes, HttpSession session) {
 
-		List<String> listaErros = validatorCliente.validarCliente(cliente, autenticacao);
+		List<String> listaErros = validatorCliente.validarCliente(cliente);
 
 		ModelAndView modelAndView = new ModelAndView("cadastrocliente");
 
@@ -82,7 +84,45 @@ public class ClienteController {
 			return modelAndView;
 		}
 	}
+*/
+	
+	@PostMapping(value = "/cadastrarcliente")
+	public ResponseEntity<?> cadastrarCliente(@RequestBody Cliente cliente, Autenticacao autenticacao,
+			RedirectAttributes redirectAttributes, HttpSession session) {
 
+		List<String> listaErros = validatorCliente.validarCliente(cliente);
+
+		if (listaErros.size() < 1) {
+
+			autenticacao.setUsuario(cliente.getEmail());
+
+			Boolean autenticacaoExiste = autenticarDao.findByUsuario(autenticacao.getUsuario());
+			Boolean clienteExiste = clienteDao.findByIdCpf(cliente.getCpf());
+
+			if (!autenticacaoExiste && !clienteExiste) {
+
+				autenticacao = autenticarDao.inserir(autenticacao);
+
+				cliente.setAutenticacao(autenticacao);
+				Cliente clienteInserido = clienteDao.inserir(cliente);
+
+				if (clienteInserido != null) {
+					session.setAttribute("usuarioLogado", cliente);
+					return ResponseEntity.ok(null);
+				} else {
+					listaErros.add("Erro ao realizar cadastro, tente novamente");
+					return new ResponseEntity<List<String>>(listaErros, HttpStatus.BAD_REQUEST);
+				}
+			} else {
+				listaErros.add("CPF ou Email já cadastrados");
+				return new ResponseEntity<List<String>>(listaErros, HttpStatus.CONFLICT);
+			}
+		} else {
+			return new ResponseEntity<List<String>>(listaErros, HttpStatus.BAD_GATEWAY);
+		}
+	}
+	
+	
 	@RequestMapping("/novocadastro")
 	public static ModelAndView formCadastro(HttpSession session) {
 

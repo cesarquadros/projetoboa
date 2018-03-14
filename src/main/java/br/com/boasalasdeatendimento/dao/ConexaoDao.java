@@ -18,7 +18,7 @@ public class ConexaoDao {
 	// maneiras, mas s� esse resolveu meus problemas
 	private static String DRIVER = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
 	
-	public static Connection conectar()  {
+	public Connection conectar()  {
 		Connection conexao;
 		try {
 			Class.forName(DRIVER);
@@ -33,7 +33,7 @@ public class ConexaoDao {
 		}
 	}
 	
-	public static void fecharConexao(PreparedStatement stmt, Connection conexao) {
+	public void fecharConexao(PreparedStatement stmt, Connection conexao) {
 		try {
 			stmt.close();
 			conexao.close();

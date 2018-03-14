@@ -66,6 +66,41 @@ public class AgendamentoDao {
 		}
 		return null;
 	}
+	
+	
+	public Boolean finalizarAgendamento(Integer idAgendamento) {
+
+		final StringBuilder sql = new StringBuilder();
+		
+		Connection conexao = conexaoDao.conectar();
+		PreparedStatement stmt = null;
+
+		try {
+
+			sql.append(" UPDATE AGENDAMENTO ");
+			sql.append(" SET ");
+			sql.append(" 	status = ? ");
+			sql.append(" WHERE ");
+			sql.append(" 	idAgendamento = ? ");
+
+			stmt = conexao.prepareStatement(sql.toString());
+
+			int aux = 1;
+
+			stmt.setInt(aux++, 2);
+			stmt.setInt(aux++, idAgendamento);
+			
+			stmt.execute();
+			
+			return true;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			conexaoDao.fecharConexao(stmt, conexao);
+		}
+		return null;
+	}
 
 	public boolean inserir(Agendamento agendamento) {
 

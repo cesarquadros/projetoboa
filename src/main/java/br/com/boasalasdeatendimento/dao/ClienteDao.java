@@ -52,9 +52,9 @@ public class ClienteDao{
 
 			sql.append(" INSERT INTO ");
 			sql.append(" 	cliente ");
-			sql.append(" 	(nome, sobrenome, tel_fixo, tel_celular, cpf, email, sexo, dt_nasc, id_autenticacao) ");
+			sql.append(" 	(nome, sobrenome, tel_fixo, tel_celular, cpf, email, sexo, id_autenticacao) ");
 			sql.append(" VALUES ");
-			sql.append(" 	(?, ?, ?, ?, ?, ?, ?, ?, ?) ");
+			sql.append(" 	(?, ?, ?, ?, ?, ?, ?, ?) ");
 			
 			stmt = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
 			
@@ -67,7 +67,7 @@ public class ClienteDao{
 			stmt.setString(aux++,cliente.getCpf().replace("-", "").replace(".", ""));
 			stmt.setString(aux++, cliente.getEmail());
 			stmt.setString(aux++, cliente.getSexo());
-			stmt.setString(aux++, DataUtil.getDateFormatString(cliente.getDataNascimentoString() ,"dd/MM/yyyy", "yyyyMMdd"));
+			//stmt.setString(aux++, DataUtil.getDateFormatString(cliente.getDataNascimentoString() ,"dd/MM/yyyy", "yyyyMMdd"));
 			stmt.setInt(aux++, cliente.getAutenticacao().getId());
 			
 			stmt.execute();
@@ -118,7 +118,7 @@ public class ClienteDao{
 				cliente.setEmail(rs.getString("email"));
 				cliente.setSexo(rs.getString("sexo"));
 				cliente.setAutenticacao(autenticacao);
-				cliente.setDataNascimentoString(DataUtil.getDateFormatString(rs.getString("dt_nasc"), "yyyy-MM-dd" ,"dd/MM/yyyy"));
+				//cliente.setDataNascimentoString(DataUtil.getDateFormatString(rs.getString("dt_nasc"), "yyyy-MM-dd" ,"dd/MM/yyyy"));
 				
 				return cliente;
 			}
@@ -163,7 +163,7 @@ public class ClienteDao{
 				cliente.setCpf(rs.getString("cpf"));
 				cliente.setEmail(rs.getString("email"));
 				cliente.setSexo(rs.getString("sexo"));
-				cliente.setDataNascimentoString(DataUtil.getDateFormatString(rs.getString("dt_nasc"), "yyyy-MM-dd" ,"dd/MM/yyyy"));
+				//cliente.setDataNascimentoString(DataUtil.getDateFormatString(rs.getString("dt_nasc"), "yyyy-MM-dd" ,"dd/MM/yyyy"));
 				
 				listaClientes.add(cliente);
 			}

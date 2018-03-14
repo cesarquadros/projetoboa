@@ -11,7 +11,7 @@ import br.com.boasalasdeatendimento.model.Cliente;
 @Component
 public class ValidatorCliente {
 	
-	public List<String>validarCliente(Cliente cliente, Autenticacao autenticacao) {
+	public List<String>validarCliente(Cliente cliente) {
 		
 		List<String> listaErros = new ArrayList<String>();
 		
@@ -27,7 +27,7 @@ public class ValidatorCliente {
 			listaErros.add("EMAIL");
 		}
 		
-		if(null == autenticacao.getSenha()) {
+		if(null == cliente.getAutenticacao().getSenha()) {
 			listaErros.add("SENHA");
 		}
 		

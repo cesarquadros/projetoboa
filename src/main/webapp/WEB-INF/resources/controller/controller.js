@@ -14,7 +14,9 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 	
 	$scope.cadastrarCliente = function(cliente) {
 		
-		cliente.data = "teste"
+		$scope.erro = false;
+		$scope.carregando = 'Aguarde...'
+	//	cliente.data = document.getElementById('data').value;
 		
 		$http({
 			method : 'post',
@@ -25,10 +27,26 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 				xhr.setRequestHeader("Content-Type", "application/json");
 			},
 		}).then(function(retorno) {
-			$scope.unidades = retorno.data;
+			
+			$scope.unidades = retorno.statusText;
+			$scope.sucesso = true;
+			
+			$scope.carregando = ''
 		}, function(erro){
-			alert("Ops! Ocorreu um erro, tente novamente");
-			loader.removeClass('loader-ativo');
+			
+			var tipoErro = erro.status;
+			$scope.listaErros = erro.data;
+			$scope.erro = true;
+			
+			if(tipoErro == 502)
+				$scope.msgerro = 'Por favor preencher o campo: '
+			else if(tipoErro == 400)		
+				$scope.msgerro = 'OPS!!: '
+			else
+				$scope.msgerro = ''	
+					
+			
+			$scope.carregando = ''
 		});
 	}
 	

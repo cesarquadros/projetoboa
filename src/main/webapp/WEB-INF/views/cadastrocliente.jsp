@@ -29,7 +29,6 @@ pageEncoding="UTF-8"%>
 </head>
 <body ng-app="app" ng-controller="appCtrl">
 
-
 <nav
 	class="navbar navbar-transparent navbar-fixed-top navbar-color-on-scroll">
 	<div class="container">
@@ -54,12 +53,7 @@ pageEncoding="UTF-8"%>
 	</div>
 </nav>
 
-
-
-
-
-	
-<div class="wrapper" ng-init="getErros('${listaErros}')">
+<div class="wrapper">
 <div class="header header-filter" style="background-image: url('resources/img/examples/city.jpg'); min-height: 170px"></div>
 	<div class="main main-raised">
 		<div class="profile-content">
@@ -69,40 +63,29 @@ pageEncoding="UTF-8"%>
 				<ul class="nav nav-tabs">
 					<li class="active"><a data-toggle="tab" href="#menu1">Novo cadastro</a></li>
 				</ul>	
-				
-<div class="alert alert-warning" ng-if="'${listaErros}'">
-    <div class="container-fluid">
-	  <div class="alert-icon">
-		<i class="material-icons">warning</i>
-	  </div>
-	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-		<span aria-hidden="true"><i class="material-icons">clear</i></span>
-	  </button>
-      <b>Os campos:</b> 
-		<c:forEach items="${listaErros}" var="camposErros">
-        	<span>'${camposErros}',</span>
-        </c:forEach>
-    </div>
-</div>		
-
-<div class="alert alert-warning" ng-if="'${usuarioJaCadastrado}'">
-    <div class="container-fluid">
-	  <div class="alert-icon">
-		<i class="material-icons">warning</i>
-	  </div>
-	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-		<span aria-hidden="true"><i class="material-icons">clear</i></span>
-	  </button>
-      <b>OPS!:</b> 
-        	<span>'${usuarioJaCadastrado}',</span>
-    </div>
-</div>		
-					
+				<div class="alert alert-warning" ng-if="erro">
+				    <div class="container-fluid">
+					  <div class="alert-icon">
+						<i class="material-icons">warning</i>
+					  </div>
+					  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true"><i class="material-icons">clear</i></span>
+					  </button>
+				      <b>{{msgerro}}</b> 
+				        <span ng-repeat="erro in listaErros">{{erro}} </span>
+				    </div>
+				</div>		
 				<div class="card card-nav-tabs">
 					<div class="card-body ">
-						<div class="col-xs-12 col-sm-12 col-md-12">			
+						{{carregando}}
+						<div class="col-xs-12 col-sm-12 col-md-12" ng-if="!sucesso">			
 							<jsp:include page="formcadastro.jsp"></jsp:include>				
 						</div>
+						
+						<div class="col-xs-12 col-sm-12 col-md-12" ng-if="sucesso">			
+							<h4>Cadastro realizado com sucesso! <a href="./index">Ir para pagína inicial</a></h4>			
+						</div>
+						
 					</div>
 				</div>				
 			</div>

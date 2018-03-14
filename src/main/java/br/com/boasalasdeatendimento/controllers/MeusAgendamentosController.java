@@ -90,4 +90,20 @@ public class MeusAgendamentosController {
 		}
 		return new ResponseEntity<Error>(HttpStatus.BAD_REQUEST);
 	}
+	
+	@RequestMapping("/finalizaragendamento/{id}")
+	public ResponseEntity<?> finalizarAgendamento(@PathVariable int id, HttpSession session) {
+
+		Cliente cliente = (Cliente) session.getAttribute("usuarioLogado");
+
+		if (cliente != null) {
+			Boolean cancelarAgendamento = agendamentoDao.finalizarAgendamento(id);
+
+			if (cancelarAgendamento) {
+				return new ResponseEntity<Error>(HttpStatus.OK);
+			}
+			return new ResponseEntity<Error>(HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<Error>(HttpStatus.BAD_REQUEST);
+	}
 }
