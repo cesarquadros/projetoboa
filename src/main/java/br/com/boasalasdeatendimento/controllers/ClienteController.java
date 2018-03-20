@@ -25,6 +25,7 @@ import br.com.boasalasdeatendimento.model.ConsultaSala;
 import br.com.boasalasdeatendimento.model.Status;
 import br.com.boasalasdeatendimento.model.Unidade;
 import br.com.boasalasdeatendimento.util.DataUtil;
+import br.com.boasalasdeatendimento.validators.ValidaCPF;
 import br.com.boasalasdeatendimento.validators.ValidatorCliente;
 
 @RestController
@@ -89,8 +90,13 @@ public class ClienteController {
 	@PostMapping(value = "/cadastrarcliente")
 	public ResponseEntity<?> cadastrarCliente(@RequestBody Cliente cliente, Autenticacao autenticacao,
 			RedirectAttributes redirectAttributes, HttpSession session) {
-
+		
 		List<String> listaErros = validatorCliente.validarCliente(cliente);
+		
+		if(!ValidaCPF.isCPF(cliente.getCpf().replace("-", "").replace(".", ""))) {
+			listaErros.add("CPF digitado inválido");
+			return new ResponseEntity<List<String>>(listaErros, HttpStatus.EXPECTATION_FAILED);
+		}
 
 		if (listaErros.size() < 1) {
 

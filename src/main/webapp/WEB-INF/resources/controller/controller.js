@@ -56,7 +56,7 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 			
 			if(tipoErro == 502){
 				$scope.msgerro = 'Por favor preencher o campo: '
-			}else if(tipoErro == 400){		
+			} else if(tipoErro == 400){		
 				$scope.msgerro = 'OPS!!: '
 			} else{
 				$scope.msgerro = ''	
