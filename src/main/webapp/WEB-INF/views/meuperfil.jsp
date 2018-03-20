@@ -60,12 +60,52 @@ pageEncoding="UTF-8"%>
 					<div class="card-body ">
 						<fieldset>
 							<legend>Dados pessoais</legend>
-							<p><b>Nome:</b> ${cliente.nome}</p>
-							<p><b>Sobrenome:</b> ${cliente.sobrenome}</p>
-							<p><b>Telefone:</b> ${cliente.telFixo}</p>	
-							<p><b>Celular:</b> ${cliente.telCelular}</p>	
-							<p><b>Email:</b> ${cliente.email}</p>
-							<p><b>Cpf:</b> ${cliente.cpf}</p>
+							
+							<div class="row">
+								<div class="col-xs-12 col-sm-12 col-md-4">
+									<div class="form-group">
+										<label for="nome">Nome</label>
+										<input type="text" class="form-control" disabled id="nome" ng-model="cliente.nome"placeholder="Password">
+									</div>	
+								</div>	
+								<div class="col-xs-12 col-sm-12 col-md-4">
+									<div class="form-group">
+										<label for="nome">Sobrenome</label>
+										<input type="text" class="form-control" disabled id="nome" ng-model="cliente.sobrenome"placeholder="Sobrenome">
+									</div>	
+								</div>	
+								<div class="col-xs-12 col-sm-12 col-md-4">
+									<div class="form-group">
+										<label for="nome">Sexo</label>
+										<input type="text" class="form-control" disabled id="nome" ng-model="cliente.sexo"placeholder="Sexo">
+									</div>	
+								</div>									
+							</div>	
+							
+							
+							
+							
+							<div class="row">
+								<div class="col-xs-12 col-sm-12 col-md-4">
+									<div class="form-group">
+										<label for="CPF">CPF</label>
+										<input type="text" class="form-control" disabled id="nome" ng-model="cliente.cpf"placeholder="CPF">
+									</div>	
+								</div>	
+								<div class="col-xs-12 col-sm-12 col-md-4">
+									<div class="form-group">
+										<label for="nome">Telefone fixo</label>
+										<input type="text" class="form-control" disabled id="telefoneFixo" ng-model="cliente.telFixo"placeholder="Telefone fixo">
+									</div>	
+								</div>	
+								<div class="col-xs-12 col-sm-12 col-md-4">
+									<div class="form-group">
+										<label for="nome">Celular</label>
+										<input type="text" class="form-control" disabled id="telefoneCelular" ng-model="cliente.telCelular"placeholder="Celular">
+									</div>	
+								</div>									
+							</div>							
+																							
 						</fieldset>
 					</div>
 				</div>				
