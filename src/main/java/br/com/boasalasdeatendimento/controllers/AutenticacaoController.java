@@ -3,7 +3,11 @@ package br.com.boasalasdeatendimento.controllers;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -57,6 +61,33 @@ public class AutenticacaoController {
 			modelAndView.addObject("mensagemErro", "Usuário ou senha inválidos");
 			return modelAndView; 
 		}
+	}
+	
+	
+	@PostMapping(value = "/updatesenha")
+	public ResponseEntity<?> atualizaSenha(@RequestBody Autenticacao autenticacao,	RedirectAttributes redirectAttributes, HttpSession session) {
+
+		Cliente cliente = (Cliente) session.getAttribute("usuarioLogado");
+		
+		if (cliente != null) {
+			
+			Boolean verificaSenhaAtual = autenticarDao.findBySenha(autenticacao);
+			
+			if(verificaSenhaAtual) {
+				
+				Boolean alterarSenha = autenticarDao.updateSenha(autenticacao);
+				
+				if(alterarSenha) {
+					return ResponseEntity.ok(null);
+				} else {
+					return new ResponseEntity<Error>(HttpStatus.NOT_ACCEPTABLE);
+				}
+			} else {
+				return new ResponseEntity<Error>(HttpStatus.UNAUTHORIZED);
+			}
+		}
+		
+		return new ResponseEntity<String>("OK", HttpStatus.OK);
 	}
 
 	@RequestMapping("/logout")

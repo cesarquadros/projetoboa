@@ -39,61 +39,53 @@ public class ClienteController {
 
 	@Autowired
 	private ValidatorCliente validatorCliente;
-	
-	
-/*
-	@PostMapping(value = "/cadastrarcliente")
-	public ModelAndView cadastrarCliente(@RequestBody Cliente cliente, Autenticacao autenticacao,
-			RedirectAttributes redirectAttributes, HttpSession session) {
 
-		List<String> listaErros = validatorCliente.validarCliente(cliente);
+	/*
+	 * @PostMapping(value = "/cadastrarcliente") public ModelAndView
+	 * cadastrarCliente(@RequestBody Cliente cliente, Autenticacao autenticacao,
+	 * RedirectAttributes redirectAttributes, HttpSession session) {
+	 * 
+	 * List<String> listaErros = validatorCliente.validarCliente(cliente);
+	 * 
+	 * ModelAndView modelAndView = new ModelAndView("cadastrocliente");
+	 * 
+	 * if (listaErros.size() < 1) {
+	 * 
+	 * autenticacao.setUsuario(cliente.getEmail());
+	 * 
+	 * Boolean autenticacaoExiste =
+	 * autenticarDao.findByUsuario(autenticacao.getUsuario()); Boolean clienteExiste
+	 * = clienteDao.findByIdCpf(cliente.getCpf());
+	 * 
+	 * if (!autenticacaoExiste && !clienteExiste) {
+	 * 
+	 * autenticacao = autenticarDao.inserir(autenticacao);
+	 * 
+	 * cliente.setAutenticacao(autenticacao); Cliente clienteInserido =
+	 * clienteDao.inserir(cliente);
+	 * 
+	 * if (clienteInserido != null) {
+	 * redirectAttributes.addFlashAttribute("cliente", cliente);
+	 * session.setAttribute("usuarioLogado", cliente); return new
+	 * ModelAndView("redirect:index"); } else {
+	 * modelAndView.addObject("mensagemErro",
+	 * "Ocorreu um erro ao realizar o cadastro, tente novamente");
+	 * modelAndView.addObject("cliente", cliente); return new
+	 * ModelAndView("redirect:novocadastro"); } } else {
+	 * listaErros.add("CPF ou Email já cadastrados");
+	 * modelAndView.addObject("usuarioJaCadastrado", listaErros);
+	 * modelAndView.addObject("cliente", cliente); return modelAndView; } } else {
+	 * modelAndView.addObject("listaErros", listaErros);
+	 * modelAndView.addObject("cliente", cliente); return modelAndView; } }
+	 */
 
-		ModelAndView modelAndView = new ModelAndView("cadastrocliente");
-
-		if (listaErros.size() < 1) {
-
-			autenticacao.setUsuario(cliente.getEmail());
-
-			Boolean autenticacaoExiste = autenticarDao.findByUsuario(autenticacao.getUsuario());
-			Boolean clienteExiste = clienteDao.findByIdCpf(cliente.getCpf());
-
-			if (!autenticacaoExiste && !clienteExiste) {
-
-				autenticacao = autenticarDao.inserir(autenticacao);
-
-				cliente.setAutenticacao(autenticacao);
-				Cliente clienteInserido = clienteDao.inserir(cliente);
-
-				if (clienteInserido != null) {
-					redirectAttributes.addFlashAttribute("cliente", cliente);
-					session.setAttribute("usuarioLogado", cliente);
-					return new ModelAndView("redirect:index");
-				} else {
-					modelAndView.addObject("mensagemErro", "Ocorreu um erro ao realizar o cadastro, tente novamente");
-					modelAndView.addObject("cliente", cliente);
-					return new ModelAndView("redirect:novocadastro");
-				}
-			} else {
-				listaErros.add("CPF ou Email já cadastrados");
-				modelAndView.addObject("usuarioJaCadastrado", listaErros);
-				modelAndView.addObject("cliente", cliente);
-				return modelAndView;
-			}
-		} else {
-			modelAndView.addObject("listaErros", listaErros);
-			modelAndView.addObject("cliente", cliente);
-			return modelAndView;
-		}
-	}
-*/
-	
 	@PostMapping(value = "/cadastrarcliente")
 	public ResponseEntity<?> cadastrarCliente(@RequestBody Cliente cliente, Autenticacao autenticacao,
 			RedirectAttributes redirectAttributes, HttpSession session) {
-		
+
 		List<String> listaErros = validatorCliente.validarCliente(cliente);
-		
-		if(!ValidaCPF.isCPF(cliente.getCpf().replace("-", "").replace(".", ""))) {
+
+		if (!ValidaCPF.isCPF(cliente.getCpf().replace("-", "").replace(".", ""))) {
 			listaErros.add("CPF digitado inválido");
 			return new ResponseEntity<List<String>>(listaErros, HttpStatus.EXPECTATION_FAILED);
 		}
@@ -128,7 +120,6 @@ public class ClienteController {
 		}
 	}
 	
-	
 	@RequestMapping("/novocadastro")
 	public static ModelAndView formCadastro(HttpSession session) {
 
@@ -153,10 +144,27 @@ public class ClienteController {
 		}
 		return new ResponseEntity<Error>(HttpStatus.BAD_REQUEST);
 	}
-	
+
 	@PostMapping(value = "/cadacli")
 	public void carregarSalas() {
 
 		System.out.println("");
+	}
+
+	@RequestMapping("/meuperfil")
+	public static ModelAndView index2(HttpSession session) {
+
+		Cliente cliente = (Cliente) session.getAttribute("usuarioLogado");
+		ModelAndView modelAndView;
+		if (cliente != null) {
+			modelAndView = new ModelAndView("meuperfil");
+			modelAndView.addObject("dataAtual", DataUtil.getDateTime());
+			modelAndView.addObject("cliente", cliente);
+			return modelAndView;
+		}
+
+		modelAndView = new ModelAndView("login");
+
+		return modelAndView;
 	}
 }

@@ -142,4 +142,75 @@ public class AutenticarDao {
 		
 		return false;
 	}
+	
+	public Boolean findBySenha(Autenticacao autenticacao) {
+		
+		final StringBuilder sql = new StringBuilder();
+		
+		Connection conexao = conexaoDao.conectar();
+		PreparedStatement stmt = null;
+		
+		try {
+			
+			sql.append(" SELECT * FROM");
+			sql.append(" 	autenticacao");
+			sql.append(" WHERE");
+			sql.append(" 	idAutenticacao = ? ");
+			sql.append(" AND");
+			sql.append(" 	senha = ? ");
+			
+			int aux = 1;
+			
+			stmt = conexao.prepareStatement(sql.toString());
+			
+			stmt.setInt(aux++, autenticacao.getId());
+			stmt.setString(aux++, GenerateHashPasswordUtil.generateHash(autenticacao.getSenha()));
+			
+			ResultSet rs = stmt.executeQuery();
+			
+			if(rs.next()) {
+				return true;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			conexaoDao.fecharConexao(stmt, conexao);
+		}
+		
+		return false;
+	}
+	
+	public Boolean updateSenha(Autenticacao autenticacao) {
+		
+		final StringBuilder sql = new StringBuilder();
+		
+		Connection conexao = conexaoDao.conectar();
+		PreparedStatement stmt = null;
+		
+		try {
+			
+			sql.append(" UPDATE");
+			sql.append(" 	autenticacao");
+			sql.append(" SET");
+			sql.append("	senha = ? ");
+			sql.append(" WHERE");
+			sql.append(" 	idAutenticacao = ? ");
+			
+			int aux = 1;
+			stmt = conexao.prepareStatement(sql.toString());
+			stmt.setString(aux++, GenerateHashPasswordUtil.generateHash(autenticacao.getNovaSenha()));
+			stmt.setInt(aux++, autenticacao.getId());
+			
+			stmt.execute();
+			
+			return true;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			conexaoDao.fecharConexao(stmt, conexao);
+		}
+		return false;
+	}
 }
