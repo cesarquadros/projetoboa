@@ -9,6 +9,7 @@ public class Autenticacao {
 	private Perfil perfil;
 	private String usuario;
 	private String senha;
+	private String novaSenha;
 	
 	public Integer getId() {
 		return id;
@@ -33,5 +34,11 @@ public class Autenticacao {
 	}
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+	public String getNovaSenha() {
+		return novaSenha;
+	}
+	public void setNovaSenha(String novaSenha) {
+		this.novaSenha = novaSenha;
 	}
 }

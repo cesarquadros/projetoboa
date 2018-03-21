@@ -119,7 +119,7 @@ public class ClienteController {
 			return new ResponseEntity<List<String>>(listaErros, HttpStatus.BAD_GATEWAY);
 		}
 	}
-
+	
 	@RequestMapping("/novocadastro")
 	public static ModelAndView formCadastro(HttpSession session) {
 
