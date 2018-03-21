@@ -10,21 +10,21 @@
 							<div class="col-xs-12 col-sm-12 col-md-4">
 								<div class="form-group " id="divNome">
 									<label class="control-label">Nome</label> 
-									<input disabled type="text" class="form-control" name="nome" value="Cesar"> 
+									<input disabled type="text" class="form-control" name="nome" ng-model="cliente.nome"> 
 					
 								</div>
 							</div>
 							<div class="col-xs-12 col-sm-12 col-md-4">
 								<div class="form-group " id="divSobreNome">
 									<label class="control-label">Sobrenome</label> 
-									<input disabled type="text" class="form-control" name="sobrenome" value="Quadros"> 
+									<input disabled type="text" class="form-control" name="sobrenome" ng-model="cliente.sobrenome"> 
 								</div>
 							</div>		
 							
 							<div class="col-xs-12 col-sm-12 col-md-4">
 								<div class="form-group  " >
 									<label class="control-label">Sexo</label> 
-									<input disabled type="text" class="form-control" name="sobrenome"  value="Masculino"> 
+									<input disabled type="text" class="form-control" name="sobrenome"  ng-model="cliente.sexo"> 
 								</div>
 							</div>		
 						</div>
@@ -33,7 +33,7 @@
 							<div class="col-xs-12 col-sm-12 col-md-4">
 								<div class="form-group" id="divCpf">
 									<label class="control-label">CPF</label> 
-									<input disabled id="cpf" type="text" class="form-control" name="cpf" value="37765289829"/> 
+									<input disabled id="cpf" type="text" class="form-control" name="cpf" ng-model="cliente.cpf"/> 
 								</div>
 							</div>		
 							<div class="col-xs-12 col-sm-12 col-md-4">
@@ -52,7 +52,7 @@
 						</div>
 					
 						<div class="row">
-							<div class="col-xs-12 col-sm-12 col-md-4">
+							<div class="col-xs-12 col-sm-12 col-md-6">
 								<div class="form-group " id="divEmail">
 									<label class="control-label">Email</label> 
 									<input required type="email" class="form-control" name="email" ng-model="cliente.email" ng-blur="verificaCampoVazio(cliente.email, 'divEmail')" />

@@ -8,7 +8,7 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 	$scope.dataSelecionada;
 	$scope.agendamento;
 	$scope.statusAgendamento;
-	$scope.cliente;
+	$scope.cliente = {};
 	$scope.listaErros = [];
 	$scope.emailValido = true;
 	$scope.autenticacao = {};
@@ -279,6 +279,44 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 			$scope.result = true;
 			loader.removeClass('loader-ativo');
 		}
+	}
+	
+	
+	$scope.getCliente = function(idCliente) {
+		
+		loader = angular.element( document.querySelector('#loader'));
+		loader.addClass('loader-ativo');
+		
+		$scope.erro = false;
+		$scope.sucesso = false;
+		
+		$http({
+			method : 'post',
+			url : './getcliente/' + idCliente ,
+			data : JSON.stringify($scope.autenticacao),
+			beforeSend : function(xhr) {
+				xhr.setRequestHeader("Accept", "application/json");
+				xhr.setRequestHeader("Content-Type", "application/json");
+			},
+		}).then(function(retorno) {
+			
+			$scope.cliente = retorno.data;
+			
+			var retornoReq = retorno.statusText;
+			
+			loader.removeClass('loader-ativo');
+			
+		}, function(erro){
+			
+			var tipoErro = erro.status;
+			$scope.listaErros = erro.data;
+			$scope.erro = true;
+			
+			if(tipoErro == 401){
+				$scope.msgerro = 'SENHA ATUAL INVALIDA'
+			} 
+			loader.removeClass('loader-ativo');
+		});
 	}
 	
 	//-----------------------------------------------------FIM REQUISIÇÕES-----------------------------------------------------------

@@ -8,7 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,12 +18,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.boasalasdeatendimento.dao.AutenticarDao;
 import br.com.boasalasdeatendimento.dao.ClienteDao;
-import br.com.boasalasdeatendimento.dao.UnidadeDao;
 import br.com.boasalasdeatendimento.model.Autenticacao;
 import br.com.boasalasdeatendimento.model.Cliente;
-import br.com.boasalasdeatendimento.model.ConsultaSala;
-import br.com.boasalasdeatendimento.model.Status;
-import br.com.boasalasdeatendimento.model.Unidade;
 import br.com.boasalasdeatendimento.util.DataUtil;
 import br.com.boasalasdeatendimento.validators.ValidaCPF;
 import br.com.boasalasdeatendimento.validators.ValidatorCliente;
@@ -152,7 +148,7 @@ public class ClienteController {
 	}
 
 	@RequestMapping("/meuperfil")
-	public static ModelAndView index2(HttpSession session) {
+	public static ModelAndView meuPerfil(HttpSession session) {
 
 		Cliente cliente = (Cliente) session.getAttribute("usuarioLogado");
 		ModelAndView modelAndView;
@@ -166,5 +162,21 @@ public class ClienteController {
 		modelAndView = new ModelAndView("login");
 
 		return modelAndView;
+	}
+	
+	@RequestMapping("/getcliente/{id}")
+	public ResponseEntity<?> finalizarAgendamento(@PathVariable int id, HttpSession session) {
+
+		Cliente cliente = (Cliente) session.getAttribute("usuarioLogado");
+
+		if (cliente != null) {
+			Cliente clienteById = clienteDao.findByIdCpf(id);
+
+			if (clienteById != null) {
+				return ResponseEntity.ok(clienteById);
+			}
+			return new ResponseEntity<Error>(HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<Error>(HttpStatus.BAD_REQUEST);
 	}
 }

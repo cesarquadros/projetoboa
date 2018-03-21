@@ -13,7 +13,6 @@ import org.springframework.stereotype.Repository;
 
 import br.com.boasalasdeatendimento.model.Autenticacao;
 import br.com.boasalasdeatendimento.model.Cliente;
-import br.com.boasalasdeatendimento.util.DataUtil;
 
 @Repository
 public class ClienteDao{
@@ -177,8 +176,6 @@ public class ClienteDao{
 		return null;
 	}
 	
-	
-	
 	public Boolean findByIdCpf(String cpf){
 		
 		final StringBuilder sql = new StringBuilder();
@@ -209,5 +206,48 @@ public class ClienteDao{
 			conexaoDao.fecharConexao(stmt, conexao);
 		}
 		return false;
+	}
+	
+	public Cliente findByIdCpf(Integer id){
+		
+		final StringBuilder sql = new StringBuilder();
+		
+		Connection conexao = conexaoDao.conectar();
+		PreparedStatement stmt = null;
+		
+		try {
+			
+			sql.append(" SELECT * FROM");
+			sql.append("	cliente ");
+			sql.append(" WHERE ");
+			sql.append(" 	idCliente = ?");
+		
+			stmt = conexao.prepareStatement(sql.toString());
+			
+			stmt.setInt(1, id);
+			
+			ResultSet rs = stmt.executeQuery();
+			
+			if(rs.next()){
+				
+				Cliente cliente = new Cliente();
+				
+				cliente.setId(rs.getInt("idCliente"));
+				cliente.setNome(rs.getString("nome"));
+				cliente.setSobrenome(rs.getString("sobrenome"));
+				cliente.setTelFixo(rs.getString("tel_fixo"));
+				cliente.setTelCelular(rs.getString("tel_celular"));
+				cliente.setCpf(rs.getString("cpf"));
+				cliente.setEmail(rs.getString("email"));
+				cliente.setSexo(rs.getString("sexo"));
+				return cliente;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			conexaoDao.fecharConexao(stmt, conexao);
+		}
+		return null;
 	}
 }

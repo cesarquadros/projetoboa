@@ -86,7 +86,7 @@
 					
 					<div class="card card-nav-tabs">
 						<span class="loader" id="loader"></span>
-						<div class="card-body" style="padding: 50px;">
+						<div class="card-body" style="padding: 50px;" ng-init="getCliente('${cliente.id}')">
 							<jsp:include page="formeditarcadastro.jsp"></jsp:include>
 						</div>
 					</div>
