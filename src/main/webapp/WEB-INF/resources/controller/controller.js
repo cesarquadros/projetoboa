@@ -126,7 +126,7 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 			$scope.unidades = retorno.data;
 			$scope.mensagemUnidade = '';
 		}, function(erro) {
-			alert("Ops! Ocorreu um erro, tente novamente");
+			alert("Ops! Ocorreu um erro, atualize a pagina");
 		});
 	}
 	

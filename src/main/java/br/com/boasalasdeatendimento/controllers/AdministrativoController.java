@@ -21,7 +21,7 @@ public class AdministrativoController {
 			if(cliente.getAutenticacao().getPerfil().getId() == 2) {
 				
 				ModelAndView modelAndView = new ModelAndView("indexadm");
-				modelAndView.addObject("dataAtual", DataUtil.getDateTime());
+				modelAndView.addObject("dataAtual", DataUtil.getDataAtual());
 				
 				return modelAndView;
 			} else {

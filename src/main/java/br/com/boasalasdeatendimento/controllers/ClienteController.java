@@ -154,7 +154,7 @@ public class ClienteController {
 		ModelAndView modelAndView;
 		if (cliente != null) {
 			modelAndView = new ModelAndView("meuperfil");
-			modelAndView.addObject("dataAtual", DataUtil.getDateTime());
+			modelAndView.addObject("dataAtual", DataUtil.getDataAtual());
 			modelAndView.addObject("cliente", cliente);
 			return modelAndView;
 		}

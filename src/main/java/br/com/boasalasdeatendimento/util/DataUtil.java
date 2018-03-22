@@ -20,8 +20,14 @@ public class DataUtil {
 		}
 	}
 
-	public static String getDateTime() {
+	public static String getDataAtual() {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		Date date = new Date();
+		return dateFormat.format(date);
+	}
+	
+	public static String getHoraAtual() {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 		Date date = new Date();
 		return dateFormat.format(date);
 	}

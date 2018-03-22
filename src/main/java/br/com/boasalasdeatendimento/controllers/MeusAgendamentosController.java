@@ -18,7 +18,7 @@ import br.com.boasalasdeatendimento.dao.AgendamentoDao;
 import br.com.boasalasdeatendimento.model.Agendamento;
 import br.com.boasalasdeatendimento.model.Cliente;
 import br.com.boasalasdeatendimento.model.RelatorioAgendamento;
-import br.com.boasalasdeatendimento.model.Unidade;
+import br.com.boasalasdeatendimento.util.DataUtil;
 
 @RestController
 public class MeusAgendamentosController {
@@ -106,4 +106,22 @@ public class MeusAgendamentosController {
 		}
 		return new ResponseEntity<Error>(HttpStatus.BAD_REQUEST);
 	}
+	
+/*	@RequestMapping("/finalizaragendamentoscliente/{idCliente}")
+	public ResponseEntity<?> finalizarAgendamentoByCliente(@PathVariable int idCliente, HttpSession session) {
+
+		Cliente cliente = (Cliente) session.getAttribute("usuarioLogado");
+
+		if (cliente != null) {
+			String data = DataUtil.getDataAtual();
+			String hora = DataUtil.getHoraAtual();
+			Boolean cancelarAgendamento = agendamentoDao.finalizarAgendamentoByCLiente(idCliente, data, hora);
+
+			if (cancelarAgendamento) {
+				return new ResponseEntity<Error>(HttpStatus.OK);
+			}
+			return new ResponseEntity<Error>(HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<Error>(HttpStatus.BAD_REQUEST);
+	}*/
 }

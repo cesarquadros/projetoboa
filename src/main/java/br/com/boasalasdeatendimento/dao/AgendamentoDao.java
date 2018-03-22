@@ -67,7 +67,6 @@ public class AgendamentoDao {
 		return null;
 	}
 	
-	
 	public Boolean finalizarAgendamento(Integer idAgendamento) {
 
 		final StringBuilder sql = new StringBuilder();
@@ -89,6 +88,54 @@ public class AgendamentoDao {
 
 			stmt.setInt(aux++, 2);
 			stmt.setInt(aux++, idAgendamento);
+			
+			stmt.execute();
+			
+			return true;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			conexaoDao.fecharConexao(stmt, conexao);
+		}
+		return null;
+	}
+	
+	public Boolean finalizarAgendamentoByCLiente(Integer idCliente, String data, String hora) {
+
+		final StringBuilder sql = new StringBuilder();
+		
+		Connection conexao = conexaoDao.conectar();
+		PreparedStatement stmt = null;
+
+		try {
+
+			sql.append(" UPDATE AGENDAMENTO ");
+			sql.append(" SET ");
+			sql.append(" 	status = ? ");
+			sql.append(" FROM ");
+			sql.append(" 	agendamento a");
+			sql.append(" INNER JOIN ");
+			sql.append(" 	horarios h ");
+			sql.append(" ON ");
+			sql.append(" 	a.id_horario = h.idHorario ");
+			sql.append(" WHERE ");
+			sql.append(" 	id_cliente = ? ");
+			sql.append(" AND ");
+			sql.append(" 	((dt_agendamento < ?) OR (dt_agendamento = ? AND h.horario < ? ))");
+			sql.append(" AND ");
+			sql.append(" 	a.status = ? ");
+
+			stmt = conexao.prepareStatement(sql.toString());
+
+			int aux = 1;
+
+			stmt.setInt(aux++, Util.FINALIZADO);
+			stmt.setInt(aux++, idCliente);
+			stmt.setString(aux++, DataUtil.getDateFormatString(data, "dd/MM/yyyy", "yyyy/MM/dd"));
+			stmt.setString(aux++, DataUtil.getDateFormatString(data, "dd/MM/yyyy", "yyyy/MM/dd"));
+			stmt.setString(aux++, hora);
+			stmt.setInt(aux++, Util.ABERTO);
 			
 			stmt.execute();
 			
@@ -157,6 +204,8 @@ public class AgendamentoDao {
 			sql.append(" 	unidade u on s.id_unidade = u.idUnidade ");
 			sql.append(" WHERE	 ");
 			sql.append(" 	a.id_cliente = ? ");
+			sql.append(" ORDER BY ");
+			sql.append(" 	a.dt_agendamento ");
 
 			stmt = conexao.prepareStatement(sql.toString());
 
@@ -201,7 +250,6 @@ public class AgendamentoDao {
 		}
 		return null;
 	}
-	
 	
 	public List<Agendamento> relatorioAgendamento(RelatorioAgendamento relatorioAgendamento) {
 

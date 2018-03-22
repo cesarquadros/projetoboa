@@ -19,7 +19,7 @@ public class HomeController {
 		Cliente cliente = (Cliente) session.getAttribute("usuarioLogado");
 		
 		ModelAndView modelAndView = new ModelAndView("index");
-		modelAndView.addObject("dataAtual", DataUtil.getDateTime());
+		modelAndView.addObject("dataAtual", DataUtil.getDataAtual());
 		modelAndView.addObject("cliente", cliente);
 		
 		return modelAndView;
@@ -31,7 +31,7 @@ public class HomeController {
 		Cliente cliente = (Cliente) session.getAttribute("usuarioLogado");
 		
 		ModelAndView modelAndView = new ModelAndView("index");
-		modelAndView.addObject("dataAtual", DataUtil.getDateTime());
+		modelAndView.addObject("dataAtual", DataUtil.getDataAtual());
 		modelAndView.addObject("cliente", cliente);
 		return modelAndView;
 	}
