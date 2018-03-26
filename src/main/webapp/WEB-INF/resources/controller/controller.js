@@ -281,6 +281,54 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 		}
 	}
 	
+	$scope.editarCliente = function() {
+		
+		loader = angular.element( document.querySelector('#loader'));
+		loader.addClass('loader-ativo');
+		
+		$scope.result = false;
+		$scope.erro = false;
+		$scope.sucesso = false;
+		
+		$http({
+			method : 'post',
+			url : './updatecadastro',
+			data : JSON.stringify($scope.cliente),
+			beforeSend : function(xhr) {
+				xhr.setRequestHeader("Accept", "application/json");
+				xhr.setRequestHeader("Content-Type", "application/json");
+			},
+		}).then(function(retorno) {
+			
+			$scope.result = false;
+			
+			$scope.autenticacao = {};
+			
+			var retornoReq = retorno.statusText;
+			$scope.sucesso = true;
+			
+			$scope.msgerro = 'DADOS ATUALIZADOS';
+			
+			loader.removeClass('loader-ativo');
+			
+		}, function(erro){
+			
+			var tipoErro = erro.status;
+			$scope.listaErros = erro.data;
+			$scope.erro = true;
+			
+			if(tipoErro == 401){
+				$scope.msgerro = 'NAO E POSSIVEL ALTERAR O CPF'
+			} else if(tipoErro == 406){		
+				$scope.msgerro = 'OPS!! Ocorreu um erro, tente novamente '
+			} else{
+				$scope.msgerro = 'OPS!!: Ocorreu um erro inesperado'	
+			}		
+			
+			loader.removeClass('loader-ativo');
+		});
+	}
+	
 	
 	$scope.getCliente = function(idCliente) {
 		

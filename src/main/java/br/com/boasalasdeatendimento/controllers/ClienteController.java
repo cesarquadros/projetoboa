@@ -179,4 +179,38 @@ public class ClienteController {
 		}
 		return new ResponseEntity<Error>(HttpStatus.BAD_REQUEST);
 	}
+	
+	@PostMapping(value = "/updatecadastro")
+	public ResponseEntity<?> atualizaSenha(@RequestBody Cliente clienteUpdate,	RedirectAttributes redirectAttributes, HttpSession session) {
+
+		Cliente cliente = (Cliente) session.getAttribute("usuarioLogado");
+		
+		if (cliente != null) {
+			
+			Boolean validaIgualdadeCpf = validaIgualdadeCpf(cliente, clienteUpdate);
+			
+			if(validaIgualdadeCpf) {
+				
+				Boolean updateCliente = clienteDao.updateCliente(clienteUpdate);
+				
+				if(updateCliente) {
+					return ResponseEntity.ok(null);
+				} else {
+					return new ResponseEntity<Error>(HttpStatus.NOT_ACCEPTABLE);
+				}
+			} else {
+				return new ResponseEntity<Error>(HttpStatus.UNAUTHORIZED);
+			}
+		}
+		return new ResponseEntity<String>("OK", HttpStatus.OK);
+	}
+	
+	public boolean validaIgualdadeCpf(Cliente cliente, Cliente clienteUpdate) {
+
+		if(cliente.getCpf().equals(null) || cliente.getCpf().equals("") || !cliente.getCpf().equals(clienteUpdate.getCpf())) {
+			return false;
+		}
+		
+		return true;
+	}
 }

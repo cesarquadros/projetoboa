@@ -250,4 +250,44 @@ public class ClienteDao{
 		}
 		return null;
 	}
+	
+	public boolean updateCliente(Cliente cliente) {
+		
+		final StringBuilder sql = new StringBuilder();
+		
+		Connection conexao = conexaoDao.conectar();
+		PreparedStatement stmt = null;
+		
+		try {
+			
+			sql.append(" UPDATE ");
+			sql.append("	cliente ");
+			sql.append(" SET ");
+			sql.append(" 	tel_fixo = ? ,");
+			sql.append(" 	tel_celular = ? ,");
+			sql.append(" 	email = ? ");
+			sql.append(" WHERE ");
+			sql.append(" 	idCliente = ?");
+		
+			stmt = conexao.prepareStatement(sql.toString());
+			
+			int aux = 1;
+			
+			stmt.setString(aux++, cliente.getTelFixo().replace("(", "").replace(")", "").replace("-", ""));
+			stmt.setString(aux++, cliente.getTelCelular().replace("(", "").replace(")", "").replace("-", ""));
+			stmt.setString(aux++, cliente.getEmail());
+			stmt.setInt(aux++, cliente.getId());
+			
+			stmt.execute();
+			
+			return true;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			conexaoDao.fecharConexao(stmt, conexao);
+		}
+		
+		return false;
+	}
 }

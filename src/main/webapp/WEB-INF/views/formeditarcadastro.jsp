@@ -3,7 +3,7 @@
 	<div class="col-xs-12 col-sm-12 col-md-6">
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12">
-				<form class="form" name="mainForm" method="post" ng-submit="cadastrarCliente(cliente, confirmaSenha)">
+				<form class="form" name="mainForm" method="post" ng-submit="editarCliente()">
 					<fieldset>
 						<legend>Dados pessoais</legend>
 						<div class="row">
