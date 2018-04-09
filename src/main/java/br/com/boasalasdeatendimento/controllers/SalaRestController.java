@@ -17,8 +17,20 @@ import br.com.boasalasdeatendimento.model.Unidade;
 @RestController
 public class SalaRestController {
 
-	@PostMapping(value = "/carregarsalas")
+	@GetMapping(value = "/carregarsalas")
 	public ResponseEntity<List<Unidade>> carregarSalas(@RequestBody ConsultaSala consultaSala) {
+
+		List<Unidade> listaUnidade = new ArrayList<Unidade>();
+
+		UnidadeDao unidadeDao = new UnidadeDao();
+
+		listaUnidade = unidadeDao.listaUnidades();
+
+		return ResponseEntity.ok(listaUnidade);
+	}
+	
+	@GetMapping(value = "/salas")
+	public ResponseEntity<List<Unidade>> getSalas() {
 
 		List<Unidade> listaUnidade = new ArrayList<Unidade>();
 
