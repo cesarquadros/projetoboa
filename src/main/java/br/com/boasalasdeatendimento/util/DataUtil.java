@@ -3,6 +3,10 @@ package br.com.boasalasdeatendimento.util;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
+
+import org.joda.time.DateTimeZone;
 
 public class DataUtil {
 
@@ -52,6 +56,12 @@ public class DataUtil {
 	}
 	
 	public static String getHoraAtual() {
+		
+		String TIME_ZONE = "America/Sao_Paulo";
+		
+		TimeZone.setDefault(TimeZone.getTimeZone(TIME_ZONE));  
+        DateTimeZone.setDefault(DateTimeZone.forID(TIME_ZONE));
+		
 		SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 		Date date = new Date();
 		return dateFormat.format(date);

@@ -8,10 +8,13 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 	$scope.dataSelecionada;
 	$scope.agendamento;
 	$scope.statusAgendamento;
-	$scope.cliente;
+	$scope.cliente = {};
 	$scope.listaErros = [];
 	$scope.emailValido = true;
+	$scope.autenticacao = {};
 	
+	
+	//------------------------------------------------------------- Requisições ---------------------------------------------------
 	$scope.cadastrarCliente = function(cliente, confirmaSenha) {
 		
 		
@@ -21,50 +24,50 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 		
 		if ($scope.result) {
 		
-		campoSenha.removeClass('has-error');
-		campoSenha.addClass('has-success');
-		
-		$scope.result = false;
+			campoSenha.removeClass('has-error');
+			campoSenha.addClass('has-success');
 			
-		loader = angular.element( document.querySelector('#loader'));
-		loader.addClass('loader-ativo');
-		
-		$scope.erro = false;
-		$scope.carregando = 'Aguarde...'
-	//	cliente.data = document.getElementById('data').value;
-		
-		$http({
-			method : 'post',
-			url : './cadastrarcliente',
-			data : JSON.stringify(cliente),
-			beforeSend : function(xhr) {
-				xhr.setRequestHeader("Accept", "application/json");
-				xhr.setRequestHeader("Content-Type", "application/json");
-			},
-		}).then(function(retorno) {
+			$scope.result = false;
+				
+			loader = angular.element(document.querySelector('#loader'));
+			loader.addClass('loader-ativo');
 			
-			$scope.unidades = retorno.statusText;
-			$scope.sucesso = true;
+			$scope.erro = false;
+			$scope.carregando = 'Aguarde...'
+		//	cliente.data = document.getElementById('data').value;
 			
-			$scope.carregando = '';
-			loader.removeClass('loader-ativo');
-		}, function(erro){
-			
-			var tipoErro = erro.status;
-			$scope.listaErros = erro.data;
-			$scope.erro = true;
-			
-			if(tipoErro == 502){
-				$scope.msgerro = 'Por favor preencher o campo: '
-			}else if(tipoErro == 400){		
-				$scope.msgerro = 'OPS!!: '
-			} else{
-				$scope.msgerro = ''	
-			}		
-			
-			loader.removeClass('loader-ativo');
-			$scope.carregando = ''
-		});
+			$http({
+				method : 'post',
+				url : './cadastrarcliente',
+				data : JSON.stringify(cliente),
+				beforeSend : function(xhr) {
+					xhr.setRequestHeader("Accept", "application/json");
+					xhr.setRequestHeader("Content-Type", "application/json");
+				},
+			}).then(function(retorno) {
+				
+				$scope.unidades = retorno.statusText;
+				$scope.sucesso = true;
+				
+				$scope.carregando = '';
+				loader.removeClass('loader-ativo');
+			}, function(erro){
+				
+				var tipoErro = erro.status;
+				$scope.listaErros = erro.data;
+				$scope.erro = true;
+				
+				if(tipoErro == 502){
+					$scope.msgerro = 'Por favor preencher o campo: '
+				} else if(tipoErro == 400){		
+					$scope.msgerro = 'OPS!!: '
+				} else{
+					$scope.msgerro = ''	
+				}		
+				
+				loader.removeClass('loader-ativo');
+				$scope.carregando = ''
+			});
 		
 		} else {
 			campoSenha.removeClass('has-success');
@@ -74,8 +77,7 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 		}
 		
 	}
-	
-	//------------------------------------------------------------- Requisições ---------------------------------------------------
+
 	$scope.realizarAgendamento = function(idHora, idCliente) {
 
 		loader = angular.element( document.querySelector('#loader'));
@@ -124,7 +126,7 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 			$scope.unidades = retorno.data;
 			$scope.mensagemUnidade = '';
 		}, function(erro) {
-			alert("Ops! Ocorreu um erro, tente novamente");
+			alert("Ops! Ocorreu um erro, atualize a pagina");
 		});
 	}
 	
@@ -210,6 +212,157 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 			}
 		}, function(erro){
 			alert("Ops! Ocorreu um erro, tente novamente");
+			loader.removeClass('loader-ativo');
+		});
+	}
+	
+	$scope.editarSenha = function(idAutenticacao) {
+		
+		campoSenha = angular.element( document.querySelector('#divConfirmarSenha'));
+		
+		$scope.autenticacao.id = idAutenticacao;
+		
+		$scope.result = angular.equals($scope.autenticacao.novaSenha, $scope.autenticacao.confirmaNovaSenha);
+		
+		loader = angular.element( document.querySelector('#loader'));
+		loader.addClass('loader-ativo');
+		
+		if($scope.result){
+			
+			$scope.result = false;
+			$scope.erro = false;
+			$scope.sucesso = false;
+			
+			$http({
+				method : 'post',
+				url : './updatesenha',
+				data : JSON.stringify($scope.autenticacao),
+				beforeSend : function(xhr) {
+					xhr.setRequestHeader("Accept", "application/json");
+					xhr.setRequestHeader("Content-Type", "application/json");
+				},
+			}).then(function(retorno) {
+				
+				$scope.result = false;
+				
+				$scope.autenticacao = {};
+				
+				var retornoReq = retorno.statusText;
+				$scope.sucesso = true;
+				
+				$scope.msgerro = 'SENHA ATUALIZADA';
+				
+				campoSenha.removeClass('has-error');
+				campoSenha.addClass('has-success');
+				loader.removeClass('loader-ativo');
+				
+			}, function(erro){
+				
+				var tipoErro = erro.status;
+				$scope.listaErros = erro.data;
+				$scope.erro = true;
+				
+				if(tipoErro == 401){
+					$scope.msgerro = 'SENHA ATUAL INVALIDA'
+				} else if(tipoErro == 406){		
+					$scope.msgerro = 'OPS!! Ocorreu um erro, tente novamente '
+				} else{
+					$scope.msgerro = 'OPS!!: Ocorreu um erro inesperado'	
+				}		
+				
+				loader.removeClass('loader-ativo');
+			});
+		} else {
+			campoSenha.removeClass('has-success');
+			campoSenha.addClass('has-error');
+			$scope.confirmaSenha = '';
+			$scope.result = true;
+			loader.removeClass('loader-ativo');
+		}
+	}
+	
+	$scope.editarCliente = function() {
+		
+		loader = angular.element( document.querySelector('#loader'));
+		loader.addClass('loader-ativo');
+		
+		$scope.result = false;
+		$scope.erro = false;
+		$scope.sucesso = false;
+		
+		$http({
+			method : 'post',
+			url : './updatecadastro',
+			data : JSON.stringify($scope.cliente),
+			beforeSend : function(xhr) {
+				xhr.setRequestHeader("Accept", "application/json");
+				xhr.setRequestHeader("Content-Type", "application/json");
+			},
+		}).then(function(retorno) {
+			
+			$scope.result = false;
+			
+			$scope.autenticacao = {};
+			
+			var retornoReq = retorno.statusText;
+			$scope.sucesso = true;
+			
+			$scope.msgerro = 'DADOS ATUALIZADOS';
+			
+			loader.removeClass('loader-ativo');
+			
+		}, function(erro){
+			
+			var tipoErro = erro.status;
+			$scope.listaErros = erro.data;
+			$scope.erro = true;
+			
+			if(tipoErro == 401){
+				$scope.msgerro = 'NAO E POSSIVEL ALTERAR O CPF'
+			} else if(tipoErro == 406){		
+				$scope.msgerro = 'OPS!! Ocorreu um erro, tente novamente '
+			} else{
+				$scope.msgerro = 'OPS!!: Ocorreu um erro inesperado'	
+			}		
+			
+			loader.removeClass('loader-ativo');
+		});
+	}
+	
+	
+	$scope.getCliente = function(idCliente) {
+		
+		loader = angular.element( document.querySelector('#loader'));
+		loader.addClass('loader-ativo');
+		
+		$scope.erro = false;
+		$scope.sucesso = false;
+		
+		$http({
+			method : 'post',
+			url : './getcliente/' + idCliente ,
+			data : JSON.stringify($scope.autenticacao),
+			beforeSend : function(xhr) {
+				xhr.setRequestHeader("Accept", "application/json");
+				xhr.setRequestHeader("Content-Type", "application/json");
+			},
+		}).then(function(retorno) {
+			
+			$scope.cliente = retorno.data;
+			
+			var retornoReq = retorno.statusText;
+			
+			loader.removeClass('loader-ativo');
+			
+		}, function(erro){
+			
+			var tipoErro = erro.status;
+			$scope.listaErros = erro.data;
+			$scope.erro = true;
+			
+			if(tipoErro == 401){
+				$scope.msgerro = 'SENHA ATUAL INVALIDA'
+			} 
 			loader.removeClass('loader-ativo');
 		});
 	}

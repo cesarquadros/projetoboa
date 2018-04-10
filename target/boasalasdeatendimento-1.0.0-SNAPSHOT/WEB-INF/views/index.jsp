@@ -9,7 +9,7 @@ pageEncoding="UTF-8"%>
 	<link rel="icon" type="image/png" href="source/img/favicon.png"	media="screen">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>BOA Salas de Atendimento</title>
+	<title>Salas de atendimento</title>
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'	name='viewport' />
 
@@ -49,7 +49,7 @@ pageEncoding="UTF-8"%>
 	</div>
 	
 	<div class="wrapper">
-		<div class="header header-filter" style="background-image: url('resources/img/examples/city.jpg'); min-height: 170px"></div>
+		<div class="header header-filter" style="background-image: url('resources/img/examples/city.jpg'); min-height: 140px"></div>
 		<div class="main main-raised">
 			<div class="profile-content">
 				<div class="container" style="padding-bottom: 5%;">
@@ -126,11 +126,46 @@ pageEncoding="UTF-8"%>
 						</div>
 	
 						<div id="menu2" class="tab-pane fade in active">
-							<h3>Informações</h3>
-							<p>Sed ut perspiciatis unde omnis iste natus error sit
-							voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+							<div class="card card-nav-tabs">
+								<div class="card-body ">
+									<div class="row">
+										<div class="col-xs-12 col-sm-12 col-md-12" style="text-align: justify;">
+											<h3>Salas de atendimento</h3>
+											<p>Reserve sua sala com maior praticidade, basta escolher a sala, a data e o horário de seu atendimento, 
+											verificar a disponibilidade e efetuar sua reserva. para cancelamento sem cobranças é importante processar 
+											o cancelamento com 24 horas de antecedência da data de sua reserva. A baixo a descrição de preços e modalidades de contratação:</p>
+											<br />
+											<h3>Modalidades de contratação e preços</h3>
+										</div>
+									</div>
+									
+									<div class="row">
+										<div class="col-xs-12 col-sm-12 col-md-12">
+											<p style="text-align: justify;"><strong>Fixa:</strong> envolve compromisso, a sala fica reservada para o profissional no mesmo dia da semana e horários por todo o mês, 
+											mesmo que você não use. O pagamento é antecipado e o profissional garante a exclusividade do horário e local. 
+											Pagando R$5,00 mais barato em relação a hora avulsa. Nesta modalidade você conta com a facilidade de dois reagendamentos 
+											por horário fixo desde que avisado que não irá utilizar a sala em determinado dia com 24 horas de antecedência e o horário do 
+											reagendamento deve ser programado sempre no mesmo mês, de acordo com a disponibilidade de salas. O Pagamento é feito de maneira 
+											antecipada garantindo a sua reserva mensal.</p>
+											<p><strong>Valores:</strong> Período da manhã (08:00 as 11:00) R$20,00 Período da Tarde (12:00 as 16:00) R$25,00 
+											Período Noturno (17:00 as 21:00) R$30,00</p>
+											<br />
+										</div>
+										
+										<div class="col-xs-12 col-sm-12 col-md-12">
+											<p style="text-align: justify;"><strong>Avulsa:</strong> envolve comodidade, a sala fica reservada para o profissional somente 
+											no dia e horário que ele solicitar esta reserva, as reservas devem ser feitas semanalmente de acordo com a disponibilidade das salas. 
+											O cancelamento deve ser avisado com 24 horas uteis de antecedência ao horário agendado. O pagamento é feito no final do mês após a 
+											utilização dos horários correspondentes.
+											</p>
+											<p><strong>Valores:</strong>Período da manhã (08:00 as 11:00) R$25,00 Período da Tarde (12:00 as 16:00) R$30,00 
+											Período Noturno (17:00 as 21:00) R$35,00
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
-	
 					</div>
 				</div>
 			</div>

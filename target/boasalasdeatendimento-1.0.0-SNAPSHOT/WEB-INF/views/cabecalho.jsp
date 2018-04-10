@@ -11,26 +11,27 @@
 			</button>
 
 			<!-- Logotipo -->
-			<a href="./index">
-				<img style="width: 8%;" src="./resources/img/boa/logo_boa_branco.png" alt="Creative Tim Logo">
-			</a>
+			<ul class="nav navbar-nav navbar-left">
+				<li><h4><strong>Salas de atendimento</strong></h4></li>
+				<li><a href="./index">Inicio</a></li>
+			</ul>
 			
 		</div>
 
 		<div class="collapse navbar-collapse" id="navigation-example" ng-init="verificarLogin('${cliente.nome}')">
 			<ul class="nav navbar-nav navbar-right">
+				
 				<li ng-if="!usuarioLogado"><a href="novocadastro"> Cadastrar </a></li>
 				<li ng-if="!usuarioLogado"><a href="login">Efetuar login</a></li>
 				<li ng-if="usuarioLogado">
 					<div class="col-md-3 dropdown">
 						<a href="#" class="btn btn-simple dropdown-toggle"
-							data-toggle="dropdown" style="color: white">Seja bem vindo ${cliente.nome} <b
+							data-toggle="dropdown" style="color: white"><strong>Seja bem vindo ${cliente.nome}</strong> <b
 							class="caret"></b>
 						</a>
 						<ul class="dropdown-menu">
 							<li><a href="meusagendamentos">Meus agendamentos</a></li>
-							<li><a href="#">Alterar senha</a></li>
-							<li><a href="#" data-toggle="modal" data-target="#myModal">Alterar dados</a></li>
+							<li><a href="./meuperfil">Meu perfil</a></li>
 							<li class="divider"></li>
 							<li><a href="./logout">Sair</a></li>
 						</ul>
