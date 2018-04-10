@@ -19,11 +19,36 @@ public class DataUtil {
 			return null;
 		}
 	}
+	
+	public static Date stringToDate(String dataString) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		try {
+			Date date =  dateFormat.parse(dataString);
+			return date;
+		} catch (ParseException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 
 	public static String getDataAtual() {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		Date date = new Date();
 		return dateFormat.format(date);
+	}
+	
+	public static Date getDataAtualDate() {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		Date date = new Date();
+		String dataString = dateFormat.format(date);
+		
+		try {
+			Date data = dateFormat.parse(dataString);
+			return data;
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	public static String getHoraAtual() {

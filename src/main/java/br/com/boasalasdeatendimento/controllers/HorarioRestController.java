@@ -31,16 +31,18 @@ public class HorarioRestController {
 		
 		if(cliente != null) {
 			
+			if(DataUtil.stringToDate(consultaSala.getData()).before(DataUtil.getDataAtualDate())) {
+				return ResponseEntity.ok(null);
+			} else {
+			
 			List<Horario> listaHorario = new ArrayList<Horario>();
 	
-			consultaSala.setData(DataUtil.getDateFormatString(consultaSala.getData(),"dd/MM/yyyy" ,"yyyyMMdd"));
-			
 			listaHorario = horarioDao.horariosDisponiveis(consultaSala);
 	
 			redirectAttributes.addFlashAttribute("clieente", cliente);
 			
 			return ResponseEntity.ok(listaHorario);
-			
+			}
 		} else {
 			return ResponseEntity.ok(null);
 		}

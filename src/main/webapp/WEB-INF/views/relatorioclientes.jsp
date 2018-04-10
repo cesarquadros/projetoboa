@@ -32,7 +32,6 @@
 								<th>Email</th>
 								<th>Telefone fixo</th>
 								<th>Celular</th>
-								<th>Data de nascimento</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -42,7 +41,6 @@
 								<td>{{cliente.email}}</td>
 								<td>{{cliente.telFixo}}</td>
 								<td>{{cliente.telCelular}}</td>
-								<td>{{cliente.dataNascimentoString}}</td>
 							</tr>
 						</tbody>
 					</table>

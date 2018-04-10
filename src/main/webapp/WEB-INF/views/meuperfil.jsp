@@ -44,7 +44,7 @@
 
 	<div class="wrapper">
 		<div class="header header-filter"
-			style="background-image: url('resources/img/examples/city.jpg'); min-height: 170px"></div>
+			style="background-image: url('resources/img/examples/city.jpg'); min-height: 140px"></div>
 		<div class="main main-raised">
 			<div class="profile-content">
 				<div class="container" style="padding-bottom: 3%;">

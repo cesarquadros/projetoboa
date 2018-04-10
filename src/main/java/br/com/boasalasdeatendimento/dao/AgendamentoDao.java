@@ -109,7 +109,8 @@ public class AgendamentoDao {
 		PreparedStatement stmt = null;
 
 		try {
-
+			
+			/*SQL SERVER*/ 
 			sql.append(" UPDATE AGENDAMENTO ");
 			sql.append(" SET ");
 			sql.append(" 	status = ? ");
@@ -125,7 +126,22 @@ public class AgendamentoDao {
 			sql.append(" 	((dt_agendamento < ?) OR (dt_agendamento = ? AND h.horario < ? ))");
 			sql.append(" AND ");
 			sql.append(" 	a.status = ? ");
-
+			
+			/*MYSQL
+			sql.append(" UPDATE AGENDAMENTO AS a  ");
+			sql.append(" INNER JOIN ");
+			sql.append(" 	horarios h ");
+			sql.append(" ON ");
+			sql.append(" 	a.id_horario = h.idHorario ");
+			sql.append(" SET ");
+			sql.append(" 	a.status = ? ");
+			sql.append(" WHERE ");
+			sql.append(" 	a.id_cliente = ? ");
+			sql.append(" AND ");
+			sql.append(" 	((a.dt_agendamento < ?) OR (a.dt_agendamento = ? AND h.horario < ? ))");
+			sql.append(" AND ");
+			sql.append(" 	a.status = ? ");
+			*/
 			stmt = conexao.prepareStatement(sql.toString());
 
 			int aux = 1;

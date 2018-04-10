@@ -89,6 +89,8 @@ public class ClienteController {
 		if (listaErros.size() < 1) {
 
 			autenticacao.setUsuario(cliente.getEmail());
+			
+			autenticacao.setSenha(cliente.getAutenticacao().getSenha());
 
 			Boolean autenticacaoExiste = autenticarDao.findByUsuario(autenticacao.getUsuario());
 			Boolean clienteExiste = clienteDao.findByIdCpf(cliente.getCpf());

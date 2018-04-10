@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import br.com.boasalasdeatendimento.model.ConsultaSala;
 import br.com.boasalasdeatendimento.model.Horario;
+import br.com.boasalasdeatendimento.util.DataUtil;
 
 @Repository
 public class HorarioDao {
@@ -25,6 +26,7 @@ public class HorarioDao {
 		
 		Connection conexao = c.conectar();
 		PreparedStatement stmt = null;
+		Boolean dataMaior = false;
 
 		try {
 
@@ -37,20 +39,33 @@ public class HorarioDao {
 			sql.append(" 	agendamento a ");
 			sql.append(" WHERE ");
 			sql.append(" 	h.idHorario = a.id_horario ");
-			sql.append(" AND ");
-			sql.append(" 	a.dt_agendamento = ? ");
 			sql.append(" AND  ");
 			sql.append(" 	a.id_sala = ? ");
 			sql.append(" AND  ");
-			sql.append(" 	a.status = ? ) ");
+			sql.append(" 	a.status = ?  ");
+			sql.append(" AND  ");
+			
+			if(DataUtil.stringToDate(consultaSala.getData()).after(DataUtil.getDataAtualDate())) {
+				sql.append("	a.dt_agendamento > ? )");
+				dataMaior = true;
+			} else {
+				sql.append("	a.dt_agendamento = ? )");
+				sql.append(" AND ");
+				sql.append("	h.horario > ? ");
+			}
 
 			stmt = conexao.prepareStatement(sql.toString());
 
 			int aux = 1;
-
-			stmt.setString(aux++, consultaSala.getData());
+			
+			consultaSala.setData(DataUtil.getDateFormatString(consultaSala.getData(),"dd/MM/yyyy" ,"yyyyMMdd"));
+			
 			stmt.setString(aux++, consultaSala.getSala());
 			stmt.setInt(aux++, 1);
+			stmt.setString(aux++, consultaSala.getData());
+			
+			if(!dataMaior)
+				stmt.setString(aux++, DataUtil.getHoraAtual());
 
 			ResultSet rs = stmt.executeQuery();
 
