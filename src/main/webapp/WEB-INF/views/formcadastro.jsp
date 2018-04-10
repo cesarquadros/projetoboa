@@ -2,7 +2,7 @@
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-4">
 			<div class="form-group label-floating" id="divNome">
-				<label class="control-label">Nome Completo</label> 
+				<label class="control-label">Nome</label> 
 				<input required type="text" class="form-control" name="nome" ng-model="cliente.nome" ng-blur="verificaCampoVazio(cliente.nome, 'divNome')" > 
 
 			</div>
