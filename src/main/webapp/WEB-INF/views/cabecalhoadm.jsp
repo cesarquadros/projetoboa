@@ -11,10 +11,8 @@
 			</button>
 			<!-- Logotipo -->
 			<ul class="nav navbar-nav navbar-left">
-				<li><h4><strong>Salas de atendimento</strong></h4></li>
-				<li><a href="./index">Inicio</a></li>
+				<li><a href="./index" style="font-size: 20px;"><strong>Salas de atendimento</strong></a></li>
 			</ul>
-
 		</div>
 
 		<div class="collapse navbar-collapse" id="navigation-example">

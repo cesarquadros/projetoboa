@@ -132,11 +132,15 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 	
 	$scope.carregarHorarios = function(numeroSala, idSala) {
 		
+		$scope.listaHorario = [];
+		
 		$scope.numeroSala = numeroSala;
 		$scope.dataSelecionada = document.getElementById('data').value;
 		$scope.idSala = idSala;
 		//newDate = new Date(data);
 		consultaSala = { "sala" : $scope.idSala, "data" : $scope.dataSelecionada};
+		
+		$scope.mensagemHorarios = 'Carregando...';
 		
 		$http({
 			method : 'post',
@@ -148,6 +152,7 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 			},
 		}).then(function(retorno) {
 			$scope.listaHorario = retorno.data;
+			$scope.mensagemHorarios = '';
 		}, function(erro) {
 			alert("Ops! Ocorreu um erro, tente novamente");
 		});

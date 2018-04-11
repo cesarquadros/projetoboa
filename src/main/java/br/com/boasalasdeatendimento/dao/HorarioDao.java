@@ -46,7 +46,7 @@ public class HorarioDao {
 			sql.append(" AND  ");
 			
 			if(DataUtil.stringToDate(consultaSala.getData()).after(DataUtil.getDataAtualDate())) {
-				sql.append("	a.dt_agendamento > ? )");
+				sql.append("	a.dt_agendamento = ? )");
 				dataMaior = true;
 			} else {
 				sql.append("	a.dt_agendamento = ? )");

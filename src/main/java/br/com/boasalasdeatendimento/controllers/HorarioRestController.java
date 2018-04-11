@@ -6,7 +6,9 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -45,6 +47,35 @@ public class HorarioRestController {
 			}
 		} else {
 			return ResponseEntity.ok(null);
+		}
+	}
+	
+	@GetMapping(value = "/carregarhorarioteste")
+	public ResponseEntity<?> testeGeet(HttpSession session, RedirectAttributes redirectAttributes) {
+		
+		ConsultaSala consultaSala = new ConsultaSala();
+		
+		consultaSala.setSala("1");
+		consultaSala.setData("11/04/2018");
+		
+		Cliente cliente = (Cliente) session.getAttribute("usuarioLogado");
+		
+		if(cliente == null) {
+			
+			if(DataUtil.stringToDate(consultaSala.getData()).before(DataUtil.getDataAtualDate())) {
+				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			} else {
+			
+			List<Horario> listaHorario = new ArrayList<Horario>();
+	
+			listaHorario = horarioDao.horariosDisponiveis(consultaSala);
+	
+			redirectAttributes.addFlashAttribute("clieente", cliente);
+			
+			return ResponseEntity.ok(listaHorario);
+			}
+		} else {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 	}
 }

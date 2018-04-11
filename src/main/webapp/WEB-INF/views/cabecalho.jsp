@@ -12,8 +12,7 @@
 
 			<!-- Logotipo -->
 			<ul class="nav navbar-nav navbar-left">
-				<li><h4><strong>Salas de atendimento</strong></h4></li>
-				<li><a href="./index">Inicio</a></li>
+				<li><a href="./index" style="font-size: 20px;"><strong>Salas de atendimento</strong></a></li>
 			</ul>
 			
 		</div>
@@ -21,8 +20,8 @@
 		<div class="collapse navbar-collapse" id="navigation-example" ng-init="verificarLogin('${cliente.nome}')">
 			<ul class="nav navbar-nav navbar-right">
 				
-				<li ng-if="!usuarioLogado"><a href="novocadastro"> Cadastrar </a></li>
-				<li ng-if="!usuarioLogado"><a href="login">Efetuar login</a></li>
+				<li ng-if="!usuarioLogado"><a href="novocadastro"> <strong>Cadastrar</strong> </a></li>
+				<li ng-if="!usuarioLogado"><a href="login"><strong>Efetuar login</strong></a></li>
 				<li ng-if="usuarioLogado">
 					<div class="col-md-3 dropdown">
 						<a href="#" class="btn btn-simple dropdown-toggle"

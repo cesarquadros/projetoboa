@@ -33,21 +33,6 @@ pageEncoding="UTF-8"%>
 	<!--   Menu   -->
 	<jsp:include page="cabecalho.jsp"></jsp:include>
 	
-	<!-- Modal Cadastro -->
-	<div class="modal fade"  id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h2 class="modal-title" id="myModalLabel">Novo Cadastro</h2>
-				</div>
-				<div class="modal-body" style="padding-left: 50px; padding-right: 50px;">
-					<jsp:include page="formcadastro.jsp"></jsp:include>
-				</div>
-			</div>
-		</div>
-	</div>
-	
 	<div class="wrapper">
 		<div class="header header-filter" style="background-image: url('resources/img/examples/city.jpg'); min-height: 140px"></div>
 		<div class="main main-raised">
@@ -106,6 +91,7 @@ pageEncoding="UTF-8"%>
 										<span class="loader" id="loader"></span>
 										<div class="card-body">
 										<h3 style="text-align: center;">Sala {{numeroSala}} - Grade de horários {{dataSelecionada}}</h3>
+										<p>{{mensagemHorarios}}</p>
 										<div style="overflow: auto; height: 345px;">
 											<table class="table">
 												
