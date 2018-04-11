@@ -10,16 +10,15 @@
 					class="icon-bar"></span>
 			</button>
 			<!-- Logotipo -->
-			<a href="./index">
-				<img style="width: 5%;" src="./resources/img/boa/logo_boa_branco.png" alt="Logo Boa">
-			</a>	
-
+			<ul class="nav navbar-nav navbar-left">
+				<li><a href="./index" style="font-size: 20px;"><strong>Salas de atendimento</strong></a></li>
+			</ul>
 		</div>
 
 		<div class="collapse navbar-collapse" id="navigation-example">
 			<ul class="nav navbar-nav navbar-right">
 				<li ng-if="!usuarioLogado"><a href="#" data-toggle="modal"
-					data-target="#myModal"> LOGIN ADM </a></li>
+					data-target="#myModal"> <strong>LOGIN ADM</strong> </a></li>
 			</ul>
 		</div>
 	</div>

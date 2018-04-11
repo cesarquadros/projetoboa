@@ -39,10 +39,9 @@ pageEncoding="UTF-8"%>
 				<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
 				</button>
 
-			<!-- Logotipo -->
-			<a href="./index">
-				<img style="width: 5%;" src="./resources/img/boa/logo_boa_branco.png" alt="Logo Boa">
-			</a>
+			<ul class="nav navbar-nav navbar-left">
+				<li><h4><strong>Salas de atendimento</strong></h4></li>
+			</ul>
 			
 		</div>
 
@@ -55,7 +54,7 @@ pageEncoding="UTF-8"%>
 </nav>
 
 <div class="wrapper">
-<div class="header header-filter" style="background-image: url('resources/img/examples/city.jpg'); min-height: 170px"></div>
+<div class="header header-filter" style="background-image: url('resources/img/examples/city.jpg'); min-height: 140px"></div>
 	<div class="main main-raised">
 		<div class="profile-content">
 			<div class="container" style="padding-bottom: 3%;">

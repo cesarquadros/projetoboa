@@ -39,7 +39,7 @@ public class ValidatorCliente {
 			listaErros.add("TELEFONE FIXO");
 		}
 		
-		if (null ==cliente.getCpf()) {
+		if (null == cliente.getCpf()) {
 			listaErros.add("CPF");
 		}
 		

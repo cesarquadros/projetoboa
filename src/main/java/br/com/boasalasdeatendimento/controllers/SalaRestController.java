@@ -28,4 +28,16 @@ public class SalaRestController {
 
 		return ResponseEntity.ok(listaUnidade);
 	}
+	
+	@GetMapping(value = "/salas")
+	public ResponseEntity<List<Unidade>> getSalas() {
+
+		List<Unidade> listaUnidade = new ArrayList<Unidade>();
+
+		UnidadeDao unidadeDao = new UnidadeDao();
+
+		listaUnidade = unidadeDao.listaUnidades();
+
+		return ResponseEntity.ok(listaUnidade);
+	}
 }

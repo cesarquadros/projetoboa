@@ -3,15 +3,13 @@
 	<div class="container">
 		<nav class="pull-left">
 			<ul>
-				<li><a href="http://www.creative-tim.com"> Creative Tim </a></li>
-				<li><a href="http://presentation.creative-tim.com"> About Us </a></li>
-				<li><a href="http://blog.creative-tim.com"> Blog </a></li>
-				<li><a href="http://www.creative-tim.com/license"> Licenses	</a></li>
+				<li><a href="#"> Ninox Solutions </a></li>
+				<li><a href="#"> Licenses	</a></li>
 			</ul>
 		</nav>
 		<div class="copyright pull-right">
 			&copy; 2018
-			<i class="fa fa-heart heart"></i> by WhileTrue
+			<i class="fa fa-heart heart"></i> by Ninox
 		</div>
 	</div>
 </footer>

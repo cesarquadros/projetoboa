@@ -9,7 +9,7 @@ pageEncoding="UTF-8"%>
 	<link rel="icon" type="image/png" href="source/img/favicon.png"	media="screen">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>BOA Salas de Atendimento</title>
+	<title>Salas de Atendimento</title>
 
 	<meta	content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'	name='viewport' />
 
@@ -34,7 +34,7 @@ pageEncoding="UTF-8"%>
 	<jsp:include page="cabecalhoadm.jsp"></jsp:include>
 
 <div class="wrapper">
-<div class="header header-filter" style="background-image: url('resources/img/examples/city.jpg'); min-height: 170px"></div>
+<div class="header header-filter" style="background-image: url('resources/img/examples/city.jpg'); min-height: 140px"></div>
 	<div class="main main-raised">
 		<div class="profile-content">
 			<div class="container" style="padding-bottom: 5%;">

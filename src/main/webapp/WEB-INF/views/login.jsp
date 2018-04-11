@@ -10,7 +10,7 @@ pageEncoding="UTF-8"%>
 	<link rel="icon" type="image/png" href="source/img/favicon.png" media="screen">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>Login - BOA Salas de Atendimento</title>
+	<title>Login - Salas de Atendimento</title>
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 
@@ -34,7 +34,7 @@ pageEncoding="UTF-8"%>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="http://www.creative-tim.com">BOA Salas de atendimento</a>
+				<a class="navbar-brand" href="http://www.creative-tim.com">Salas de atendimento</a>
 			</div>
 
 			<div class="collapse navbar-collapse" id="navigation-example">
@@ -101,39 +101,35 @@ pageEncoding="UTF-8"%>
 					<nav class="pull-left">
 						<ul>
 							<li>
-								<a href="http://www.creative-tim.com">
-									WhileTrue Solutions
+								<a href="#">
+									Ninox Solutions
 								</a>
 							</li>
 							<li>
-								<a href="http://presentation.creative-tim.com">
+								<a href="#">
 									Sobre
 								</a>
 							</li>
-							<li>
-								<a href="http://www.creative-tim.com/license">
-									Licenses
-								</a>
-							</li>
-							<li>
-								<a href="https://twitter.com/CreativeTim" target="_blank" class="btn btn-simple btn-white btn-just-icon">
+							 <li>
+								<a href="#" target="_blank" class="btn btn-simple btn-white btn-just-icon">
 									<i class="fa fa-twitter"></i>
 								</a>
 							</li>
 							<li>
-								<a href="https://www.facebook.com/CreativeTim" target="_blank" class="btn btn-simple btn-white btn-just-icon">
+								<a href="#" target="_blank" class="btn btn-simple btn-white btn-just-icon">
 									<i class="fa fa-facebook-square"></i>
 								</a>
 							</li>
 							<li>
-								<a href="https://www.instagram.com/CreativeTimOfficial" target="_blank" class="btn btn-simple btn-white btn-just-icon">
+								<a href="#" target="_blank" class="btn btn-simple btn-white btn-just-icon">
 									<i class="fa fa-instagram"></i>
 								</a>
 							</li>
+							 
 						</ul>
 					</nav>
 					<div class="copyright pull-right">
-						&copy; 2017, made with <i class="fa fa-heart heart"></i> by <a href="http://www.creative-tim.com" target="_blank">Boa</a>
+						&copy; 2017 <i class="fa fa-heart heart"></i> by <a href="#" target="_blank">Ninox</a>
 					</div>
 				</div>
 			</footer>
