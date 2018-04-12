@@ -3,7 +3,6 @@ package br.com.boasalasdeatendimento.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,7 +16,7 @@ import br.com.boasalasdeatendimento.model.Unidade;
 @RestController
 public class SalaRestController {
 
-	@PostMapping(value = "/carregarsalas")
+	@PostMapping(value = "/carregarsalas", consumes = {"application/json;charset=UTF-8"} )
 	public ResponseEntity<List<Unidade>> carregarSalas(@RequestBody ConsultaSala consultaSala) {
 
 		List<Unidade> listaUnidade = new ArrayList<Unidade>();
