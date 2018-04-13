@@ -91,6 +91,7 @@ pageEncoding="UTF-8"%>
 										<span class="loader" id="loader"></span>
 										<div class="card-body">
 										<h3 style="text-align: center;">Sala {{numeroSala}} - Grade de horários {{dataSelecionada}}</h3>
+										<p>{{mensagemHorarios}}</p>
 										<div style="overflow: auto; height: 345px;">
 											<table class="table">
 												

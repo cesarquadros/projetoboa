@@ -1,4 +1,3 @@
-
 <div class="container">
 	<h1></h1>
 	<ul class="nav nav-tabs">
