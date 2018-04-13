@@ -16,8 +16,7 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 	
 	//------------------------------------------------------------- Requisições ---------------------------------------------------
 	$scope.cadastrarCliente = function(cliente, confirmaSenha) {
-		
-		
+				
 		campoSenha = angular.element( document.querySelector('#divConfirmarSenha'));
 		
 		$scope.result = angular.equals(cliente.autenticacao.senha, cliente.confirmaSenha);

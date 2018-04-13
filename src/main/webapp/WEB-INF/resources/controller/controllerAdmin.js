@@ -4,6 +4,7 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 	$scope.agendamentos = [];
 	$scope.relatorioAgendamento;
 	$scope.relatorioClientes = [];
+	$scope.unidades = [];
 	
 	//------------------------------------------------------------- Requisições ---------------------------------------------------
 
@@ -39,7 +40,6 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 		});
 	}
 	
-	
 	$scope.cancelarAgendamento = function(idAgendamento, idCliente) {
 		
 		json = { "id" : "id"};
@@ -69,7 +69,6 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 			}
 		});
 	}
-	
 	
 	$scope.finalizarAgendamento = function(idAgendamento, idCliente) {
 		
@@ -104,7 +103,6 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 		});
 	}
 	
-	
 	$scope.getRelatorioClientes = function(idAgendamento, idCliente) {
 		
 		json = { "id" : "id"};
@@ -133,6 +131,29 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 		});
 	}
 	
+	$scope.carregarUnidades = function() {
+		
+		loader = angular.element( document.querySelector('#loader-unidades'));
+		loader.addClass('loader-ativo');
+		
+		json = { "id" : "id"};
+		
+		$http({
+			method : 'post',
+			url : './carregarsalas',
+			data : JSON.stringify(json),
+			beforeSend : function(xhr) {
+				xhr.setRequestHeader("Accept", "application/json");
+				xhr.setRequestHeader("Content-Type", "application/json");
+			},
+		}).then(function(retorno) {
+			$scope.unidades = retorno.data;
+			loader.removeClass('loader-ativo');
+		}, function(erro) {
+			alert("Ops! Ocorreu um erro, atualize a pagina");
+			loader.removeClass('loader-ativo');
+		});
+	}
 	//-----------------------------------------------------FIM REQUISIÇÕES-----------------------------------------------------------
 
 } ]);

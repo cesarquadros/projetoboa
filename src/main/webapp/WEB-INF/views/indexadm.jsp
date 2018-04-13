@@ -54,13 +54,13 @@ pageEncoding="UTF-8"%>
 								</a>
 							</li>
 							<li>
-								<a href="#relatorio" role="tab" data-toggle="tab">
+								<a href="#relatorio" role="tab" data-toggle="tab" >
 									<i class="material-icons">schedule</i>
 									Relatório de agendamentos
 								</a>
 							</li>
 							<li>
-								<a href="#filiais" role="tab" data-toggle="tab">
+								<a href="#filiais" role="tab" data-toggle="tab" ng-click="carregarUnidades()" >
 									<i class="material-icons">domain</i>
 									Filiais & Salas
 								</a>

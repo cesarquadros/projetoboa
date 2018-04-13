@@ -32,16 +32,23 @@ public class UnidadeDao {
 
 			ResultSet rs = stmt.executeQuery();
 
-			Unidade unindade;
+			Unidade unidade;
 			List<Unidade> listaUnidade = new ArrayList<Unidade>();
 			SalaDao salaDao = new SalaDao();
-
+			EnderecoDao enderecoDao;
+			
 			while (rs.next()) {
-				unindade = new Unidade();
-				unindade.setId(rs.getInt("idUnidade"));
-				unindade.setNomeUnidade(rs.getString("nome_unidade"));
-				unindade.setListaSala(salaDao.listaSalaById(unindade.getId()));
-				listaUnidade.add(unindade);
+				
+				enderecoDao = new EnderecoDao();
+				
+				unidade = new Unidade();
+				unidade.setId(rs.getInt("idUnidade"));
+				unidade.setNomeUnidade(rs.getString("nome_unidade"));
+				unidade.setListaSala(salaDao.listaSalaById(unidade.getId()));
+				
+				unidade.setEndereco(enderecoDao.enderecoById(rs.getInt("id_endereco")));
+				
+				listaUnidade.add(unidade);
 			}
 			return listaUnidade;
 		} catch (SQLException e) {
