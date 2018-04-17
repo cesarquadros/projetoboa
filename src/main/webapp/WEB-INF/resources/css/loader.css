@@ -28,3 +28,12 @@
     50%  {background-color:white; left:95%; top:0px;}
     100%  {background-color:purple; left:0px; top:0px;}
 }
+
+@media (max-width: 768px){
+	.tamanho {
+		width: 70%;
+		margin-left: 2%;
+	}
+}
+
+

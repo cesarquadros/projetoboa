@@ -11,7 +11,7 @@
 			</button>
 
 			<!-- Logotipo -->
-			<ul class="nav navbar-nav navbar-left">
+			<ul class="nav navbar-nav navbar-left tamanho">
 				<li><a href="./index" style="font-size: 20px;"><strong>Salas de atendimento</strong></a></li>
 			</ul>
 			
