@@ -21,7 +21,7 @@ public class CommonsMail {
 		sendEmail.setEmailDestinatario("cesar.quadros88@gmail.com");
 		sendEmail.setNomeDestinatatio("Cesar");
 
-		sendEmail.setEmailRemetente("ninoreggae@gmail.com");
+		sendEmail.setEmailRemetente("cleu@vcrh.com.br");
 		sendEmail.setNomeRemetente("Salas de atendimento");
 		
 		sendEmail.setAssuntoEmail("Recuperação de senha");

@@ -113,4 +113,15 @@ public class AutenticacaoController {
 		agendamentoDao.finalizarAgendamentoByCLiente(idCliente, data, hora);
 	}
 	
+	@RequestMapping("/resetsenha/{cpf}")
+	public ResponseEntity<?> finalizarAgendamento(@PathVariable String cpf, HttpSession session) {
+
+			Cliente cliente = clienteDao.buscaClienteCpf(cpf);
+
+			if (cliente != null) {
+				return ResponseEntity.ok(cliente);
+			}
+			return new ResponseEntity<Error>(HttpStatus.BAD_REQUEST);
+	}
+	
 }

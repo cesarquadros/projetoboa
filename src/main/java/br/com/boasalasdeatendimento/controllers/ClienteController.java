@@ -93,7 +93,7 @@ public class ClienteController {
 			autenticacao.setSenha(cliente.getAutenticacao().getSenha());
 
 			Boolean autenticacaoExiste = autenticarDao.findByUsuario(autenticacao.getUsuario());
-			Boolean clienteExiste = clienteDao.findByIdCpf(cliente.getCpf());
+			Boolean clienteExiste = clienteDao.findByCpf(cliente.getCpf());
 
 			if (!autenticacaoExiste && !clienteExiste) {
 
@@ -172,7 +172,7 @@ public class ClienteController {
 		Cliente cliente = (Cliente) session.getAttribute("usuarioLogado");
 
 		if (cliente != null) {
-			Cliente clienteById = clienteDao.findByIdCpf(id);
+			Cliente clienteById = clienteDao.findById(id);
 
 			if (clienteById != null) {
 				return ResponseEntity.ok(clienteById);
