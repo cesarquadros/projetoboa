@@ -87,7 +87,8 @@ pageEncoding="UTF-8"%>
 								</div>
 								<div class="footer text-center">
 									<button type="submit" class="btn btn-simple btn-primary btn-lg">Entrar</button>
-									<a href="#" class="btn btn-simple btn-primary btn-lg">Cancelar</a>
+									<a href="#" class="btn btn-simple btn-primary btn-lg">Cancelar</a><br />
+									<a href="#" class="btn btn-simple btn-primary btn-lg">Esqueci minha senha</a>
 									<p style="color: red">${mensagemErro}</p>
 								</div>
 							</form>

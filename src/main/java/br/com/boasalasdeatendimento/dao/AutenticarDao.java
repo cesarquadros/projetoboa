@@ -70,6 +70,53 @@ public class AutenticarDao {
 		}
 	}
 
+	
+	public Autenticacao findById(Integer id) {
+
+		final StringBuilder sql = new StringBuilder();
+
+		ConexaoDao cDao = new ConexaoDao();
+		
+		Connection conexao = cDao.conectar();
+		PreparedStatement stmt = null;
+		
+		try {
+			
+			sql.append(" SELECT * FROM");
+			sql.append("	autenticacao ");
+			sql.append(" WHERE ");
+			sql.append("	idAutenticacao = ?");
+
+			stmt = conexao.prepareStatement(sql.toString());
+
+			int aux = 1;
+
+			stmt.setInt(aux++, id);
+
+			ResultSet rs = stmt.executeQuery();
+			Autenticacao usuarioAutenticado = new Autenticacao();
+
+			while (rs.next()) {
+				
+				Perfil perfil = new Perfil();
+				
+				perfil.setId(rs.getInt("id_perfil"));
+
+				usuarioAutenticado.setId(rs.getInt("idAutenticacao"));
+				usuarioAutenticado.setUsuario(rs.getString("usuario"));
+				usuarioAutenticado.setSenha(rs.getString("senha"));
+				usuarioAutenticado.setPerfil(perfil);;
+			}
+
+			return usuarioAutenticado;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			cDao.fecharConexao(stmt, conexao);
+		}
+	}
+	
 	public Autenticacao inserir(Autenticacao autenticacao) {
 
 		final StringBuilder sql = new StringBuilder();

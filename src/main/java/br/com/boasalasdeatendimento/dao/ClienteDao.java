@@ -228,6 +228,9 @@ public class ClienteDao{
 			
 			ResultSet rs = stmt.executeQuery();
 			
+			Autenticacao autenticacao = new Autenticacao();
+			AutenticarDao autenticarDao = new AutenticarDao();
+			
 			if(rs.next()){
 				
 				Cliente cliente = new Cliente();
@@ -240,6 +243,7 @@ public class ClienteDao{
 				cliente.setCpf(rs.getString("cpf"));
 				cliente.setEmail(rs.getString("email"));
 				cliente.setSexo(rs.getString("sexo"));
+				cliente.setAutenticacao(autenticarDao.findById(rs.getInt("id_autenticacao")));
 				return cliente;
 			}
 			

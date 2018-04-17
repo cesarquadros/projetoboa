@@ -19,6 +19,7 @@ import br.com.boasalasdeatendimento.dao.ClienteDao;
 import br.com.boasalasdeatendimento.model.Autenticacao;
 import br.com.boasalasdeatendimento.model.Cliente;
 import br.com.boasalasdeatendimento.security.GenerateHashPasswordUtil;
+import br.com.boasalasdeatendimento.util.CommonsMail;
 import br.com.boasalasdeatendimento.util.DataUtil;
 
 @Controller
@@ -71,7 +72,6 @@ public class AutenticacaoController {
 		}
 	}
 	
-	
 	@PostMapping(value = "/updatesenha")
 	public ResponseEntity<?> atualizaSenha(@RequestBody Autenticacao autenticacao,	RedirectAttributes redirectAttributes, HttpSession session) {
 
@@ -119,7 +119,17 @@ public class AutenticacaoController {
 			Cliente cliente = clienteDao.buscaClienteCpf(cpf);
 
 			if (cliente != null) {
-				return ResponseEntity.ok(cliente);
+				
+				cliente.getAutenticacao().setNovaSenha(cliente.getAutenticacao().getSenha());
+				
+				Boolean alterarSenha = autenticarDao.updateSenha(cliente.getAutenticacao());
+				
+				if(alterarSenha) {
+					
+					CommonsMail.enviaEmailFormatoHtml(CommonsMail.criarEmail(cliente));
+					return ResponseEntity.ok(cliente);
+				}
+				return new ResponseEntity<Error>(HttpStatus.BAD_REQUEST);
 			}
 			return new ResponseEntity<Error>(HttpStatus.BAD_REQUEST);
 	}
