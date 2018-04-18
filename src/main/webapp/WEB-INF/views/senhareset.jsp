@@ -22,6 +22,13 @@ pageEncoding="UTF-8"%>
 	<!-- CSS Files -->
 	<link href="resources/css/bootstrap.min.css" rel="stylesheet" media="screen">
 	<link href="resources/css/material-kit.css" rel="stylesheet" media="screen">
+	
+	<script src="resources/js/mask.js"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.js" type="text/javascript"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js" type="text/javascript"></script>
+	
+	
 </head>
 <body class="signup-page">
 	<nav class="navbar navbar-transparent navbar-absolute">
@@ -57,39 +64,23 @@ pageEncoding="UTF-8"%>
 						<div class="card card-signup">
 							<form class="form" method="post" action="./autenticar">
 								<div class="header header-primary text-center">
-									<h4>Faça seu Login</h4>
+									<h4>Salas de atendimento</h4>
 								</div>
-								<p class="text-divider">Salas de atendimento</p>
+								<p class="text-divider"><strong>Esqueci minha senha</strong></p>
 								<div class="content">
 
 									<div class="input-group">
-										<span class="input-group-addon">
-											<i class="material-icons">email</i>
-										</span>
-										<input name="usuario" type="text" class="form-control" placeholder="Usuário">
+										<p>Digite seu e-mail de cadastro abaixo e clique em enviar.
+											Nós lhe enviaremos um e-mail com link para recadastrar sua senha.</p>
 									</div>
 
-									<div class="input-group">
-										<span class="input-group-addon">
-											<i class="material-icons">lock_outline</i>
-										</span>
-										<input name="senha" type="password" placeholder="Senha" class="form-control" />
+									<div class="form-group label-floating" id="divCpf">
+										<label class="control-label">CPF</label> 
+										<input required id="cpf" required type="text" class="form-control" name="cpf" ng-model="cliente.cpf" ng-blur="verificaCampoVazio(cliente.cpf, 'divCpf')"/> 
 									</div>
-
-									<!-- If you want to add a checkbox to this form, uncomment this code
-
-									<div class="checkbox">
-										<label>
-											<input type="checkbox" name="optionsCheckboxes" checked>
-											Subscribe to newsletter
-										</label>
-									</div> -->
 								</div>
 								<div class="footer text-center">
-									<button type="submit" class="btn btn-simple btn-primary btn-lg">Entrar</button>
-									<a href="#" class="btn btn-simple btn-primary btn-lg">Cancelar</a><br />
-									<a href="./resetarsenha" class="btn btn-simple btn-primary btn-lg">Esqueci minha senha</a>
-									<p style="color: red">${mensagemErro}</p>
+									<a type="button" class="btn btn-primary btn-md" style="padding-left: 80px; padding-right: 80px">Enviar</a>
 								</div>
 							</form>
 						</div>

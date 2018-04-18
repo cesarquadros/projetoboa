@@ -39,6 +39,11 @@ public class AutenticacaoController {
 		return "login";
 	}
 	
+	@RequestMapping("/resetarsenha")
+	public String resetSenha() {
+		return "resetSenha";
+	}
+	
 	@RequestMapping("/autenticar")
 	public ModelAndView autenticar(Autenticacao autenticacao, HttpSession session, RedirectAttributes redirectAttributes) {
 
@@ -114,7 +119,7 @@ public class AutenticacaoController {
 	}
 	
 	@RequestMapping("/resetsenha/{cpf}")
-	public ResponseEntity<?> finalizarAgendamento(@PathVariable String cpf, HttpSession session) {
+	public ResponseEntity<?> esqueciSenha(@PathVariable String cpf, HttpSession session) {
 
 			Cliente cliente = clienteDao.buscaClienteCpf(cpf);
 
