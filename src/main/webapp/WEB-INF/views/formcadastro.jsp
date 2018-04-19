@@ -28,7 +28,6 @@
 	</div>
 	
 	<div class="row">
-
 <!-- 		<div class="col-xs-12 col-sm-12 col-md-3">
 			<div class="form-group label-floating">
 				<label class="control-label">Escolha uma data</label> 
@@ -38,7 +37,7 @@
 		<div class="col-xs-12 col-sm-12 col-md-4">
 			<div class="form-group label-floating" id="divCpf">
 				<label class="control-label">CPF</label> 
-				<input required id="cpf" required type="text" class="form-control" name="cpf" ng-model="cliente.cpf" ng-blur="verificaCampoVazio(cliente.cpf, 'divCpf')"/> 
+				<input required id="cpf" type="text" class="form-control" name="cpf" ng-model="cliente.cpf" ng-blur="verificaCampoVazio(cliente.cpf, 'divCpf')"/> 
 			</div>
 		</div>		
 		<div class="col-xs-12 col-sm-12 col-md-4">
