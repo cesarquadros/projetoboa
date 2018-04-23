@@ -34,20 +34,21 @@ pageEncoding="UTF-8"%>
 	<jsp:include page="cabecalho.jsp"></jsp:include>
 	
 	<div class="wrapper">
-		<div class="header header-filter" style="background-image: url('resources/img/examples/city.jpg'); min-height: 140px"></div>
+		<div class="header header-filter" 
+			style="background-image: url('resources/img/examples/city.jpg'); min-height: 140px; background-color: rgba(47, 46, 46, 0.63);"></div>
 		<div class="main main-raised">
 			<div class="profile-content">
 				<div class="container" style="padding-bottom: 5%;">
 					<h1></h1>
 					<ul class="nav nav-tabs">
-						<li><a data-toggle="tab" href="#menu1" ng-if="usuarioLogado">Agendamento</a></li>
+						<li><a data-toggle="tab" href="#menu1" ng-if="usuarioLogado" ng-click="carregarSalas()">Agendamento</a></li>
 						<li class="active"><a data-toggle="tab" href="#menu2">Informações</a></li>
 					</ul>
 					
 					<div class="tab-content" >
 						<div id="menu1" class="tab-pane fade" ng-if="usuarioLogado">
 							
-							<div class="row" ng-init="carregarSalas()">
+							<div class="row">
 							
 								<div class="col-xs-12 col-sm-12 col-md-4" >
 									<div class="row">
@@ -76,7 +77,8 @@ pageEncoding="UTF-8"%>
 														<div>
 															<!-- simple and vertical -->
 															<ul class="nav nav-pills nav-pills-rose nav-stacked">
-															  <li ng-repeat="sala in unidade.listaSala"><a href="#tab{{sala.numero}}" ng-click="carregarHorarios(sala.numero, sala.id)" data-toggle="tab">SALA {{sala.numero}}</a></li>
+															  <li ng-repeat="sala in unidade.listaSala"><a href="#tab{{sala.numero}}" ng-click="carregarHorarios(sala.numero, sala.id, sala.descricao )" data-toggle="tab" 
+															  data-toggle="tooltip" data-placement="top" title="{{sala.descricao}}">SALA {{sala.numero}}</a></li>
 															</ul>
 														</div>										
 													</div>
@@ -86,15 +88,16 @@ pageEncoding="UTF-8"%>
 									</div>
 								</div>
 								
-								<div class="col-xs-12 col-sm-12 col-md-8" ng-init="carregarHorarios(numeroSala, idSala)">
+								<div class="col-xs-12 col-sm-12 col-md-8" >
 									<div class="card card-nav-tabs">
 										<span class="loader" id="loader"></span>
 										<div class="card-body">
-										<h3 style="text-align: center;">Sala {{numeroSala}} - Grade de horários {{dataSelecionada}}</h3>
+										<h3 ng-if="numeroSala" style="text-align: center;">Sala {{numeroSala}} - Grade de horários {{dataSelecionada}}</h3>
+										<h4 ng-if="descricaoSala"><strong>Descrição da Sala:</strong> {{descricaoSala}}</h4>
+										<br />
 										<p>{{mensagemHorarios}}</p>
 										<div style="overflow: auto; height: 345px;">
 											<table class="table">
-												
 												<tbody ng-repeat="horario in listaHorario" style="overflow: scroll;">
 													<tr>
 														<td class="text-center">{{horario.horarioString}}</td>
@@ -103,7 +106,6 @@ pageEncoding="UTF-8"%>
 													</tr>
 												</tbody>
 											</table>
-											
 											</div>
 										</div>
 									</div>

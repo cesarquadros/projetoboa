@@ -6,8 +6,14 @@ public class Sala {
 	private Integer idUnidade;
 	private Unidade unidade;
 	private Integer numero;
-	private String detalhes;
+	private String descricao;
 	
+	public String getDescricao() {
+		return descricao;
+	}
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
 	public Integer getId() {
 		return id;
 	}
@@ -25,12 +31,6 @@ public class Sala {
 	}
 	public void setNumero(Integer numero) {
 		this.numero = numero;
-	}
-	public String getDetalhes() {
-		return detalhes;
-	}
-	public void setDetalhes(String detalhes) {
-		this.detalhes = detalhes;
 	}
 	public Unidade getUnidade() {
 		return unidade;

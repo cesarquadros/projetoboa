@@ -20,9 +20,17 @@
 		<div class="collapse navbar-collapse" id="navigation-example" ng-init="verificarLogin('${cliente.nome}')">
 			<ul class="nav navbar-nav navbar-right">
 				
+				<li><a href="./"> <strong>Inicio</strong> </a></li>
 				<li ng-if="!usuarioLogado"><a href="novocadastro"> <strong>Cadastrar</strong> </a></li>
 				<li ng-if="!usuarioLogado"><a href="login"><strong>Efetuar login</strong></a></li>
-				<li ng-if="usuarioLogado">
+				
+				
+				<li ng-if="usuarioLogado"><a href="meusagendamentos"><strong>Meus agendamentos</strong></a></li>
+				<li ng-if="usuarioLogado"><a href="./meuperfil"><strong>Meu perfil</strong></a></li>
+				<li ng-if="'${cliente.autenticacao.perfil.id}' =='2' "><a href="./administrativo"><strong>Administrativo</strong></a></li>
+				<li ng-if="usuarioLogado"><a href="./logout"><strong>Logout</strong></a></li>
+				
+				<!-- <li ng-if="usuarioLogado">
 					<div class="col-md-3 dropdown">
 						<a href="#" class="btn btn-simple dropdown-toggle"
 							data-toggle="dropdown" style="color: white"><strong>Seja bem vindo ${cliente.nome}</strong> <b
@@ -35,7 +43,7 @@
 							<li><a href="./logout">Sair</a></li>
 						</ul>
 					</div>
-				</li>
+				</li> --> 
 			</ul>
 		</div>
 	</div>

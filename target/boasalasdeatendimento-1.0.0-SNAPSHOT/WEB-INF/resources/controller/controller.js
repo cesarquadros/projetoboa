@@ -1,6 +1,6 @@
 var app = angular.module('app', []);
 app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http, $timeout) {
-	$scope.numeroSala = 1;
+	$scope.numeroSala = '';
 	$scope.idSala = 1;
 	$scope.listaHorario = [];
 	$scope.unidades = [];
@@ -12,6 +12,7 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 	$scope.listaErros = [];
 	$scope.emailValido = true;
 	$scope.autenticacao = {};
+	$scope.descricaoSala = '';
 	
 	
 	//------------------------------------------------------------- Requisições ---------------------------------------------------
@@ -77,7 +78,7 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 		
 	}
 
-	$scope.realizarAgendamento = function(idHora, idCliente) {
+	$scope.realizarAgendamento = function(idHora, idCliente, descricao) {
 
 		loader = angular.element( document.querySelector('#loader'));
 		sucess = angular.element( document.querySelector('#sucess'));
@@ -129,9 +130,12 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 		});
 	}
 	
-	$scope.carregarHorarios = function(numeroSala, idSala) {
+	$scope.carregarHorarios = function(numeroSala, idSala, descricao) {
 		
 		$scope.listaHorario = [];
+		
+        
+        $scope.descricaoSala = descricao;
 		
 		$scope.numeroSala = numeroSala;
 		$scope.dataSelecionada = document.getElementById('data').value;
