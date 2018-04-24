@@ -34,7 +34,7 @@ pageEncoding="UTF-8"%>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="http://www.creative-tim.com">Salas de atendimento</a>
+				<a class="navbar-brand" href="./">Salas de atendimento</a>
 			</div>
 
 			<div class="collapse navbar-collapse" id="navigation-example">
@@ -59,7 +59,7 @@ pageEncoding="UTF-8"%>
 								<div class="header header-primary text-center">
 									<h4>Faça seu Login</h4>
 								</div>
-								<p class="text-divider">BOA</p>
+								<p class="text-divider">Salas de atendimento</p>
 								<div class="content">
 
 									<div class="input-group">
@@ -87,7 +87,8 @@ pageEncoding="UTF-8"%>
 								</div>
 								<div class="footer text-center">
 									<button type="submit" class="btn btn-simple btn-primary btn-lg">Entrar</button>
-									<a href="#" class="btn btn-simple btn-primary btn-lg">Cancelar</a>
+									<a href="#" class="btn btn-simple btn-primary btn-lg">Cancelar</a><br />
+									<a href="./resetarsenha" class="btn btn-simple btn-primary btn-lg">Esqueci minha senha</a>
 									<p style="color: red">${mensagemErro}</p>
 								</div>
 							</form>

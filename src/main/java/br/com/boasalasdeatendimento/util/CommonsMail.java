@@ -157,8 +157,8 @@ public class CommonsMail {
 		email.setMensagemHtml(gerarMensagemEmail(cliente));
 
 		email.setMensagemEmail("Email de recuperação de senha: Sua senha é" + cliente.getAutenticacao().getNovaSenha());
-		email.setAutenticacaoEmail("ninoreggae@gmail.com");
-		email.setAutenticacaoSenha("Ces@r190788");
+		email.setAutenticacaoEmail("cleu@vcrh.com.br");
+		email.setAutenticacaoSenha("Cl783289");
 		email.setPortaSmtp(587);
 		
 		return email;
