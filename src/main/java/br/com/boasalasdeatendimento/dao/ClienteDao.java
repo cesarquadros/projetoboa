@@ -224,11 +224,10 @@ public class ClienteDao{
 		
 			stmt = conexao.prepareStatement(sql.toString());
 			
-			stmt.setString(1, cpf);
+			stmt.setString(1, cpf.replace("-", "").replace(".", ""));
 			
 			ResultSet rs = stmt.executeQuery();
 			
-			Autenticacao autenticacao = new Autenticacao();
 			AutenticarDao autenticarDao = new AutenticarDao();
 			
 			if(rs.next()){

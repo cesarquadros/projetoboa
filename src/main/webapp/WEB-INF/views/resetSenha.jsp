@@ -23,11 +23,7 @@ pageEncoding="UTF-8"%>
 	<link href="resources/css/material-kit.css" rel="stylesheet"	media="screen">
 	<link href="resources/css/loader.css" rel="stylesheet"	media="screen">
 	
-	<script src="resources/js/mask.js"></script>
-
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.js" type="text/javascript"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js" type="text/javascript"></script>
-
+	
 	<!-- ANGULAR JS -->
 	<script src=./resources/js/angular.min.js></script>
 	<script src="./resources/controller/controller.js"></script>
@@ -42,30 +38,31 @@ pageEncoding="UTF-8"%>
 		<div class="header header-filter" style="background-image: url('resources/img/examples/city.jpg'); min-height: 140px"></div>
 		<div class="main main-raised">
 			<div class="profile-content">
-				<div class="container" style="padding-bottom: 5%;">
+				<div class="container" style="padding-bottom: 5%; padding-top: 5%">
 					<h1></h1>
 					
 				<div class="row">
 					<div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
 						<div class="card card-signup">
-							<form class="form" method="post" action="./autenticar">
-								<p class="text-divider"><strong>Esqueci minha senha</strong></p>
-								<div class="content">
-
-									<div class="input-group">
-										<p>Digite seu e-mail de cadastro abaixo e clique em enviar.
-											Nós lhe enviaremos um e-mail com link para recadastrar sua senha.</p>
-									</div>
-
-									<div class="form-group label-floating" id="divCpf">
-										<label class="control-label">CPF</label> 
-										<input required id="cpf" required type="text" class="form-control" name="cpf" ng-model="cliente.cpf" ng-blur="verificaCampoVazio(cliente.cpf, 'divCpf')"/> 
-									</div>
+							<span class="loader" id="loader"></span>
+							<h4 class="text-divider"><strong>Esqueci minha senha</strong></h4>
+							<div class="content">
+								<div class="input-group">
+									<br />
+									<p>Digite seu CPF de cadastro abaixo e clique em enviar.
+										Nós lhe enviaremos uma senha temporaria.</p>
 								</div>
-								<div class="footer text-center">
-									<a type="button" class="btn btn-primary btn-md" style="padding-left: 80px; padding-right: 80px">Enviar</a>
+								<p>{{msg}}<p>
+
+								<div class="form-group label-floating" id="divCpf">
+									<label class="control-label">CPF</label> 
+									<input required id="cpf2" type="text" class="form-control" name="cpf" ng-model="cpf"/> 
 								</div>
-							</form>
+							</div>
+							<div class="footer text-center">
+								<a type=button" class="btn btn-primary btn-md" style="padding-left: 80px; padding-right: 80px" ng-click="resetSenha(cpf)">
+								Enviar</a>
+							</div>
 						</div>
 					</div>
 				</div>

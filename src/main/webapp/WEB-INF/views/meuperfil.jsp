@@ -11,7 +11,7 @@
 	media="screen">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-<title>BOA Salas de Atendimento</title>
+<title>Salas de Atendimento</title>
 
 <meta
 	content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'
@@ -44,15 +44,15 @@
 
 	<div class="wrapper">
 		<div class="header header-filter"
-			style="background-image: url('resources/img/examples/city.jpg'); min-height: 140px"></div>
+			style="background-image: url('resources/img/examples/city.jpg'); min-height: 140px; background-color: rgba(47, 46, 46, 0.63);"></div>
 		<div class="main main-raised">
 			<div class="profile-content">
 				<div class="container" style="padding-bottom: 3%;">
 					<br />
 
 					<ul class="nav nav-tabs">
-						<li class="active"><a data-toggle="tab" href="#menu1">Novo
-								cadastro</a></li>
+						<li class="active"><a data-toggle="tab" href="#menu1">Meu
+								perfil</a></li>
 					</ul>
 					<div class="alert alert-warning" ng-if="erro">
 						<div class="container-fluid">
@@ -67,7 +67,7 @@
 							</span>
 						</div>
 					</div>
-					
+
 					<div class="alert alert-success" ng-if="sucesso">
 						<div class="container-fluid">
 							<div class="alert-icon">
@@ -80,13 +80,14 @@
 							<b>{{msgerro}}</b> <span ng-repeat="erro in listaErros">{{erro}}
 							</span>
 						</div>
-					</div>					
-					
-					
-					
+					</div>
+
+
+
 					<div class="card card-nav-tabs">
 						<span class="loader" id="loader"></span>
-						<div class="card-body" style="padding: 50px;" ng-init="getCliente('${cliente.id}')">
+						<div class="card-body" style="padding: 50px;"
+							ng-init="getCliente('${cliente.id}')">
 							<jsp:include page="formeditarcadastro.jsp"></jsp:include>
 						</div>
 					</div>

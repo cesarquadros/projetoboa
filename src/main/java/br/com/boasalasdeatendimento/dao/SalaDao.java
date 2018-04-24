@@ -45,6 +45,7 @@ public class SalaDao {
 				sala.setId(rs.getInt("idSala"));
 				sala.setIdUnidade(rs.getInt("id_unidade"));
 				sala.setNumero(rs.getInt("numero"));
+				sala.setDescricao(rs.getString("descricao"));
 				listaSala.add(sala);
 			}
 			return listaSala;
@@ -87,6 +88,7 @@ public class SalaDao {
 				sala.setId(rs.getInt("idSala"));
 				sala.setUnidade(unidadeDao.findByIdSemSalas(rs.getInt("id_unidade")));
 				sala.setNumero(rs.getInt("numero"));
+				sala.setDescricao(rs.getString("descricao"));
 			}
 			
 			return sala;

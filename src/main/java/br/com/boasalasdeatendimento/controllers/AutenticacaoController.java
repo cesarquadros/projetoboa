@@ -136,7 +136,7 @@ public class AutenticacaoController {
 				}
 				return new ResponseEntity<Error>(HttpStatus.BAD_REQUEST);
 			}
-			return new ResponseEntity<Error>(HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<Error>(HttpStatus.UNAUTHORIZED);
 	}
 	
 }

@@ -1,6 +1,6 @@
 var app = angular.module('app', []);
 app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http, $timeout) {
-	$scope.numeroSala = 1;
+	$scope.numeroSala = '';
 	$scope.idSala = 1;
 	$scope.listaHorario = [];
 	$scope.unidades = [];
@@ -12,6 +12,7 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 	$scope.listaErros = [];
 	$scope.emailValido = true;
 	$scope.autenticacao = {};
+	$scope.descricaoSala = '';
 	
 	
 	//------------------------------------------------------------- Requisições ---------------------------------------------------
@@ -77,7 +78,7 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 		
 	}
 
-	$scope.realizarAgendamento = function(idHora, idCliente) {
+	$scope.realizarAgendamento = function(idHora, idCliente, descricao) {
 
 		loader = angular.element( document.querySelector('#loader'));
 		sucess = angular.element( document.querySelector('#sucess'));
@@ -129,9 +130,12 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 		});
 	}
 	
-	$scope.carregarHorarios = function(numeroSala, idSala) {
+	$scope.carregarHorarios = function(numeroSala, idSala, descricao) {
 		
 		$scope.listaHorario = [];
+		
+        
+        $scope.descricaoSala = descricao;
 		
 		$scope.numeroSala = numeroSala;
 		$scope.dataSelecionada = document.getElementById('data').value;
@@ -331,6 +335,55 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 			
 			loader.removeClass('loader-ativo');
 		});
+	}
+	
+	
+	$scope.resetSenha = function(cpf) {
+		
+		if(cpf != undefined){
+		
+			loader = angular.element( document.querySelector('#loader'));
+			loader.addClass('loader-ativo');
+			
+			$scope.erro = false;
+			$scope.sucesso = false;
+			
+			$http({
+				method : 'post',
+				url : './resetsenha/' + cpf ,
+				data : JSON.stringify($scope.autenticacao),
+				beforeSend : function(xhr) {
+					xhr.setRequestHeader("Accept", "application/json");
+					xhr.setRequestHeader("Content-Type", "application/json");
+				},
+			}).then(function(retorno) {
+				
+				$scope.cliente = retorno.data;
+				
+				var retornoReq = retorno.statusText;
+				
+				loader.removeClass('loader-ativo');
+				
+				$scope.sucesso = true;
+				
+				$scope.msg = 'Senha encaminhada para: ' + $scope.cliente.email;
+				
+			}, function(erro){
+				
+				var tipoErro = erro.status;
+				$scope.listaErros = erro.data;
+				$scope.erro = true;
+				
+				if(tipoErro == 401){
+					$scope.msg = 'CPF inexistente em nossa base'
+				} 
+				loader.removeClass('loader-ativo');
+			});
+		
+		} else {
+			$scope.erro = true;
+			$scope.msg = 'Campo CPF obrigatorio'
+		}
 	}
 	
 	

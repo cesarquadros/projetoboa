@@ -1,5 +1,5 @@
-
-<nav class="navbar navbar-transparent navbar-fixed-top navbar-color-on-scroll">
+<nav
+	class="navbar navbar-transparent navbar-fixed-top navbar-color-on-scroll">
 	<div class="container">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
@@ -9,16 +9,38 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
+
 			<!-- Logotipo -->
-			<ul class="nav navbar-nav navbar-left">
+			<ul class="nav navbar-nav navbar-left tamanho">
 				<li><a href="./index" style="font-size: 20px;"><strong>Salas de atendimento</strong></a></li>
 			</ul>
+			
 		</div>
 
-		<div class="collapse navbar-collapse" id="navigation-example">
+		<div class="collapse navbar-collapse" id="navigation-example" ng-init="verificarLogin('${cliente.nome}')">
 			<ul class="nav navbar-nav navbar-right">
-				<li ng-if="!usuarioLogado"><a href="#" data-toggle="modal"
-					data-target="#myModal"> <strong>LOGIN ADM</strong> </a></li>
+				
+				<li><a href="./"> <strong>Inicio</strong> </a></li>
+				
+				<li><a href="meusagendamentos"><strong>Meus agendamentos</strong></a></li>
+				<li><a href="./meuperfil"><strong>Meu perfil</strong></a></li>
+				<li><a href="./administrativo"><strong>Administrativo</strong></a></li>
+				<li><a href="./logout"><strong>Logout</strong></a></li>
+				
+				<!-- <li ng-if="usuarioLogado">
+					<div class="col-md-3 dropdown">
+						<a href="#" class="btn btn-simple dropdown-toggle"
+							data-toggle="dropdown" style="color: white"><strong>Seja bem vindo ${cliente.nome}</strong> <b
+							class="caret"></b>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href="meusagendamentos">Meus agendamentos</a></li>
+							<li><a href="./meuperfil">Meu perfil</a></li>
+							<li class="divider"></li>
+							<li><a href="./logout">Sair</a></li>
+						</ul>
+					</div>
+				</li> --> 
 			</ul>
 		</div>
 	</div>
