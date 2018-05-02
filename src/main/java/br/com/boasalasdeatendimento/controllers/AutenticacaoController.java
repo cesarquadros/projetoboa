@@ -125,7 +125,7 @@ public class AutenticacaoController {
 
 			if (cliente != null) {
 				
-				cliente.getAutenticacao().setNovaSenha(cliente.getAutenticacao().getSenha());
+				cliente.getAutenticacao().setNovaSenha(cliente.getAutenticacao().getSenha().substring(0, 4));
 				
 				Boolean alterarSenha = autenticarDao.updateSenha(cliente.getAutenticacao());
 				
