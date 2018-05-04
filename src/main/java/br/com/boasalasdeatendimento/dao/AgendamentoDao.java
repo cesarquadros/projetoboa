@@ -22,14 +22,6 @@ import br.com.boasalasdeatendimento.util.Util;
 @Repository
 public class AgendamentoDao {
 
-	public static void main(String[] args) {
-
-		Agendamento a = new Agendamento();
-		AgendamentoDao cDao = new AgendamentoDao();
-
-		cDao.inserir(a);
-	}
-
 	@Autowired
 	private ConexaoDao conexaoDao;
 	
@@ -198,7 +190,72 @@ public class AgendamentoDao {
 			conexaoDao.fecharConexao(stmt, conexao);
 		}
 	}
+	
+	public Agendamento findById(Integer idAgendamento) {
 
+		final StringBuilder sql = new StringBuilder();
+
+		Connection conexao = conexaoDao.conectar();
+		PreparedStatement stmt = null;
+		
+		try {
+			
+			sql.append(" SELECT");
+			sql.append("	 a.idagendamento, a.dt_agendamento, h.horario, u.nome_unidade, s.numero, a.status ");
+			sql.append(" FROM ");
+			sql.append(" 	agendamento a ");
+			sql.append(" INNER JOIN	 ");
+			sql.append(" 	horarios h on a.id_horario = h.idhorario ");
+			sql.append(" INNER JOIN	 ");
+			sql.append(" 	sala s on a.id_sala = s.idsala ");
+			sql.append(" INNER JOIN	 ");
+			sql.append(" 	unidade u on s.id_unidade = u.idUnidade ");
+			sql.append(" WHERE	 ");
+			sql.append(" 	a.idagendamento = ? ");
+			sql.append(" ORDER BY ");
+			sql.append(" 	a.dt_agendamento ");
+
+			stmt = conexao.prepareStatement(sql.toString());
+
+			stmt.setInt(1, idAgendamento);
+
+			ResultSet rs = stmt.executeQuery();
+
+			Agendamento agendamento = null;
+
+			while (rs.next()) {
+
+				Horario horario = new Horario();
+				Sala sala = new Sala();
+				Unidade unidade = new Unidade();
+				
+				agendamento = new Agendamento();
+
+				agendamento.setId(rs.getInt("idAgendamento"));
+				agendamento.setDataAgendamentoString(DataUtil.getDateFormatString(rs.getString("dt_agendamento"), "yyyy-MM-dd", "dd/MM/yyyy"));
+				agendamento.setStatus(Util.mapStatus.get(rs.getInt("status")));
+				
+				//setando horario
+				horario.setHorarioString(rs.getString("horario"));
+				agendamento.setHorario(horario);
+				
+				//setando numero da sala e nome unidade
+				sala.setNumero(rs.getInt("numero"));
+				unidade.setNomeUnidade(rs.getString("nome_unidade"));
+				sala.setUnidade(unidade);
+				agendamento.setSala(sala);
+
+			}
+			return agendamento;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			conexaoDao.fecharConexao(stmt, conexao);
+		}
+		return null;
+	}
+	
 	public List<Agendamento> meusAgendamentosById(Integer idCliente) {
 
 		final StringBuilder sql = new StringBuilder();

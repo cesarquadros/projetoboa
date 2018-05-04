@@ -219,7 +219,16 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 				return false;
 			}
 		}, function(erro){
-			alert("Ops! Ocorreu um erro, tente novamente");
+			
+			var tipoErro = erro.status;
+			
+			if(tipoErro == 401){
+				alert("Horario limite para cancelamento excedido");
+			} else {
+				alert("OPS!!: Ocorreu um erro inesperado");
+			}
+			
+			
 			loader.removeClass('loader-ativo');
 		});
 	}

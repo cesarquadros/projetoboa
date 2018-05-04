@@ -1,5 +1,6 @@
 package br.com.boasalasdeatendimento.controllers;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -79,16 +80,29 @@ public class MeusAgendamentosController {
 	public ResponseEntity<?> cancelarAgendamento(@PathVariable int idAgendamento, HttpSession session) {
 
 		Cliente cliente = (Cliente) session.getAttribute("usuarioLogado");
+		
+		Agendamento agendamento = agendamentoDao.findById(idAgendamento);
+		
+		Date timestampAgendamento = DataUtil.convertStringToDateTimeStamp(agendamento.getDataAgendamentoString(), agendamento.getHorario().getHorarioString());
+		Date dataAtual = DataUtil.getTimestamp();
+		
+		String diferencaHoraString = DataUtil.getTimeDiff(dataAtual, timestampAgendamento);
+		
+		Integer diferencaHoras = Integer.parseInt(diferencaHoraString.substring(0, 2));
 
-		if (cliente != null) {
-			Boolean cancelarAgendamento = agendamentoDao.cancelarAgendamento(idAgendamento);
-
-			if (cancelarAgendamento) {
-				return new ResponseEntity<Error>(HttpStatus.OK);
+		if(diferencaHoras > 24) {
+			if (cliente != null) {
+				Boolean cancelarAgendamento = agendamentoDao.cancelarAgendamento(idAgendamento);
+	
+				if (cancelarAgendamento) {
+					return new ResponseEntity<Error>(HttpStatus.OK);
+				}
+				return new ResponseEntity<Error>(HttpStatus.BAD_REQUEST);
 			}
-			return new ResponseEntity<Error>(HttpStatus.BAD_REQUEST);
-		}
 		return new ResponseEntity<Error>(HttpStatus.BAD_REQUEST);
+		} else {
+			return new ResponseEntity<Error>(HttpStatus.UNAUTHORIZED);
+		}
 	}
 	
 	@RequestMapping("/finalizaragendamento/{id}")

@@ -389,9 +389,9 @@
 		}],
 		dates:{
 			days: ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sabado", "Domingo"],
-			daysShort: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-			daysMin: ["S", "M", "T", "W", "T", "F", "S", "S"],
-			months: ["JAN.", "FEV.", "MAR.", "ABR.", "MAI", "JUN.", "JUL.", "AGO.", "SET.", "OUT.", "NOV.", "DEZ."],
+			daysShort: ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab", "Dom"],
+			daysMin: ["D", "S", "T", "Q", "Q", "S", "S", "D"],
+			months: ["JANEIRO", "FEVEREIRO", "MARÇO", "ABRIL", "MAIO", "JUNHO", "JULHO", "AGOSTO", "SETEMBRO", "OUTUBRO", "NOVEMBRO", "DEZEMBRO"],
 			monthsShort: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]
 		},
 		isLeapYear: function (year) {
