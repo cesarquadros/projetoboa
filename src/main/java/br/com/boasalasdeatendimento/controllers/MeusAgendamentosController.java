@@ -88,7 +88,9 @@ public class MeusAgendamentosController {
 		
 		String diferencaHoraString = DataUtil.getTimeDiff(dataAtual, timestampAgendamento);
 		
-		Integer diferencaHoras = Integer.parseInt(diferencaHoraString.substring(0, 2));
+		String arrayHora[] = diferencaHoraString.split(":");
+		
+		Integer diferencaHoras = Integer.parseInt(arrayHora[0]);
 
 		if(diferencaHoras > 24) {
 			if (cliente != null) {
