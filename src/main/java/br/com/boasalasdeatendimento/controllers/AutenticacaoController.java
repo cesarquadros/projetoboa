@@ -64,10 +64,10 @@ public class AutenticacaoController {
 			finalizarAgendamentoByCliente(cliente.getId());
 			
 			if(verificaAutenticacao.getPerfil().getId() == 1) {
-				finalizarAgendamento();
 				return new ModelAndView("redirect:index");
 			}
 			
+			finalizarAgendamento();
 			return new ModelAndView("redirect:administrativo");
 			
 		} else {
