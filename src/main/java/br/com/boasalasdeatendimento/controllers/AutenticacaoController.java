@@ -64,7 +64,7 @@ public class AutenticacaoController {
 			finalizarAgendamentoByCliente(cliente.getId());
 			
 			if(verificaAutenticacao.getPerfil().getId() == 1) {
-				
+				finalizarAgendamento();
 				return new ModelAndView("redirect:index");
 			}
 			
@@ -115,7 +115,13 @@ public class AutenticacaoController {
 		
 		String data = DataUtil.getDataAtual();
 		String hora = DataUtil.getHoraAtual();
-		agendamentoDao.finalizarAgendamentoByCLiente(idCliente, data, hora);
+		agendamentoDao.finalizarAgendamentoByCliente(idCliente, data, hora);
+	}
+	public void finalizarAgendamento() {
+		
+		String data = DataUtil.getDataAtual();
+		String hora = DataUtil.getHoraAtual();
+		agendamentoDao.finalizarAgendamento( data, hora);
 	}
 	
 	@RequestMapping("/resetsenha/{cpf}")
