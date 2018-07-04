@@ -40,6 +40,35 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 		});
 	}
 	
+	$scope.downloadCsv = function() {
+		
+		loader = angular.element( document.querySelector('#loader'));
+		loader.addClass('loader-ativo');
+		
+		status = document.getElementById('status').value;
+		dataInicio = document.getElementById('dataInicio').value;
+		dataFim = document.getElementById('dataFim').value;
+		
+		$scope.relatorioAgendamento = {"dataInicio" : dataInicio,
+										"dataFim": dataFim,
+										"status": status};
+		
+		json = $scope.relatorioAgendamento;
+		
+		$http({
+			method : 'post',
+			url : './downloadcsv',
+			data : JSON.stringify($scope.agendamentos),
+			beforeSend : function(xhr) {
+				xhr.setRequestHeader("Accept", "application/json");
+				xhr.setRequestHeader("Content-Type", "text/csv");
+			},
+		}).then(function(retorno) {
+			$scope.agendamentos = retorno.data;
+			loader.removeClass('loader-ativo');
+		});
+	}
+	
 	$scope.cancelarAgendamento = function(idAgendamento, idCliente) {
 		
 		json = { "id" : "id"};
