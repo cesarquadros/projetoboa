@@ -9,14 +9,14 @@
 
 		<div class="col-xs-12 col-sm-12 col-md-12" style="margin: auto;">
 
-			<div class="col-xs-12 col-sm-12 col-md-3">
+			<div class="col-xs-12 col-sm-12 col-md-2">
 				<div class="form-group">
 					<label>Data inicio</label> 
 					<input value="${dataAtual}"  id="dataInicio" class="datepicker form-control" type="text"/>
 				</div>
 			</div>
 
-			<div class="col-xs-12 col-sm-12 col-md-3">
+			<div class="col-xs-12 col-sm-12 col-md-2">
 				<div class="form-group">
 					<label>Data fim</label> 
 					<input value="${dataAtual}"  id="dataFim" class="datepicker form-control" type="text"/>
@@ -45,7 +45,11 @@
 				<div class="form-group">
 					<button type="button" class="btn btn-success" ng-click="gerarRelatorio()">Buscar</button>
 				</div>
-			</div>			
+			</div>	
+			<div class="col-xs-12 col-sm-12 col-md-2">
+				<div class="form-group">
+				</div>
+			</div>		
 		</div>
 	</div>
 
@@ -86,7 +90,7 @@
 										</a>									
 									</td>	
 								</tr>
-								<tr><td><h3>Total agendamentos: {{agendamentosSerch.length}}</h3></td></tr>
+								<tr><td><h3>Total agendamentos: {{agendamentosSerch.length}} |<a ng-if = "agendamentos.length" href="./downloadcsv" type="button" class="btn btn-success btn-xs"> Baixar CSV</a></h3></td></tr>
 							</tbody>
 						</table>
 					</div>

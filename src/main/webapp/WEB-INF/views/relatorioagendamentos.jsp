@@ -48,7 +48,6 @@
 			</div>	
 			<div class="col-xs-12 col-sm-12 col-md-2">
 				<div class="form-group">
-					<button type="button" class="btn btn-success" ng-click="downloadCsv()">Baixar CSV</button>
 				</div>
 			</div>		
 		</div>
@@ -91,7 +90,7 @@
 										</a>									
 									</td>	
 								</tr>
-								<tr><td><h3>Total agendamentos: {{agendamentosSerch.length}}</h3></td></tr>
+								<tr><td><h3>Total agendamentos: {{agendamentosSerch.length}} |<a ng-if = "agendamentos.length" href="./downloadcsv" type="button" class="btn btn-success btn-xs"> Baixar CSV</a></h3></td></tr>
 							</tbody>
 						</table>
 					</div>

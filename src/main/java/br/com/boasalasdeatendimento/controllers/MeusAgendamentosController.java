@@ -80,6 +80,9 @@ public class MeusAgendamentosController {
 			if (cliente != null) {
 
 				List<Agendamento> listaAgendamento = agendamentoDao.relatorioAgendamento(relatorioAgendamento);
+				
+				session.setAttribute("listaAgendamentos", listaAgendamento);
+				
 				return ResponseEntity.ok(listaAgendamento);
 			}
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -134,11 +137,13 @@ public class MeusAgendamentosController {
 		return new ResponseEntity<Error>(HttpStatus.BAD_REQUEST);
 	}
 
-	@PostMapping(value = "/downloadcsv", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> download(@RequestBody List<Agendamento> listaAgendamento) throws IOException {
+	@GetMapping(value = "/downloadcsv", produces = MediaType.APPLICATION_JSON_VALUE)
+	public HttpEntity<byte[]> download(HttpSession session) throws IOException {
 			
 			CsvUtil csvUtil = new CsvUtil();
 		
+			List<Agendamento> listaAgendamento = (List<Agendamento>) session.getAttribute("listaAgendamentos");
+			
 			String nomeArquivo = csvUtil.gerarCsv(listaAgendamento);
 			
 			byte[] arquivo = Files.readAllBytes(Paths.get(DIRETORIO + nomeArquivo));
@@ -146,7 +151,7 @@ public class MeusAgendamentosController {
 			
 			httpHeaders.add("Content-Disposition", "attachment;filename=\"" + nomeArquivo + "\"");
 			
-			return ResponseEntity.ok(new HttpEntity<>(arquivo, httpHeaders));
+			return new HttpEntity<>(arquivo, httpHeaders);
 			
 		}
 

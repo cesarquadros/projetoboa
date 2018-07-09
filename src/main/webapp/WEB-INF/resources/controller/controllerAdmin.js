@@ -61,9 +61,32 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 			data : JSON.stringify($scope.agendamentos),
 			beforeSend : function(xhr) {
 				xhr.setRequestHeader("Accept", "application/json");
-				xhr.setRequestHeader("Content-Type", "text/csv");
+				xhr.setRequestHeader("Content-Type", "application/json");
 			},
 		}).then(function(retorno) {
+			
+			 var headers = data.headers();
+			 	
+			 	var filename = headers['x-filename'];
+		        var contentType = headers['content-type'];
+		 
+		        var linkElement = document.createElement('a');
+		        try {
+		            var blob = new Blob([data], { type: contentType });
+		            var url = window.URL.createObjectURL(blob);
+		 
+		            linkElement.setAttribute('href', url);
+		            linkElement.setAttribute("download", filename);
+		 
+		            var clickEvent = new MouseEvent("click", {
+		                "view": window,
+		                "bubbles": true,
+		                "cancelable": false
+		            });
+		            linkElement.dispatchEvent(clickEvent);
+		        } catch (ex) {
+		            console.log(ex);
+		        }
 			$scope.agendamentos = retorno.data;
 			loader.removeClass('loader-ativo');
 		});
