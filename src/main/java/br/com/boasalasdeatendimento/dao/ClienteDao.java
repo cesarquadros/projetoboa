@@ -17,26 +17,6 @@ import br.com.boasalasdeatendimento.model.Cliente;
 @Repository
 public class ClienteDao{
 
-	public static void main(String[] args) {
-		Cliente cliente = new Cliente();
-		
-		cliente.setNome("Cesar");
-		cliente.setSobrenome("Test");
-		cliente.setTelFixo("1156214658");
-		cliente.setTelCelular("11980635589");
-		cliente.setCpf("35765289829");
-		cliente.setEmail("teste@teste");
-		cliente.setSexo("M");
-		cliente.setDataNascimentoString("2018-01-01");
-		cliente.setId(1);
-		
-		ClienteDao cDao = new ClienteDao();
-		
-		//cDao.inserir(cliente);
-		
-		cDao.clienteListAll();
-	}
-	
 	@Autowired
 	private ConexaoDao conexaoDao;
 	

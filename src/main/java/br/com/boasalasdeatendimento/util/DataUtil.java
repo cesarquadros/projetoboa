@@ -40,6 +40,12 @@ public class DataUtil {
 		Date date = new Date();
 		return dateFormat.format(date);
 	}
+
+	public static String getDataAtualSemSeparador() {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMyyyy");
+		Date date = new Date();
+		return dateFormat.format(date);
+	}
 	
 	public static Date getDataAtualDate() {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -81,16 +87,6 @@ public class DataUtil {
 		return dateFormat.format(date);
 	}
 
-	
-	public static void main(String[] args) {
-		
-		String teste = getTimeDiff(convertStringToDateTimeStamp("03/05/2018", "17:00:00"), getDataAtualDate());
-		Integer hora = Integer.parseInt(teste.substring(0, 2));
-		
-		System.out.println(teste);
-		System.out.println(hora);
-	}
-	
 	public static Date convertStringToDateTimeStamp(String data, String hora) {
 
 		String dataString = getDataStringToString(data+" "+hora);
@@ -110,7 +106,6 @@ public class DataUtil {
 		}
 
 		return dataConvertida;
-
 	}
 	
 	public static String getTimeDiff(final Date dataInicio, final Date dataFim) {

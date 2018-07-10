@@ -19,7 +19,9 @@ public class CsvUtil {
 
 	public String gerarCsv(List<Agendamento> listaAgendamento) throws IOException {
 
-		String arquivo = "Relatorio" + EXTENSAO_CSV;
+		String dataAtual = DataUtil.getDataAtualSemSeparador();
+		
+		String arquivo = "Relatorio - "+ dataAtual + EXTENSAO_CSV;
 
 		try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(DIRETORIO + arquivo));
 				CSVPrinter csvPrinter = new CSVPrinter(writer,
