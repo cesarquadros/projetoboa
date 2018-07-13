@@ -3,9 +3,12 @@ package br.com.boasalasdeatendimento.controllers;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +39,9 @@ public class MeusAgendamentosController {
 	
 	@Autowired
 	private AgendamentoDao agendamentoDao;
+	
+	@Autowired
+	private CsvUtil csvUtil;
 
 	@RequestMapping("/meusagendamentos")
 	public static ModelAndView meusAgendamentos(HttpSession session) {
@@ -137,22 +143,30 @@ public class MeusAgendamentosController {
 		return new ResponseEntity<Error>(HttpStatus.BAD_REQUEST);
 	}
 
-	@GetMapping(value = "/downloadcsv", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "/downloadcsvOld", produces = MediaType.APPLICATION_JSON_VALUE)
 	public HttpEntity<byte[]> download(HttpSession session) throws IOException {
 			
 			CsvUtil csvUtil = new CsvUtil();
 		
 			List<Agendamento> listaAgendamento = (List<Agendamento>) session.getAttribute("listaAgendamentos");
 			
-			String nomeArquivo = csvUtil.gerarCsv(listaAgendamento);
+			String nomeArquivo = csvUtil.gerarCsvOld(listaAgendamento);
 			
-			byte[] arquivo = Files.readAllBytes(Paths.get(DIRETORIO + nomeArquivo));
+			byte[] arquivo = Files.readAllBytes(Paths.get(nomeArquivo));
 			HttpHeaders httpHeaders = new HttpHeaders();
 			
 			httpHeaders.add("Content-Disposition", "attachment;filename=\"" + nomeArquivo + "\"");
 			
 			return new HttpEntity<>(arquivo, httpHeaders);
 			
+		}
+	
+	@GetMapping(value = "/downloadcsv", produces = MediaType.APPLICATION_JSON_VALUE)
+	public void download2(HttpSession session, HttpServletResponse response) throws IOException {
+			
+			List<Agendamento> listaAgendamento = (List<Agendamento>) session.getAttribute("listaAgendamentos");
+			
+			csvUtil.gerarCsv(response, listaAgendamento);
 		}
 
 	/*

@@ -42,7 +42,7 @@ public class DataUtil {
 	}
 
 	public static String getDataAtualSemSeparador() {
-		SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMyyyy");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMyyyy hhmmss");
 		Date date = new Date();
 		return dateFormat.format(date);
 	}
