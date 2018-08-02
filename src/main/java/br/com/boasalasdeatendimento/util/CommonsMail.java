@@ -31,7 +31,7 @@ public class CommonsMail {
 
 		sendEmail.setMensagemEmail("Email de recuperação de senha: Sua senha é 123456");
 		sendEmail.setAutenticacaoEmail("ninoreggae@gmail.com");
-		sendEmail.setAutenticacaoSenha("Ces@r190788");
+		sendEmail.setAutenticacaoSenha("12345");
 		sendEmail.setPortaSmtp(587);
 
 		enviaEmailFormatoHtml(sendEmail);
@@ -51,7 +51,7 @@ public class CommonsMail {
 			email.setFrom("ninoreggae@gmail.com", "Eu"); // remetente
 			email.setSubject("DIEGOOOOOOOOOOOOO simples"); // assunto do e-mail
 			email.setMsg("Teste de Email utilizando commons-email"); // conteudo do e-mail
-			email.setAuthentication("ninoreggae@gmail.com", "Ces@r190788");
+			email.setAuthentication("ninoreggae@gmail.com", "1234");
 			email.setSmtpPort(587);
 			email.setSSL(true);
 			email.setTLS(true);
