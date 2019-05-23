@@ -103,6 +103,8 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 			
 			$scope.carregarHorarios($scope.numeroSala, $scope.idSala);
 	        loader.removeClass('loader-ativo');
+	        
+	        alert("Agendamento realizado");
 		}, function(erro) {
 			alert("Ops! Ocorreu um erro, tente novamente");
 		});
@@ -208,16 +210,10 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 		}).then(function(retorno) {
 			var retorno =  retorno.statusText;
 			
-			if(retorno == "OK"){
-				$scope.mensagem = true;
-	        	
-	        	$scope.mensagem = false;
-	        	$scope.meusAgendamentosById(idCliente);
-	        	loader.removeClass('loader-ativo');
-				return true;
-			} else {
-				return false;
-			}
+        	$scope.meusAgendamentosById(idCliente);
+        	loader.removeClass('loader-ativo');
+        	alert("Agendamento cancelado");
+			return true;
 		}, function(erro){
 			
 			var tipoErro = erro.status;
@@ -227,8 +223,6 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 			} else {
 				alert("OPS!!: Ocorreu um erro inesperado");
 			}
-			
-			
 			loader.removeClass('loader-ativo');
 		});
 	}

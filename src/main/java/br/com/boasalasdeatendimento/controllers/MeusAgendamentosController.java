@@ -99,31 +99,27 @@ public class MeusAgendamentosController {
 	public ResponseEntity<?> cancelarAgendamento(@PathVariable int idAgendamento, HttpSession session) {
 
 		Cliente cliente = (Cliente) session.getAttribute("usuarioLogado");
-
-		Agendamento agendamento = agendamentoDao.findById(idAgendamento);
-
-		Date timestampAgendamento = DataUtil.convertStringToDateTimeStamp(agendamento.getDataAgendamentoString(),
-				agendamento.getHorario().getHorarioString());
-		Date dataAtual = DataUtil.getTimestamp();
-
-		String diferencaHoraString = DataUtil.getTimeDiff(dataAtual, timestampAgendamento);
-
-		String arrayHora[] = diferencaHoraString.split(":");
-
-		Integer diferencaHoras = Integer.parseInt(arrayHora[0]);
-
-		if (diferencaHoras > 24) {
-			if (cliente != null) {
+		
+		if (cliente != null) {
+			Agendamento agendamento = agendamentoDao.findById(idAgendamento);
+	
+			Date timestampAgendamento = DataUtil.convertStringToDateTimeStamp(agendamento.getDataAgendamentoString(), agendamento.getHorario().getHorarioString());
+			Date dataAtual = DataUtil.getTimestamp();
+			String diferencaHoraString = DataUtil.getTimeDiff(dataAtual, timestampAgendamento);
+			String arrayHora[] = diferencaHoraString.split(":");
+			Integer diferencaHoras = Integer.parseInt(arrayHora[0]);
+	
+			if (diferencaHoras > 24 || cliente.getAutenticacao().getPerfil().getId() == 2) {
 				Boolean cancelarAgendamento = agendamentoDao.cancelarAgendamento(idAgendamento);
 
 				if (cancelarAgendamento) {
-					return new ResponseEntity<Error>(HttpStatus.OK);
+					return new ResponseEntity<>(HttpStatus.OK);
 				}
 				return new ResponseEntity<Error>(HttpStatus.BAD_REQUEST);
 			}
-			return new ResponseEntity<Error>(HttpStatus.BAD_REQUEST);
-		} else {
 			return new ResponseEntity<Error>(HttpStatus.UNAUTHORIZED);
+		} else {
+			return new ResponseEntity<Error>(HttpStatus.BAD_REQUEST);
 		}
 	}
 

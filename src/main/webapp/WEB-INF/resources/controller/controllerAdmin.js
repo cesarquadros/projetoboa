@@ -108,17 +108,20 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 			},
 		}).then(function(retorno) {
 			var retorno =  retorno.statusText;
-			
-			if(retorno == "OK"){
-				$scope.mensagem = true;
-		        	
-		        	$scope.mensagem = false;
-		        	$scope.gerarRelatorio();
-				
+	        	$scope.gerarRelatorio();
+	        	alert("Agendamento cancelado");
+	        	loader.removeClass('loader-ativo');
 				return true;
+		}, function(erro){
+			
+			var tipoErro = erro.status;
+			
+			if(tipoErro == 401){
+				alert("Horario limite para cancelamento excedido");
 			} else {
-				return false;
+				alert("OPS!!: Ocorreu um erro inesperado");
 			}
+			loader.removeClass('loader-ativo');
 		});
 	}
 	
