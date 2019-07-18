@@ -55,7 +55,7 @@ pageEncoding="UTF-8"%>
 								<p>{{msg}}<p>
 
 								<div class="form-group label-floating" id="divCpf">
-									<label class="control-label">CPF</label> 
+									<label class="control-label">RG</label> 
 									<input required id="cpf2" type="text" class="form-control" name="cpf" ng-model="cpf"/> 
 								</div>
 							</div>

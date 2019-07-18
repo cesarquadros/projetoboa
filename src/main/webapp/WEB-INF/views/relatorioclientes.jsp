@@ -28,7 +28,7 @@
 						<thead>
 							<tr>
 								<th>Nome</th>
-								<th>CPF</th>
+								<th>RG</th>
 								<th>Email</th>
 								<th>Telefone fixo</th>
 								<th>Celular</th>

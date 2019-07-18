@@ -32,8 +32,8 @@
 						<div class="row">
 							<div class="col-xs-12 col-sm-12 col-md-4">
 								<div class="form-group" id="divCpf">
-									<label class="control-label">CPF</label> 
-									<input disabled id="cpf" type="text" class="form-control" name="cpf" ng-model="cliente.cpf"/> 
+									<label class="control-label">RG</label> 
+									<input disabled id="cpf2" type="text" class="form-control" name="cpf" ng-model="cliente.cpf"/> 
 								</div>
 							</div>		
 							<div class="col-xs-12 col-sm-12 col-md-4">

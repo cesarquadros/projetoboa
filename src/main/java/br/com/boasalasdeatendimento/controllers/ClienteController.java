@@ -81,10 +81,10 @@ public class ClienteController {
 
 		List<String> listaErros = validatorCliente.validarCliente(cliente);
 
-		if (!ValidaCPF.isCPF(cliente.getCpf().replace("-", "").replace(".", ""))) {
-			listaErros.add("CPF digitado inválido");
-			return new ResponseEntity<List<String>>(listaErros, HttpStatus.EXPECTATION_FAILED);
-		}
+//		if (!ValidaCPF.isCPF(cliente.getCpf().replace("-", "").replace(".", ""))) {
+//			listaErros.add("CPF digitado inválido");
+//			return new ResponseEntity<List<String>>(listaErros, HttpStatus.EXPECTATION_FAILED);
+//		}
 
 		if (listaErros.size() < 1) {
 

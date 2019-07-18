@@ -121,7 +121,8 @@ pageEncoding="UTF-8"%>
 											<h3>Salas de atendimento</h3>
 											<p>Reserve sua sala com maior praticidade, basta escolher a sala, a data e o horário de seu atendimento, 
 											verificar a disponibilidade e efetuar sua reserva. para cancelamento sem cobranças é importante processar 
-											o cancelamento com 24 horas de antecedência da data de sua reserva. A baixo a descrição de preços e modalidades de contratação:</p>
+											o cancelamento com 24 horas de antecedência da data de sua reserva. A baixo a descrição de preços e 
+											modalidades de contratação:</p>
 											<br />
 											<h3>Modalidades de contratação e preços</h3>
 										</div>
@@ -129,26 +130,32 @@ pageEncoding="UTF-8"%>
 									
 									<div class="row">
 										<div class="col-xs-12 col-sm-12 col-md-12">
-											<p style="text-align: justify;"><strong>Fixa:</strong> envolve compromisso, a sala fica reservada para o profissional no mesmo dia da semana e horários por todo o mês, 
-											mesmo que você não use. O pagamento é antecipado e o profissional garante a exclusividade do horário e local. 
-											Pagando R$5,00 mais barato em relação a hora avulsa. Nesta modalidade você conta com a facilidade de dois reagendamentos 
-											por horário fixo desde que avisado que não irá utilizar a sala em determinado dia com 24 horas de antecedência e o horário do 
-											reagendamento deve ser programado sempre no mesmo mês, de acordo com a disponibilidade de salas. O Pagamento é feito de maneira 
-											antecipada garantindo a sua reserva mensal.</p>
-											<p><strong>Valores:</strong> Período da manhã (08:00 as 11:00) R$20,00 Período da Tarde (12:00 as 16:00) R$25,00 
-											Período Noturno (17:00 as 21:00) R$30,00</p>
+											<p style="text-align: justify;">
+											<strong>Pacote de horas:</strong> Reserva mensal de no mínimo 15 horas, neste pacote o profissional poderá 
+											administrar seus horários de acordo com a sua demanda e disponibilidade das salas, não envolve compromisso 
+											de horários fixos e o custo de cada hora ficará no valor de R$20,00, devendo o pagamento ser acertado após 
+											o fechamento do mês e com o prazo de até 5 dias para o depósito em conta corrente.</p> 
 											<br />
+											<p style="text-align: justify;">
+											<strong>Hora Avulsa:</strong> Sublocação de salas por hora, cada hora custará R$25,00 (vinte e cinco reais), independente do período e dia da reserva. Esta modalidade não envolve compromisso e o pagamento será feito no começo do mês seguinte, com prazo de até 5 dias  para o depósito em conta corrente indicada no relatório de fechamento que será enviado ao profissional no termino de cada mês. </p> 
 										</div>
 										
 										<div class="col-xs-12 col-sm-12 col-md-12">
-											<p style="text-align: justify;"><strong>Avulsa:</strong> envolve comodidade, a sala fica reservada para o profissional somente 
-											no dia e horário que ele solicitar esta reserva, as reservas devem ser feitas semanalmente de acordo com a disponibilidade das salas. 
-											O cancelamento deve ser avisado com 24 horas uteis de antecedência ao horário agendado. O pagamento é feito no final do mês após a 
-											utilização dos horários correspondentes.
-											</p>
-											<p><strong>Valores:</strong>Período da manhã (08:00 as 11:00) R$25,00 Período da Tarde (12:00 as 16:00) R$30,00 
-											Período Noturno (17:00 as 21:00) R$35,00
-											</p>
+											<p style="text-align: justify;">
+											<h3>Estrutura que compõe a contratação de sublocação de salas</h3>
+											<p><strong> Copa: </strong>O profissional poderá usufruir de toda a estrutura da copa que é composta por aguá mineral, chás, bolachas, microondas, utensílios domésticos, materiais de higiene e máquina de café dolce gusto (cada profissional deverá se responsabilizar por trazer suas cápsulas ).</p>
+											
+											<p><strong>Banheiro:</strong> O banheiro é de uso dos pacientes e profissionais e estará sempre equipado com itens de Higiene.</p>
+											
+											<p><strong>Complexo de lojas:</strong> o condomínio é composto por uma excelente rede de apoio, no térreo temos os serviços de conveniência, cafeteria, bistrô e serviços de beleza e no piso -2 temos os serviços de farmácia e alimentação com ótimos restaurantes.</p>
+											
+											<p><strong>Recepção interna e externa:</strong> o prédio possui uma recepção que funciona 24 horas o que facilita a identificação e comunicação entre pacientes e profissionais. O profissional pode optar por autorizar seu paciente a subir imediatamente, após ser comunicado de sua chegada, deixando ele aguardando na recepção interna do conjunto da clínica, ou então, pedir para que ele aguarde na recepção externa que fica no térreo do prédio.</p> 
+											
+											<p><strong>Segurança 24 horas: </strong>o prédio comercial oferece segurança 24 horas e tranquilidade para nosso ambiente profissional. </p>
+											
+											<p><strong>Vallet: </strong>o serviço de vallet é oferecido por empresa credenciada ao condomínio, o carro fica guardado no próprio prédio, oferecendo comodidade e bom atendimento (custo pago diretamente a empresa que gerencia o estacionamento).</p>
+											
+											<p><strong>Agenda virtual: </strong>facilidade de manejo da agenda para verificar disponibilidade das salas através do acesso virtual.</p>
 										</div>
 									</div>
 								</div>
