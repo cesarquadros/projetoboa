@@ -3,33 +3,34 @@ package br.com.boasalasdeatendimento.dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
-import br.com.boasalasdeatendimento.model.Autenticacao;
-
-@Component
+//mapeando o down
+@Repository
 public class ConexaoDao {
 	
-	private static String URL = "jdbc:sqlserver://boaatendimento.database.windows.net:1433;database=boa;user=boa@boaatendimento;password=Ces@r190788;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30";
-	// Esse � o nome do driver, que na internet voc� vai encontrar de varias
-	// maneiras, mas s� esse resolveu meus problemas
-	private static String DRIVER = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+	private static String URL = "jdbc:mysql://us-cdbr-iron-east-05.cleardb.net/heroku_86b6e8fc0bd3bb1?reconnect=true";
+	private static String user = "b1cd525c86c3d2";
+	private static String password = "1436d536";
+	private static final String DRIVER = "com.mysql.jdbc.Driver";
 	
-	public Connection conectar()  {
-		Connection conexao;
+	
+	public Connection conectar() {
+		
 		try {
+			Connection conexao;
 			Class.forName(DRIVER);
-			conexao = DriverManager.getConnection(URL);
-			System.out.println("Conectado");
+			conexao = DriverManager.getConnection(URL,user ,password );
+			
 			return conexao;
-
-		} catch (ClassNotFoundException | SQLException e) {
+		} catch (SQLException e) {
+			System.out.println("Erro ao conectar: "+ e.toString());
+			return null;
+		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
-			return conexao = null;
-
+			return null;
 		}
 	}
 	
@@ -41,7 +42,4 @@ public class ConexaoDao {
 			e.printStackTrace();
 		}
 	}
-
 }
-
-
