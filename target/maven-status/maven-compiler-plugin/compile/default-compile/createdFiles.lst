@@ -21,6 +21,7 @@ br/com/boasalasdeatendimento/dao/AgendamentoDao.class
 br/com/boasalasdeatendimento/controllers/AdministrativoController.class
 br/com/boasalasdeatendimento/conf/AppWebConfiguration.class
 br/com/boasalasdeatendimento/model/Sala.class
+br/com/boasalasdeatendimento/Application.class
 br/com/boasalasdeatendimento/controllers/HomeController.class
 br/com/boasalasdeatendimento/dao/SalaDao.class
 br/com/boasalasdeatendimento/model/Autenticacao.class

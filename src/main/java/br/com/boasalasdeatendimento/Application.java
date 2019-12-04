@@ -19,15 +19,14 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
-//@ImportResource("applicationContext.xml")
 @EnableWebMvc
 @ComponentScan(basePackages = "br.com.boasalasdeatendimento")
 @EnableAutoConfiguration(exclude = { JndiConnectionFactoryAutoConfiguration.class, DataSourceAutoConfiguration.class,
 		HibernateJpaAutoConfiguration.class, JpaRepositoriesAutoConfiguration.class,
 		DataSourceTransactionManagerAutoConfiguration.class, SecurityAutoConfiguration.class })
 @SpringBootApplication
-@ComponentScan(excludeFilters = {
-		@ComponentScan.Filter(type = FilterType.REGEX, pattern = "br.com.boasalasdeatendimento.conf.*") })
+//@ComponentScan(excludeFilters = {
+//		@ComponentScan.Filter(type = FilterType.REGEX, pattern = "br.com.boasalasdeatendimento.conf.*") })
 @Configuration
 public class Application extends WebMvcConfigurerAdapter {
 	public static void main(String[] args) {
