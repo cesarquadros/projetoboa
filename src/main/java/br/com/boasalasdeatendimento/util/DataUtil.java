@@ -2,16 +2,18 @@ package br.com.boasalasdeatendimento.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
-import java.util.Locale;
 import java.util.TimeZone;
 
 import org.joda.time.DateTimeZone;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class DataUtil {
+	
+	private static Logger LOG = LoggerFactory.getLogger(DataUtil.class);
 
 	public static String getDateFormatString(String dataString, String formatoEntrada,String formatoSaida) {
 
@@ -89,6 +91,7 @@ public class DataUtil {
         DateTimeZone.setDefault(DateTimeZone.forID(TIME_ZONE));
         Date date = Date.from( now.atZone( ZoneId.systemDefault()).toInstant());
 		SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+		LOG.info(dateFormat.format(date));
 		return dateFormat.format(date);
 	}
 
