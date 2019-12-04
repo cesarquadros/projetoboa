@@ -137,10 +137,6 @@ public class CommonsMail {
 		}
 	}
 
-	public static void main(String[] args) throws EmailException, MalformedURLException {
-		new CommonsMail();
-	}
-
 	public static Email criarEmail(Cliente cliente) {
 		
 		Email email = new Email();
