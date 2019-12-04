@@ -2,6 +2,9 @@ package br.com.boasalasdeatendimento.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
@@ -79,11 +82,13 @@ public class DataUtil {
 		
 		String TIME_ZONE = "America/Sao_Paulo";
 		
+		LocalDateTime now = LocalDateTime.now();
+		now = now.minusHours(1l);
+		
 		TimeZone.setDefault(TimeZone.getTimeZone(TIME_ZONE));  
         DateTimeZone.setDefault(DateTimeZone.forID(TIME_ZONE));
-		
+        Date date = Date.from( now.atZone( ZoneId.systemDefault()).toInstant());
 		SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
-		Date date = new Date();
 		return dateFormat.format(date);
 	}
 
