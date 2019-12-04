@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
-	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>br.com</groupId>
 	<artifactId>boasalasdeatendimento</artifactId>
@@ -13,34 +14,74 @@
 		<maven.compiler.target>1.7</maven.compiler.target>
 	</properties>
 	<dependencyManagement />
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.6.RELEASE</version>
+	</parent>
 	<dependencies>
+
 		<dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-webmvc</artifactId>
-        <version>4.3.3.RELEASE</version>
-    </dependency>
-	<dependency>
-        <groupId>org.apache.tomcat</groupId>
-        <artifactId>tomcat-servlet-api</artifactId>
-        <version>8.0.37</version>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>4.3.3.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-servlet-api</artifactId>
+			<version>8.0.37</version>
+			<scope>provided</scope>
+		</dependency>
+		
+		<!-- for JSPs -->
+    <dependency>
+        <groupId>org.apache.tomcat.embed</groupId>
+        <artifactId>tomcat-embed-jasper</artifactId>
         <scope>provided</scope>
     </dependency>
-    
     <dependency>
-      <groupId>javax</groupId>
-      <artifactId>javaee-api</artifactId>
-      <version>7.0</version>
-      <scope>provided</scope>
-    </dependency>    
-    
-    <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-email -->
-	<dependency>
-	    <groupId>org.apache.commons</groupId>
-	    <artifactId>commons-email</artifactId>
-	    <version>1.1</version>
+        <groupId>javax.servlet</groupId>
+        <artifactId>jstl</artifactId>
+        <scope>provided</scope>
+    </dependency>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 
-	</dependency>
-    		<dependency>
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>7.0</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-email -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-email</artifactId>
+			<version>1.1</version>
+
+		</dependency>
+		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-csv</artifactId>
 			<version>1.5</version>
@@ -51,21 +92,21 @@
 			<artifactId>spring-orm</artifactId>
 			<version>4.1.0.RELEASE</version>
 		</dependency>
-		
+
 		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
 		<dependency>
-		    <groupId>org.springframework.security</groupId>
-		    <artifactId>spring-security-core</artifactId>
-		    <version>3.1.0.RELEASE</version>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<version>3.1.0.RELEASE</version>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/joda-time/joda-time -->
 		<dependency>
-		    <groupId>joda-time</groupId>
-		    <artifactId>joda-time</artifactId>
-		    <version>2.9.9</version>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+			<version>2.9.9</version>
 		</dependency>
-		
+
 
 		<dependency>
 			<groupId>javax.servlet.jsp.jstl</groupId>
@@ -139,12 +180,12 @@
 			<artifactId>jackson-databind</artifactId>
 			<version>2.5.0</version>
 		</dependency>
-		
+
 		<dependency>
-		        <groupId>org.codehaus.jackson</groupId>
-		        <artifactId>jackson-mapper-asl</artifactId>
-		        <version>1.9.13</version>
-		    </dependency>		
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.9.13</version>
+		</dependency>
 
 		<dependency>
 			<groupId>mysql</groupId>
@@ -167,15 +208,15 @@
 			<artifactId>hibernate-jpa-2.1-api</artifactId>
 			<version>1.0.0.Final</version>
 		</dependency>
-		
+
 		<!-- https://mvnrepository.com/artifact/com.hynnet/sqljdbc4-chs -->
-<dependency>
-    <groupId>com.hynnet</groupId>
-    <artifactId>sqljdbc4-chs</artifactId>
-    <version>4.0.2206.100</version>
-</dependency>
-		
-		
+		<dependency>
+			<groupId>com.hynnet</groupId>
+			<artifactId>sqljdbc4-chs</artifactId>
+			<version>4.0.2206.100</version>
+		</dependency>
+
+
 	</dependencies>
 	<build>
 		<plugins>

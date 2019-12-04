@@ -19,9 +19,9 @@ pageEncoding="UTF-8"%>
 	<link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
 
 	<!-- CSS Files -->
-	<link href="resources/css/bootstrap.min.css" rel="stylesheet"	media="screen">
-	<link href="resources/css/material-kit.css" rel="stylesheet"	media="screen">
-	<link href="resources/css/loader.css" rel="stylesheet"	media="screen">
+	<link href="./resources/css/bootstrap.min.css" rel="stylesheet"	media="screen">
+	<link href="./resources/css/material-kit.css" rel="stylesheet"	media="screen">
+	<link href="./resources/css/loader.css" rel="stylesheet"	media="screen">
 
 	<!-- ANGULAR JS -->
 	<script src=./resources/js/angular.min.js></script>
@@ -173,21 +173,21 @@ pageEncoding="UTF-8"%>
 </body>
 
 <!--   Core JS Files   -->
-<script src="resources/js/jquery.min.js" type="text/javascript"></script>
-<script src="resources/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="resources/js/material.min.js"></script>
-<script src="resources/js/mask.js"></script>
+<script src="./resources/js/jquery.min.js" type="text/javascript"></script>
+<script src="./resources/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="./resources/js/material.min.js"></script>
+<script src="./resources/js/mask.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.js" type="text/javascript"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js" type="text/javascript"></script>
 
 <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-<script src="resources/js/nouislider.min.js" type="text/javascript"></script>
+<script src="./resources/js/nouislider.min.js" type="text/javascript"></script>
 
 <!--  Plugin for the Datepicker, full documentation here: http://www.eyecon.ro/bootstrap-datepicker/ -->
-<script src="resources/js/bootstrap-datepicker.js" type="text/javascript"></script>
+<script src="./resources/js/bootstrap-datepicker.js" type="text/javascript"></script>
 
 <!-- Control Center for Material Kit: activating the ripples, parallax effects, scripts from the example pages etc -->
-<script src="resources/js/material-kit.js" type="text/javascript"></script>
+<script src="./resources/js/material-kit.js" type="text/javascript"></script>
 
 </html>

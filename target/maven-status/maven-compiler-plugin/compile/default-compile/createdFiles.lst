@@ -1,8 +1,8 @@
 br/com/boasalasdeatendimento/model/Unidade.class
 br/com/boasalasdeatendimento/controllers/ClienteController.class
 br/com/boasalasdeatendimento/model/Perfil.class
-br/com/boasalasdeatendimento/conf/SpringMVCServlet.class
 br/com/boasalasdeatendimento/dao/UnidadeDao.class
+br/com/boasalasdeatendimento/conf/SpringMVCServlet.class
 br/com/boasalasdeatendimento/controllers/HorarioRestController.class
 br/com/boasalasdeatendimento/dao/HorarioDao.class
 br/com/boasalasdeatendimento/model/RelatorioAgendamento.class
@@ -13,7 +13,6 @@ br/com/boasalasdeatendimento/model/Cliente.class
 br/com/boasalasdeatendimento/model/Status.class
 br/com/boasalasdeatendimento/model/Horario.class
 br/com/boasalasdeatendimento/controllers/AutenticacaoController.class
-br/com/boasalasdeatendimento/dao/ConexaoDao1.class
 br/com/boasalasdeatendimento/dao/ConexaoDao.class
 br/com/boasalasdeatendimento/model/ConsultaSala.class
 br/com/boasalasdeatendimento/model/Endereco.class
@@ -37,4 +36,5 @@ br/com/boasalasdeatendimento/validators/ValidatorCliente.class
 br/com/boasalasdeatendimento/controllers/MeusAgendamentosController.class
 br/com/boasalasdeatendimento/dao/PerfilDao.class
 br/com/boasalasdeatendimento/model/Email.class
+br/com/boasalasdeatendimento/dao/ConexaoDao2.class
 br/com/boasalasdeatendimento/dao/AutenticarDao.class
