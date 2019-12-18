@@ -63,7 +63,7 @@
 						<table class="table" style="margin-left: auto; margin-right: auto; overflow: scroll;">
 							<thead>
 								<tr>
-									<th>Código</th>
+<!-- 									<th>Código</th> -->
 									<th>Cliente</th>
 									<th>Data</th>
 									<th>Horário</th>
@@ -74,7 +74,7 @@
 							</thead>
 							<tbody>
 								<tr ng-repeat="agendamento in agendamentosSerch = (agendamentos | filter:pesquisaCliente)">
-									<td>{{agendamento.id}}</td>
+<!-- 									<td>{{agendamento.id}}</td> -->
 									<td>{{agendamento.cliente.nome}} {{agendamento.cliente.sobrenome}}</td>
 									<td>{{agendamento.dataAgendamentoString}}</td>
 									<td>{{agendamento.horario.horarioString}}</td>
