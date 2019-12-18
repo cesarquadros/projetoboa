@@ -75,7 +75,7 @@
 							<tbody>
 								<tr ng-repeat="agendamento in agendamentosSerch = (agendamentos | filter:pesquisaCliente)">
 									<td>{{agendamento.id}}</td>
-									<td>{{agendamento.cliente.nome}}</td>
+									<td>{{agendamento.cliente.nome}} {{agendamento.cliente.sobrenome}}</td>
 									<td>{{agendamento.dataAgendamentoString}}</td>
 									<td>{{agendamento.horario.horarioString}}</td>
 									<td>{{agendamento.sala.unidade.nomeUnidade}}</td>

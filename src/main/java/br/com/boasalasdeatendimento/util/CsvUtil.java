@@ -67,7 +67,7 @@ public class CsvUtil {
 		
 		for (Agendamento agendamento  : listaAgendamento) {
 			rows.add(agendamento.getId()+ SEPARADOR + 
-					agendamento.getCliente().getNome()+ SEPARADOR +
+					agendamento.getCliente().getNome()+ " " + agendamento.getCliente().getSobrenome() + SEPARADOR +
 					agendamento.getDataAgendamentoString()+ SEPARADOR +
 					agendamento.getHorario().getHorarioString()+ SEPARADOR +
 					agendamento.getSala().getUnidade().getNomeUnidade()+ SEPARADOR +
