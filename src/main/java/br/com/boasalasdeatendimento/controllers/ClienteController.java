@@ -20,8 +20,8 @@ import br.com.boasalasdeatendimento.dao.AutenticarDao;
 import br.com.boasalasdeatendimento.dao.ClienteDao;
 import br.com.boasalasdeatendimento.model.Autenticacao;
 import br.com.boasalasdeatendimento.model.Cliente;
+import br.com.boasalasdeatendimento.service.ClienteService;
 import br.com.boasalasdeatendimento.util.DataUtil;
-import br.com.boasalasdeatendimento.validators.ValidaCPF;
 import br.com.boasalasdeatendimento.validators.ValidatorCliente;
 
 @RestController
@@ -35,6 +35,9 @@ public class ClienteController {
 
 	@Autowired
 	private ValidatorCliente validatorCliente;
+	
+	@Autowired
+	private ClienteService clienteService;
 
 	/*
 	 * @PostMapping(value = "/cadastrarcliente") public ModelAndView
@@ -76,82 +79,25 @@ public class ClienteController {
 	 */
 
 	@PostMapping(value = "/cadastrarcliente")
-	public ResponseEntity<?> cadastrarCliente(@RequestBody Cliente cliente, Autenticacao autenticacao,
-			RedirectAttributes redirectAttributes, HttpSession session) {
-
-		List<String> listaErros = validatorCliente.validarCliente(cliente);
-
-//		if (!ValidaCPF.isCPF(cliente.getCpf().replace("-", "").replace(".", ""))) {
-//			listaErros.add("CPF digitado inválido");
-//			return new ResponseEntity<List<String>>(listaErros, HttpStatus.EXPECTATION_FAILED);
-//		}
-
-		if (listaErros.size() < 1) {
-
-			autenticacao.setUsuario(cliente.getEmail());
-			
-			autenticacao.setSenha(cliente.getAutenticacao().getSenha());
-
-			Boolean autenticacaoExiste = autenticarDao.findByUsuario(autenticacao.getUsuario());
-			Boolean clienteExiste = clienteDao.findByCpf(cliente.getCpf());
-
-			if (!autenticacaoExiste && !clienteExiste) {
-
-				autenticacao = autenticarDao.inserir(autenticacao);
-
-				cliente.setAutenticacao(autenticacao);
-				Cliente clienteInserido = clienteDao.inserir(cliente);
-
-				if (clienteInserido != null) {
-					session.setAttribute("usuarioLogado", cliente);
-					return ResponseEntity.ok(null);
-				} else {
-					listaErros.add("Erro ao realizar cadastro, tente novamente");
-					return new ResponseEntity<List<String>>(listaErros, HttpStatus.BAD_REQUEST);
-				}
-			} else {
-				listaErros.add("CPF ou Email já cadastrados");
-				return new ResponseEntity<List<String>>(listaErros, HttpStatus.CONFLICT);
-			}
-		} else {
-			return new ResponseEntity<List<String>>(listaErros, HttpStatus.BAD_GATEWAY);
-		}
+	public ResponseEntity<?> cadastrarCliente(@RequestBody Cliente cliente, Autenticacao autenticacao, RedirectAttributes redirectAttributes, HttpSession session) {
+		return clienteService.salvarCliente(cliente, autenticacao, session);
 	}
 	
 	@RequestMapping("/novocadastro")
 	public static ModelAndView formCadastro(HttpSession session) {
-
 		ModelAndView modelAndView = new ModelAndView("cadastrocliente");
 		Cliente cliente = (Cliente) session.getAttribute("usuarioLogado");
 		modelAndView.addObject("cliente", cliente);
-
 		return modelAndView;
 	}
 
 	@PostMapping(value = "/relatorioclientes")
-	public ResponseEntity<?> carregarSalas(HttpSession session) {
-
-		Cliente cliente = (Cliente) session.getAttribute("usuarioLogado");
-		List<Cliente> listaCliente = new ArrayList<Cliente>();
-
-		if (cliente != null) {
-			if (cliente.getAutenticacao().getPerfil().getId() == 2) {
-				listaCliente = clienteDao.clienteListAll();
-				return ResponseEntity.ok(listaCliente);
-			}
-		}
-		return new ResponseEntity<Error>(HttpStatus.BAD_REQUEST);
-	}
-
-	@PostMapping(value = "/cadacli")
-	public void carregarSalas() {
-
-		System.out.println("");
+	public ResponseEntity<?> carregarClientes(HttpSession session) {
+		return clienteService.listarTodosClientes(session);
 	}
 
 	@RequestMapping("/meuperfil")
 	public static ModelAndView meuPerfil(HttpSession session) {
-
 		Cliente cliente = (Cliente) session.getAttribute("usuarioLogado");
 		ModelAndView modelAndView;
 		if (cliente != null) {
@@ -160,9 +106,7 @@ public class ClienteController {
 			modelAndView.addObject("cliente", cliente);
 			return modelAndView;
 		}
-
 		modelAndView = new ModelAndView("login");
-
 		return modelAndView;
 	}
 	
