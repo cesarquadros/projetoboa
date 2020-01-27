@@ -74,10 +74,10 @@ public class CommonsMail {
 		HtmlEmail email = new HtmlEmail();
 
 		// adiciona uma imagem ao corpo da mensagem e retorna seu id
-		URL url;
+//		URL url;
 		try {
-			url = new URL("https://www.emporiodoeva.com.br/wp-content/uploads/2015/04/coruja-azul1-e1431120935578.jpg");
-			String cid = email.embed(url, "Logo Salas de atendimento");
+//			url = new URL("https://www.emporiodoeva.com.br/wp-content/uploads/2015/04/coruja-azul1-e1431120935578.jpg");
+//			String cid = email.embed(url, "Logo Salas de atendimento");
 			// configura a mensagem para o formato HTML
 			email.setHtmlMsg(objEmail.getMensagemHtml());
 			// configure uma mensagem alternativa caso o servidor não suporte HTML
@@ -95,7 +95,7 @@ public class CommonsMail {
 			email.send();
 			System.out.println("email enviado");
 			return true;
-		} catch (MalformedURLException | EmailException e) {
+		} catch (EmailException e) {
 			e.printStackTrace();
 			return false;
 		}

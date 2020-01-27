@@ -1,8 +1,8 @@
 br/com/boasalasdeatendimento/model/Unidade.class
 br/com/boasalasdeatendimento/controllers/ClienteController.class
 br/com/boasalasdeatendimento/model/Perfil.class
-br/com/boasalasdeatendimento/conf/SpringMVCServlet.class
 br/com/boasalasdeatendimento/dao/UnidadeDao.class
+br/com/boasalasdeatendimento/conf/SpringMVCServlet.class
 br/com/boasalasdeatendimento/controllers/HorarioRestController.class
 br/com/boasalasdeatendimento/dao/HorarioDao.class
 br/com/boasalasdeatendimento/model/RelatorioAgendamento.class
