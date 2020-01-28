@@ -229,7 +229,8 @@ public class AgendamentoDao {
 			sql.append(" WHERE");
 			sql.append(" id_sala = ? and");
 			sql.append(" id_horario = ? and");
-			sql.append(" dt_agendamento = ? ");
+			sql.append(" dt_agendamento = ? and");
+			sql.append(" status = ? ");
 			
 			stmt = conexao.prepareStatement(sql.toString());
 
@@ -238,6 +239,7 @@ public class AgendamentoDao {
 			stmt.setInt(aux++, agendamento.getSala().getId());
 			stmt.setInt(aux++, agendamento.getHorario().getId());
 			stmt.setString(aux++, DataUtil.getDateFormatString(agendamento.getDataAgendamentoString(), "dd/MM/yyyy", "yyyy-MM-dd"));
+			stmt.setInt(aux++, 1);
 
 			ResultSet rs = stmt.executeQuery();
 			
