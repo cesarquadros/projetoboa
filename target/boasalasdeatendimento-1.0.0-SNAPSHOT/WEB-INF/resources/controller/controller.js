@@ -106,7 +106,7 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 	        
 	        alert("Agendamento realizado");
 		}, function(erro) {
-			alert("Ops! Ocorreu um erro, tente novamente");
+			alert("Ops! Ocorreu um erro, tente novamente/Horario indisponivel ");
 		});
 	}
 

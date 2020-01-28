@@ -22,8 +22,6 @@ public class AgendamentoController {
 
 	@PostMapping(value = "/realizaragendamento")
 	public ResponseEntity<Boolean> realizarAgendamento(@RequestBody Agendamento agendamento) throws JsonProcessingException, InterruptedException{
-		ObjectMapper mapp = new ObjectMapper();
-		System.out.println(mapp.writerWithDefaultPrettyPrinter().writeValueAsString(agendamento));
 		boolean agendamentoExiste = agendamentoDao.agendamentoExiste(agendamento);
 		if(agendamentoExiste) {
 			return new ResponseEntity<>(HttpStatus.CONFLICT);
