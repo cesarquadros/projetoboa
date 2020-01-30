@@ -102,7 +102,7 @@ pageEncoding="UTF-8"%>
 													<tr>
 														<td class="text-center">{{horario.horarioString}}</td>
 														<td>Horário disponível</td>
-														<td><a class="btn btn-success btn-xs" ng-click="realizarAgendamento(horario.id, '${cliente.id}')">Agendar</a></td>
+														<td><a ng-attr-id="{{ 'btn-' + horario.id }}" class="btn btn-success btn-xs" ng-click="realizarAgendamento(horario.id, '${cliente.id}')">Agendar</a></td>
 													</tr>
 												</tbody>
 											</table>

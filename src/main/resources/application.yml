@@ -11,3 +11,6 @@ spring:
   mvc.view.prefix: /WEB-INF/views/
   mvc.view.suffix: .jsp
   resources.static-locations: classpath:/images/,classpath:/jsp/
+  
+server:
+  context-path: /boa

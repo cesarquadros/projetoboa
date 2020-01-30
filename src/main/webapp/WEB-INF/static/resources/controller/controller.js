@@ -82,6 +82,9 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 
 		loader = angular.element( document.querySelector('#loader'));
 		sucess = angular.element( document.querySelector('#sucess'));
+		btnAgendamento = angular.element( document.querySelector('#btn-'+idHora));
+		btnAgendamento.addClass('btn btn-success btn-xs disabled');
+		
 		
         loader.addClass('loader-ativo');
 		
@@ -106,7 +109,9 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 	        
 	        alert("Agendamento realizado");
 		}, function(erro) {
-			alert("Ops! Ocorreu um erro, tente novamente");
+			alert("Ops! Ocorreu um erro, tente novamente/Horario indisponivel");
+			loader.removeClass('loader-ativo');
+			btnAgendamento.addClass('btn btn-success btn-xs');
 		});
 	}
 
