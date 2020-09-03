@@ -29,10 +29,13 @@ public class SalaDao {
 			sql.append(" 	Sala ");
 			sql.append(" WHERE ");
 			sql.append(" 	id_unidade = ? ");
+			sql.append(" and ");
+			sql.append(" ativa = ?");
 
 			stmt = conexao.prepareStatement(sql.toString());
 
 			stmt.setInt(1, idUnidade);
+			stmt.setString(2, "S");
 
 			ResultSet rs = stmt.executeQuery();
 

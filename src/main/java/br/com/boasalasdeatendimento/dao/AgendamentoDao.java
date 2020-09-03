@@ -216,6 +216,48 @@ public class AgendamentoDao {
 		return null;
 	}
 
+	public boolean agendamentoExiste(Agendamento agendamento) {
+
+		Connection conexao = conexaoDao.conectar();
+		PreparedStatement stmt = null;
+		
+		try {
+			final StringBuilder sql = new StringBuilder();
+			
+			sql.append(" SELECT idAgendamento FROM");
+			sql.append(" agendamento");
+			sql.append(" WHERE");
+			sql.append(" id_sala = ? and");
+			sql.append(" id_horario = ? and");
+			sql.append(" dt_agendamento = ? and");
+			sql.append(" status = ? ");
+			
+			stmt = conexao.prepareStatement(sql.toString());
+
+			int aux = 1;
+
+			stmt.setInt(aux++, agendamento.getSala().getId());
+			stmt.setInt(aux++, agendamento.getHorario().getId());
+			stmt.setString(aux++, DataUtil.getDateFormatString(agendamento.getDataAgendamentoString(), "dd/MM/yyyy", "yyyy-MM-dd"));
+			stmt.setInt(aux++, 1);
+
+			ResultSet rs = stmt.executeQuery();
+			
+			agendamento = new Agendamento();
+
+			while (rs.next()) {
+				return true;
+			}
+			
+			return false;
+		} catch (SQLException e) {
+			System.out.println(e);
+			return false;
+		} finally {
+			conexaoDao.fecharConexao(stmt, conexao);
+		}
+	}
+	
 	public boolean inserir(Agendamento agendamento) {
 
 		Connection conexao = conexaoDao.conectar();
@@ -393,7 +435,7 @@ public class AgendamentoDao {
 		try {
 			
 			sql.append(" SELECT");
-			sql.append("	 a.idagendamento, c.nome, a.dt_agendamento, h.horario, u.nome_unidade, s.numero, a.status ");
+			sql.append("	 a.idagendamento, c.nome, c.sobrenome, a.dt_agendamento, h.horario, u.nome_unidade, s.numero, a.status ");
 			sql.append(" FROM ");
 			sql.append(" 	agendamento a ");
 			sql.append(" INNER JOIN	 ");
@@ -455,6 +497,7 @@ public class AgendamentoDao {
 				
 				//setando cliente
 				cliente.setNome(rs.getString("nome"));
+				cliente.setSobrenome(rs.getString("sobrenome"));
 				agendamento.setCliente(cliente);
 
 				listaAgendamentos.add(agendamento);

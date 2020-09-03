@@ -73,15 +73,11 @@ public class CommonsMail {
 
 		HtmlEmail email = new HtmlEmail();
 
-		// adiciona uma imagem ao corpo da mensagem e retorna seu id
-		URL url;
 		try {
-			url = new URL("https://www.emporiodoeva.com.br/wp-content/uploads/2015/04/coruja-azul1-e1431120935578.jpg");
-			String cid = email.embed(url, "Logo Salas de atendimento");
-			// configura a mensagem para o formato HTML
 			email.setHtmlMsg(objEmail.getMensagemHtml());
 			// configure uma mensagem alternativa caso o servidor não suporte HTML
-			email.setTextMsg("Seu servidor de e-mail não suporta mensagem HTML");
+			email.setTextMsg(objEmail.getMensagemHtml());
+			
 			email.setHostName(objEmail.getHostName()); // o servidor SMTP para envio do e-mail
 			email.addTo(objEmail.getEmailDestinatario(), objEmail.getNomeDestinatatio()); // destinatário
 			email.setFrom(objEmail.getEmailRemetente(), objEmail.getNomeRemetente()); // remetente
@@ -95,7 +91,7 @@ public class CommonsMail {
 			email.send();
 			System.out.println("email enviado");
 			return true;
-		} catch (MalformedURLException | EmailException e) {
+		} catch (EmailException e) {
 			e.printStackTrace();
 			return false;
 		}
@@ -153,8 +149,8 @@ public class CommonsMail {
 		email.setMensagemHtml(gerarMensagemEmail(cliente));
 
 		email.setMensagemEmail("Email de recuperação de senha: Sua senha é" + cliente.getAutenticacao().getNovaSenha());
-		email.setAutenticacaoEmail("cleu@vcrh.com.br");
-		email.setAutenticacaoSenha("Cl783289");
+		email.setAutenticacaoEmail("cesarquadros.developer.test");
+		email.setAutenticacaoSenha("Developer@88");
 		email.setPortaSmtp(587);
 		
 		return email;
@@ -164,21 +160,20 @@ public class CommonsMail {
 		
 		StringBuilder mensagemEmail = new StringBuilder();
 		
-		mensagemEmail.append("<h3>Salas de atendimento</h3>");
-		mensagemEmail.append("<p>Conforme solicitado, segue sua nova senha temporaria: </p>");
+		mensagemEmail.append("Salas de atendimento \n");
+		mensagemEmail.append("Conforme solicitado, segue sua nova senha temporaria: \n");
 		
-		mensagemEmail.append("<strong>Login: </strong>");
+		mensagemEmail.append("Login: \n");
 		mensagemEmail.append(cliente.getAutenticacao().getUsuario());
-		mensagemEmail.append("<br />");
+		mensagemEmail.append("\n");
 		
-		mensagemEmail.append("<strong>Senha temporaria: </strong>");
+		mensagemEmail.append("Senha temporaria: \n");
 		mensagemEmail.append(cliente.getAutenticacao().getNovaSenha());
-		mensagemEmail.append("<br />");
+		mensagemEmail.append("\n");
 		
-		mensagemEmail.append("<p>Para alterar a senha clique no menu, no canto superior direito, vá em  'MEU PERFIL'</p>");
+		mensagemEmail.append("Para alterar a senha clique no menu, no canto superior direito, vá em  'MEU PERFIL' \n");
 		
-		mensagemEmail.append("<p><strong>Caso não tenha solicitado a recuperação de senha, "
-							+ "entre em contato cleu@vcrh.com.br</strong></p>");
+		mensagemEmail.append("Caso não tenha solicitado a recuperação de senha, entre em contato cleu@vcrh.com.br \n");
 		
 		return mensagemEmail.toString();
 	}

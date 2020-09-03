@@ -85,7 +85,6 @@ app.controller('appCtrl', [ '$scope', '$http', '$timeout',function($scope, $http
 		btnAgendamento = angular.element( document.querySelector('#btn-'+idHora));
 		btnAgendamento.addClass('btn btn-success btn-xs disabled');
 		
-		
         loader.addClass('loader-ativo');
 		
 		data = $scope.dataSelecionada;
