@@ -131,13 +131,16 @@ pageEncoding="UTF-8"%>
 									<div class="row">
 										<div class="col-xs-12 col-sm-12 col-md-12">
 											<p style="text-align: justify;">
-											<strong>Pacote de horas:</strong> Reserva mensal de no mínimo 15 horas, neste pacote o profissional poderá 
-											administrar seus horários de acordo com a sua demanda e disponibilidade das salas, não envolve compromisso 
-											de horários fixos e o custo de cada hora ficará no valor de R$20,00, devendo o pagamento ser acertado após 
-											o fechamento do mês e com o prazo de até 5 dias para o depósito em conta corrente.</p> 
+											<strong>Pacote de horas:</strong> Reserva mensal de no mínimo 10 horas, 
+											neste pacote o profissional poderá administrar seus horários de acordo com a sua demanda e disponibilidade das salas, 
+											não envolve compromisso de horários fixos e o custo de cada hora ficará no valor de R$25,00,
+											devendo o pagamento ser acertado após o fechamento do mês e com o prazo de até 5 dias para o depósito em conta corrente.</p> 
 											<br />
 											<p style="text-align: justify;">
-											<strong>Hora Avulsa:</strong> Sublocação de salas por hora, cada hora custará R$25,00 (vinte e cinco reais), independente do período e dia da reserva. Esta modalidade não envolve compromisso e o pagamento será feito no começo do mês seguinte, com prazo de até 5 dias  para o depósito em conta corrente indicada no relatório de fechamento que será enviado ao profissional no termino de cada mês. </p> 
+											<strong>Hora Avulsa:</strong> Sublocação de salas por hora, cada hora custará R$25,00 (vinte e cinco reais), 
+											independente do período e dia da reserva. Esta modalidade não envolve compromisso e o pagamento será feito 
+											no começo do mês seguinte, com prazo de até 5 dias  para o depósito em conta corrente indicada no relatório 
+											de fechamento que será enviado ao profissional no termino de cada mês. </p> 
 										</div>
 										
 										<div class="col-xs-12 col-sm-12 col-md-12">
