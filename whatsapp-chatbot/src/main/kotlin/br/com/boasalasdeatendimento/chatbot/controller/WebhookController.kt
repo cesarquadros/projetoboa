@@ -1,7 +1,7 @@
 package br.com.boasalasdeatendimento.chatbot.controller
 
 import br.com.boasalasdeatendimento.chatbot.config.WhatsAppConfig
-import br.com.boasalasdeatendimento.chatbot.service.ChatbotService
+import br.com.boasalasdeatendimento.chatbot.service.WebhookProcessorService
 import br.com.boasalasdeatendimento.chatbot.webhook.WhatsAppWebhookPayload
 import org.slf4j.LoggerFactory
 import org.springframework.http.ResponseEntity
@@ -15,13 +15,14 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/webhook")
 class WebhookController(
-    private val chatbotService: ChatbotService,
+    private val webhookProcessorService: WebhookProcessorService,
     private val whatsAppConfig: WhatsAppConfig
 ) {
     private val log = LoggerFactory.getLogger(javaClass)
 
     /**
-     * Verificação do webhook pela Meta. Retorna hub.challenge se o verify_token estiver correto.
+     * Verificação do webhook pela Meta.
+     * Retorna hub.challenge se o verify_token estiver correto.
      */
     @GetMapping
     fun verificar(
@@ -39,24 +40,16 @@ class WebhookController(
     }
 
     /**
-     * Recebe mensagens do WhatsApp e processa via ChatbotService.
+     * Recebe eventos de mensagem do Meta e retorna 200 imediatamente.
+     *
+     * O Meta exige resposta em menos de 5 segundos ou reentrega o evento.
+     * Todo o processamento de negócio é delegado ao WebhookProcessorService
+     * que roda em pool assíncrono dedicado (webhookExecutor).
+     * Isso evita timeouts mesmo quando DynamoDB ou a API do WhatsApp estiverem lentos.
      */
     @PostMapping
     fun receberMensagem(@RequestBody payload: WhatsAppWebhookPayload): ResponseEntity<String> {
-        payload.entry.forEach { entry ->
-            entry.changes.forEach { change ->
-                change.value.messages.forEach { mensagem ->
-                    if (mensagem.type == "text") {
-                        val telefone = mensagem.from
-                        val texto = mensagem.text?.body ?: ""
-                        val nomeContato = change.value.contacts
-                            .firstOrNull { it.waId == telefone }?.profile?.name ?: ""
-                        log.info("Mensagem recebida de $telefone: $texto")
-                        chatbotService.processar(telefone, texto, nomeContato)
-                    }
-                }
-            }
-        }
+        webhookProcessorService.processarAsync(payload)
         return ResponseEntity.ok("EVENT_RECEIVED")
     }
 }

@@ -156,22 +156,32 @@ class ChatbotService(
     private fun processarConfirmacaoAgendamento(sessao: SessaoChatbot, texto: String, contexto: ContextoChatbot): String {
         return when (texto) {
             "1" -> {
-                val agendamento = agendamentoService.agendar(
-                    clienteTelefone = sessao.telefone,
-                    profissionalId = contexto.profissionalId!!,
-                    profissionalNome = contexto.profissionalNome!!,
-                    servicoId = contexto.servicoId!!,
-                    servicoNome = contexto.servicoNome!!,
-                    data = contexto.data!!,
-                    horario = contexto.horario!!
-                )
-                atualizarSessao(sessao, EstadoChatbot.MENU_PRINCIPAL, ContextoChatbot())
-                mensagemBuilder.agendamentoConfirmado(
-                    profissionalNome = contexto.profissionalNome,
-                    servicoNome = contexto.servicoNome,
-                    data = contexto.data,
-                    horario = contexto.horario
-                ) + "\n\n" + mensagemBuilder.menuPrincipal()
+                try {
+                    agendamentoService.agendar(
+                        clienteTelefone = sessao.telefone,
+                        profissionalId = contexto.profissionalId!!,
+                        profissionalNome = contexto.profissionalNome!!,
+                        servicoId = contexto.servicoId!!,
+                        servicoNome = contexto.servicoNome!!,
+                        data = contexto.data!!,
+                        horario = contexto.horario!!
+                    )
+                    atualizarSessao(sessao, EstadoChatbot.MENU_PRINCIPAL, ContextoChatbot())
+                    mensagemBuilder.agendamentoConfirmado(
+                        profissionalNome = contexto.profissionalNome,
+                        servicoNome = contexto.servicoNome,
+                        data = contexto.data,
+                        horario = contexto.horario
+                    ) + "\n\n" + mensagemBuilder.menuPrincipal()
+                } catch (ex: SlotOcupadoException) {
+                    // Outro cliente reservou o mesmo horário simultaneamente
+                    atualizarSessao(sessao, EstadoChatbot.AGENDAR_HORARIO, contexto.copy(horario = null))
+                    "⚠️ Esse horário acabou de ser reservado por outra pessoa.\n\n" +
+                    mensagemBuilder.listaHorarios(
+                        profissionalService.horariosDisponiveis(contexto.profissionalId, contexto.data!!),
+                        contexto.data
+                    )
+                }
             }
             "2" -> voltarMenu(sessao)
             else -> mensagemBuilder.opcaoInvalida() + "\n\n" + mensagemBuilder.confirmacaoAgendamento(
