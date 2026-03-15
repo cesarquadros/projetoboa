@@ -1,0 +1,16 @@
+package br.com.boasalasdeatendimento.chatbot.model
+
+enum class EstadoChatbot {
+    INICIO,
+    MENU_PRINCIPAL,
+    AGENDAR_PROFISSIONAL,
+    AGENDAR_SERVICO,
+    AGENDAR_DATA,
+    AGENDAR_HORARIO,
+    AGENDAR_CONFIRMAR,
+    DISPONIBILIDADE_PROFISSIONAL,
+    DISPONIBILIDADE_DATA,
+    HISTORICO,
+    CANCELAR_LISTAR,
+    CANCELAR_CONFIRMAR
+}

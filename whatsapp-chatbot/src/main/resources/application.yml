@@ -1,0 +1,41 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: whatsapp-chatbot-salao
+  jackson:
+    default-property-inclusion: non_null
+
+whatsapp:
+  api-url: https://graph.facebook.com/v19.0
+  phone-number-id: ${WHATSAPP_PHONE_NUMBER_ID}
+  access-token: ${WHATSAPP_ACCESS_TOKEN}
+  verify-token: ${WHATSAPP_VERIFY_TOKEN}
+
+aws:
+  region: ${AWS_REGION:us-east-1}
+  dynamodb:
+    endpoint: ${AWS_DYNAMODB_ENDPOINT:}
+
+logging:
+  level:
+    br.com.boasalasdeatendimento: DEBUG
+    software.amazon.awssdk: WARN
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+
+aws:
+  region: us-east-1
+  dynamodb:
+    endpoint: http://localhost:8000
+
+whatsapp:
+  api-url: https://graph.facebook.com/v19.0
+  phone-number-id: test-phone-id
+  access-token: test-token
+  verify-token: meu-verify-token-local
